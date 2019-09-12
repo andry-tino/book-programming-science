@@ -1,0 +1,51 @@
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%
+%% Andrea Tino - 2019
+%% Programming + Science
+%% Trivial
+%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Trivial case: lexically-solvable languages}
+\label{sec:lexs}
+
+We start with a simple definition:
+
+\begin{definition}[Lexically-solvable languages] \label{def:lexsolv}
+A language $L$ with alphabet $\mathcal{S}$ is defined as \textit{lexically-solvable},
+and we write: $L \in \mathcal{L}_{\text{XS}}$, if
+and only if each full
+token $s = (\Sigma, \sigma) \in \mathcal{S}$ can be reconstructed by simply knowing $\Sigma$.
+$\mathcal{L}_{\text{XS}}$ represents the set of lexically-solvable languages.
+\end{definition}
+
+A lexically-solbale language implies our
+ability to use only one single dominant token $\Sigma \in S$ to find the corresponding $\sigma \in S$
+in the original flow. Such an assumption also implies that $\Psi$ can operate
+between $S$ and $\mathcal{S}$.
+
+\begin{definition}[Token collision set] \label{def:colls}
+Let $\mathcal{S}$ be the full sign alphabet, we introduce the following quantity:
+\begin{equation*}
+\Gamma(\mathcal{S}) = \left\{ s = (\Sigma, \sigma) \in \mathcal{S} : 
+\exists s^\prime = (\Sigma^\prime, \sigma^\prime) \in \Gamma(\mathcal{S}) : 
+s \neq s^\prime \wedge \Sigma = \Sigma^\prime \right\} 
+\end{equation*}
+As the \textit{collision set} of $\mathcal{S}$.
+\end{definition}
+
+\begin{lemma}[Collision set size]
+If non empty, the collision set contains at least 2 tokens:
+\begin{equation*}
+\Gamma(\mathcal{S}) \neq \emptyset \iff \left| \Gamma(\mathcal{S}) \right| > 1
+\end{equation*}
+\begin{proof}
+Immediate, to have a collision at least 2 elements are necessary.
+\end{proof}
+\end{lemma}
+
+The collision set of the full token alphabet of a language in definition \ref{def:colls} is the key to
+understanding if the language being considered allows the reconstruction application to be simplified as:
+$\Psi : S \mapsto \mathcal{S}$ rather than being $\Psi : S^\ast \mapsto \mathcal{S}^\ast$.

@@ -1,2 +1,2 @@
-# book-cellular-automata
-A tutorial to develop a 2D Cellular Automaton in HTML, Javascript and CSS
+# book-programming-science
+A collection of tutorials to learn how to use Programming with Science

@@ -1,0 +1,99 @@
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%
+%% Andrea Tino - 2019
+%
+%% Programming + Science
+%% Cellular Automata
+%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\documentclass[graybox]{svmult}
+\usepackage[a4paper]{geometry} % Type of page
+\usepackage{anysize} % Size of margins
+\marginsize{4cm}{3.2cm}{3cm}{2.5cm} % Setting margins
+
+\usepackage{type1cm}
+
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                                       % when including figure files
+\usepackage{multicol}         % used for the two-column index
+\usepackage[bottom]{footmisc} % places footnotes at page bottom
+
+\usepackage{newtxtext}
+\usepackage{newtxmath}       % selects Times Roman as basic font
+
+\usepackage{tikz}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage{xstring}
+
+% see the list of further useful packages
+% in the Reference Guide
+
+\makeindex             % used for the subject index
+                               % please use the style svind.ist with
+                               % your makeindex program
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Title
+%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title*{Studying populations using Cellular Automata}
+\titlerunning{Studying populations using Cellular Automata}
+\author{Andrea Tino}
+% Use \authorrunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\institute{Microsoft Developer Center Copenhagen (MDCC) \at \url{www.microsoft.com}, \email{andrea.tino@microsoft.com}}
+%
+% Use the package "url.sty" to avoid
+% problems with special characters
+% used in your e-mail or web address
+%
+\maketitle
+
+\abstract{
+Populations represent a subject of study which is very prominent today. Studying and analyzing
+how groups of people, societies and communities behave under certain conditions is at the
+foundation of many technological advancements made by human kind. The models developed in this
+area have contributed to great progress in biology, medicine, urban development and so on.
+\newline
+In this chapter, we will start a journey on.
+}
+
+\keywords{cellular automata, markov chains, deterministic cellular automata, probabilistic cellular automata,
+stochastic processes, probability, opinion, influence, social networks, lattice.}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Content
+%%%%%%%%%%%%%%%%%%%%
+
+\input{intro}
+
+\input{model}
+
+\input{trivial}
+
+\input{final}
+
+\input{references}
+
+\end{document}
