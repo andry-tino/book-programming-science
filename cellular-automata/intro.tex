@@ -114,7 +114,7 @@ which are all the possible states in this context.
 \end{example}
 
 So, given definitions \ref{def:alpha} and \ref{def:state}, every member of a population has a state
-$s \in \mathcal{A}$ which is an element of the alphabet; this means that the set of states
+$a \in \mathcal{A}$ which is an element of the alphabet; this means that the set of states
 is, basically, the alphabet.
 In example \ref{ex:statesir}, the set of states is $\mathcal{A} = \{ S, I, R \}$. In example
 \ref{ex:stateled}, the alphabet is $\mathcal{A} = \{ 0, 1 \}$ ($0$ is off, and $1$ is on).
@@ -128,6 +128,8 @@ In a CA, a \textit{cell} is a member of the population. The set of all cells is 
 \end{definition}
 
 So from now on, every time we refer to individuals in a population, we can use the term \textit{cell}.
+As we already mentioned, every cell has a state. We indicate the state of a cell
+$y_{i,j}$ by writing: $y_{i,j} = a$ where $a \in \mathcal{A}$.\\
 
 All the cells in a CA form a shape, this shape will then affect how the cells can be connected together.
 We will not talk about the formal model of cell arrangement in CA because it requires many concepts from
@@ -138,6 +140,13 @@ is not because they simply are CA where the cells form a grid. In this arrangeme
 (except for those on the border) is surrounded by other 8 cells.
 To simplify the notation, to indicate a cell, we can use the following writing: $y_{i,j}$ (with
 $i,j \in \mathbb{N}$) to refer to the $i$-th row and $j$-th column in the grid from the top left corner.
+
+\begin{example}[States in grid of LEDs]
+\label{ex:stateled2}
+With reference to example \ref{ex:stateled}, we can consider a 1x3 grid of lights (a simple line).
+At a given time, we can have the situation where the first and the last lights only are on, and
+the middle light is off. We can indicate this by writing: $y_{1,1}=1$, $y_{1,2}=0$ and $y_{1,3}=1$. 
+\end{example}
 
 \begin{definition}[Neighborhood]
 \label{def:neigh}
@@ -161,6 +170,33 @@ includes only the cells that are
 directly adjacent to $y_{i,j}$.
 \end{definition}
 
+\begin{example}[CA with Moore neighborhood and binary states]
+\label{ex:simpleca}
+Figure aaa shows a simple square 6x6 CA where the alphabet is $\mathcal{A}=\{ 0, 1 \}$ and the
+cells are: $E = \left\{ y_{i,j} : i,j = 1 \dots 6 \right\}$. The neighborhood of cell $y_{4,4}$
+is shown, as it is possible to see, it is a Moore neighborhood because all surrounding cells are
+included.
+\end{example}
+
+\begin{example}[Von Neumann neighborhood]
+\label{ex:vnneigh}
+With reference to example \ref{ex:simpleca}, we can also see the Van Neumann neighborhood of
+cell $y_{4,4}$. In this case, not how only the North, East, South and West surrounding cells
+are included.
+\end{example}
+
+\begin{important}{Important}
 We are going to use always the Moore neighborhood for our analysis, also we will only consider
-unit-radius neighborhood ($r=1$). So, from now on we will always implicitely consider:
+unit-radius neighborhoods ($r=1$). So, from now on we will always implicitely consider:
 $B\left( y_{i,j} \right) = B^\text{M}_1\left( y_{i,j} \right)$.
+\end{important}
+
+The last information we need to add about CA, before we can start playing with them, is time.
+CA are dynamic objects, they change in time. Before we talk about how they change, we need to
+understand how time is modeled in a CA. In mathematical jargon we say that time is 
+\textit{discrete} or, in engineering terms, \textit{slotted}. Normally time is always seen as a
+\textit{continuous} entity: a real number: $t \in \mathbb{R}$.\\
+
+What is the purpose of a cell's neighborhood? As we mentioned before in definition \ref{def:neigh},
+the neighborhood of $y_{i,j}$ contains all the cells $y_{h,k}$ to which $y_{i,j}$ is connected to.
+In a CA the connections are extremely important because the state of one cell.
