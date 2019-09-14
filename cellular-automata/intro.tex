@@ -22,14 +22,145 @@ There are populations everywhere: the city where we live, the building where we 
 the means of transport we use everyday, the roads we fill with our cars, bycicles and
 scooters and so forth. We describe things because we want to extract information, knowledge
 that we can use later to achieve some level of control. A practical example is traffic
-lights: a crossroad is a limited space where a population of cars happen to spend time.
-If we gain more information about the populartion of cars entering and exiting an
+lights: a crossroad is a limited space where a population of cars happens to spend a
+relatively short amount of time.
+If we gain more information about the population of cars entering and exiting an
 intersection, we can later create an algorithm to rework the time durations of green vs.
 red signals at each joining road to maximize the 
 throughput\footnote{The amount of something in unit of time: $\eta = \frac{N}{T}$. 
 Throughput is most often a measure of speed.}.
 
 Urban networks is not the only case scenario where population study comes handy. Other
-examples include Biology and Virology: how does an infection propagate over a
-populations of individuals? Kermack and McHendrick gave an answer to this question by
-formulating the now very well-known \textit{SIR} model.
+examples include Biology and Virology: how does an infection propagate over a closed
+population of individuals? Kermack \& McKendrick \cite{kermack-mckendrick}
+gave an answer to that question by formulating what is known, today, as the \textit{SIR} model
+\cite{kermack-mckendrick-sir}, widely used today everytime an epidemic occurs in the world. The
+model was recently used in the outbreak of the T-virus and Ebola virus in Africa in order to
+come up with good and effective containment strategies to avoid worldwide spread.
+
+One final example of the application of population study concerns relationships among two or more
+populations. Lotka \& Volterra \cite{lotka-volterra} created a model for describing how
+the sub-populations of predators and preys interact together. This model was recently used, for example,
+to try to find a solution to the problem of extinction in the population of Zebras in Kongo.\\
+
+Now that you are, hopefully, convinced of the importance of studying populations, let's answer the
+second question: how do we analyze populations?
+
+There are many approaches that have been put in practice and published so far. A generic approach cannot
+really be considered because the strategies vary case by case, depending on the type of population
+and what exactly is the the focus of the research. In the afore-mentioned examples, both
+Kermack-McKendrick and Lotka-Volterra studies employ
+compartmentalized\footnote{A population is seen as a compartment: a basin. In this description, each
+individual does not really count, the measure which is considered is the total amount of individuals
+in the group and how this number changes over time.}
+models to describe,
+respectively, the population of people being infected, and the populations of preys and predators.
+However other models have been used to tackle the same problem. In the case of Kermack-McKendrick,
+for example, contact between individuals of a population is modeled using graphs, this helps
+having a better description of how a virus can spread.
+
+So, as you can see, different mathematical models can be used to solve the same problem. 
+It is important to highlight how every model has a different descriptive power that allows us to
+be in control of different aspects of the environment we want to study. In this chapter,
+we focus on one category of these called: \textit{Cellular Automata} (CA).
+
+\subsection{What are Cellular Automata?}
+A CA is a mathematical model built on the following base concepts:
+
+\begin{itemize}
+\item \textbf{Population:} A set of individuals is at the center of the description.
+\item \textbf{Connecctivity:} A CA is able to define relationships between different individuals in
+the population These connections will affect the behavior of the whole population.
+\item \textbf{Structure:} The individuals os the population are arranged in a regular geometrical structure
+which also affects the connections among individuals.
+\item \textbf{Collective vs individual behavior:} A CA is capable of visualizing the state of each single
+member as well as the collective state of the whole population.
+\end{itemize}
+
+Because of these fundamental characteristics, CA play a key role in population study today. Let's have
+a look at how a Cellular Automaton is defined and works, starting with:
+
+\begin{definition}[Alphabet]
+\label{def:alpha}
+An \textit{alphabet} $\mathcal{A}$ is a set of symbols that is used to describe
+the \textit{state} of every individual of a population.
+\end{definition}
+
+What do we mean by \textit{state}? 
+
+\begin{definition}[State]
+\label{def:state}
+Each single individual of the population can be described with a fixed set of properties that will represent
+it during time. At each instant, the values of these properties will determine the state of the individual.
+\end{definition}
+
+Let's make a few examples.
+
+\begin{example}[State in a SIR model]
+\label{ex:statesir}
+We mentioned the SIR model before. Though it does not employ CA, the concept of state is still applicable.
+This model is used to describe the spread of a virus in a population.
+The state, is prepresented by the individual's condition in relation to the virus; at each time, an individual can either be: \textit{Susceptible} (it has not yet been infected by the virus),
+\textit{Infected} (it has been infected by the virus and is capable of passing it to others) or
+\textit{Removed} (it has recovered from the virus, or it has been killed by it. Either way,
+it cannot pass the virus on anymore).
+\end{example}
+
+\begin{example}[State in grid of LEDs]
+\label{ex:stateled}
+Let's consider a grid of LED lights (simple light bulbs are ok too, but LEDs
+consume less energy so they are more eco-friendly). At every instant, each light can either be on or off,
+which are all the possible states in this context.
+\end{example}
+
+So, given definitions \ref{def:alpha} and \ref{def:state}, every member of a population has a state
+$s \in \mathcal{A}$ which is an element of the alphabet; this means that the set of states
+is, basically, the alphabet.
+In example \ref{ex:statesir}, the set of states is $\mathcal{A} = \{ S, I, R \}$. In example
+\ref{ex:stateled}, the alphabet is $\mathcal{A} = \{ 0, 1 \}$ ($0$ is off, and $1$ is on).
+
+A CA generates connections between members of the population by arranging them in a very specific
+geometrical structure.
+
+\begin{definition}[Cell]
+\label{def:cell}
+In a CA, a \textit{cell} is a member of the population. The set of all cells is indicated by $E$.
+\end{definition}
+
+So from now on, every time we refer to individuals in a population, we can use the term \textit{cell}.
+
+All the cells in a CA form a shape, this shape will then affect how the cells can be connected together.
+We will not talk about the formal model of cell arrangement in CA because it requires many concepts from
+Algebra and Set Theory. For our analysis, we can simply consider one very common arrangement of cells:
+\textit{$\mathbb{Z}$/$n\mathbb{Z}$ Cellular Automata}\footnote{Also known as: 
+\textit{Cellular Automata over rings of integers modulo $n$}.}. It sounds complicated but it actually
+is not because they simply are CA where the cells form a grid. In this arrangement, every cell 
+(except for those on the border) is surrounded by other 8 cells.
+To simplify the notation, to indicate a cell, we can use the following writing: $y_{i,j}$ (with
+$i,j \in \mathbb{N}$) to refer to the $i$-th row and $j$-th column in the grid from the top left corner.
+
+\begin{definition}[Neighborhood]
+\label{def:neigh}
+Every cell $y_{i,j} \in E$ in a CA has a \textit{neighborhood} which is indicated by: 
+$B_r\left( y_{i,j} \right)$. It is a set containing all the cells that are connected to
+$y_{i,j}$ and have distance $r \in \mathbb{N}$ from it. Note that the neighborhood of a cell does
+not contain the cell itself: $y_{i,j} \not\in B_r\left( y_{i,j} \right)$.
+\end{definition}
+
+\begin{definition}[Moore neighborhood]
+\label{def:neighmoore}
+Given a cell $y_{i,j} \in E$ in a CA, its Moore neighborhood $B^\text{M}_r\left( y_{i,j} \right)$
+includes all the cells surrounding
+$y_{i,j}$.
+\end{definition}
+
+\begin{definition}[Von Neumann neighborhood]
+\label{def:neighmoore}
+Given a cell $y_{i,j} \in E$ in a CA, its Von Neumann neighborhood $B^\text{VN}_r\left( y_{i,j} \right)$
+includes only the cells that are
+directly adjacent to $y_{i,j}$.
+\end{definition}
+
+We are going to use always the Moore neighborhood for our analysis, also we will only consider
+unit-radius neighborhood ($r=1$). So, from now on we will always implicitely consider:
+$B\left( y_{i,j} \right) = B^\text{M}_1\left( y_{i,j} \right)$.
