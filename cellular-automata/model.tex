@@ -14,22 +14,5 @@
 Following the typical approaches in Computational Linguistics, we need to formalise the target language.
 A valid sign is therefore represented by an ordered 2-dimension tuple:
 
-\begin{definition}[Full sign token] \label{def:fst}
-Let $\mathcal{S}$ be the set of full sign tokens, one token $s \in \mathcal{S}$ will be indicated as:
-$s = (\Sigma, \sigma)$ where $\Sigma \in S$ represents the dominant sign (signed by the subject with his
-dominant hand), and $\sigma \in S$ represents the corresponding non-dominant sign in $s$.
-\end{definition}
-
-Note how definition \ref{def:fst} does not make assumptions on left-hand or right-hand. The only distinction
-is made on the dominancy of the single signs forming the full sign.
-
-\begin{definition}[Full sign token flow]
-Let $\mathcal{S}$ be the set of full sign tokens, we indicate with 
-$\mathcal{S}^\ast = \mathcal{S} \cup \mathcal{S}^2 \cup \dots \cup \mathcal{S}^\infty$ the set of all possible
-strings made up of tokens from $\mathcal{S}$. A token-string, or token-flow, is denoted by expression:
-$\Phi = s_1 s_2 \dots s_n \in \mathcal{S}^\ast$, where $s_i \in \mathcal{S}$ for $i = 1 \dots n$, and 
-$n = |\Phi|$.
-\end{definition}
-
 In the context of our effort, we will not handle strings of full tokens $\Phi \in \mathcal{S}^\ast$ as we will
 be missing, for each token $s = (\Sigma, \sigma) \in \mathcal{S}$, the information on $\sigma$.

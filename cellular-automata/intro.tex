@@ -193,10 +193,77 @@ $B\left( y_{i,j} \right) = B^\text{M}_1\left( y_{i,j} \right)$.
 
 The last information we need to add about CA, before we can start playing with them, is time.
 CA are dynamic objects, they change in time. Before we talk about how they change, we need to
-understand how time is modeled in a CA. In mathematical jargon we say that time is 
+understand how time is modeled in a CA. In mathematical jargon, we say that time is 
 \textit{discrete} or, in engineering terms, \textit{slotted}. Normally time is always seen as a
-\textit{continuous} entity: a real number: $t \in \mathbb{R}$.\\
+\textit{continuous} entity: a real number: $t \in \mathbb{R}$; thanks to this extreme level of
+granularity, we can identify a time instant using a decimal number with a level of precision as high
+as we wish (number of decimal digits).
+A date and a time can always be converted into a single real number,
+the 5\textsuperscript{th} of June 2019 15:55:35 is a date and time that can be converted into seconds
+(after Christ's birth), in this case that number would (approximately) be:
+\begin{align*}
+2019 y + 6 m + 5 d + 15 h + 55 m + 35 s &=\\
+2019 \cdot 12 m + 6 \cdot 30 d + 5 \cdot 24 h + 15 \cdot 60 m + 55 \cdot 60 s + 35 s &=\\
+2019 \cdot 12 \cdot 30 d + 6 \cdot 30 \cdot 24 h + 5 \cdot 24 \cdot 60 m +
+    15 \cdot 60 \cdot 60 s + 3300 s + 35 s &=\\
+2019 \cdot 12 \cdot 30 \cdot 24 h + 6 \cdot 30 \cdot 24 \cdot 60 m
+    + 5 \cdot 24 \cdot 60 \cdot 60 s +
+    54000 s + 3335 s &=\\
+2019 \cdot 12 \cdot 30 \cdot 24 \cdot 60 m + 6 \cdot 30 \cdot 24 \cdot 60 \cdot 60 s
+    + 432000 s + 57335 s &=\\
+2019 \cdot 12 \cdot 30 \cdot 24 \cdot 60 \cdot 60 s + 15552000 s + 489335 s &=\\
+62798976000 s + 16041335 s &= 62815017335 s
+\end{align*}
+Of course, that is not the exacrt number, as we have simplified things by considering one month always
+to be 30 days. But you get the idea. That final number represents
+the exact moment when I blew my candels during my birthday this year. And if I had had a stopwatch I could
+even count the milliseconds and add them as a decimal part. This (continuous) vision of time is ideal
+when we want to be able to pinpoint an exact instant.
 
+However we don't always need that much precision, sometimes we just want to count events. For example,
+we want to TODO.\\
+
+So, now that we have understood time, we can move forward and talk about \textit{evolution}.
+CA are very dynamic systems, but so far we have only seen a bunch of cells, each one with a state and
+that's it. Well the whole idea is that the CA will change (evolve) in time. This evolution is
+represented by a change in the state of every single cell. But how does it happen?
+
+In a CA, time is discrete. The type of events that will make time change depends on the specific model,
+hence, at the moment, we just consider time as a meaningless natural number $t \in \mathbb{N}$
+that indexes the $t$-th cycle of evolution; once we get to work on a specific model, each cycle will
+actually represent something.
+At every cycle $t$,
+the state of every cell might be different or the same from cycle $t-1$, and this mutation will make
+the CA change \textit{configuration} every time.
+
+\begin{definition}[CA configuration]
+The \textit{configuration} of a CA at time $t \in \mathbb{N}$, is the set of states of all cells
+in the CA at that time: $x_t = \left\{ y^{(t)}_{i,j} \in E \right\}$, where
+$y^{(t)}_{i,j}$ represents the state of cell $y_{i,j}$ at time $t$.
+\end{definition}
+
+And here come the final question: how does the state of a cell change? This is where its
+neighborhood comes into play.
 What is the purpose of a cell's neighborhood? As we mentioned before in definition \ref{def:neigh},
 the neighborhood of $y_{i,j}$ contains all the cells $y_{h,k}$ to which $y_{i,j}$ is connected to.
-In a CA the connections are extremely important because the state of one cell.
+In a CA, the connections are extremely important because the state of one cell will change depending
+on the state of every neighbor cell. That's it: the future state of a cell is (also, not only)
+determined by the state of its neighbor cells.
+
+\begin{proposition}[Cell state change]
+In a CA, the state of a cell $y_{i,j} \in E$ in the next cycle $t+1$ depends on 3 factors:
+\begin{enumerate}
+\item The current cell's state: $y^{(t)}_{i,j}$.
+\item The current state of all its neighbor cells: $y^{(t)}_{h,k} \in B\left( y_{i,j} \right)$.
+\item Other conditions, specific to the model.
+\end{enumerate}
+Written in mathematical terms, the above points can be resumed in the following equation:
+\begin{equation}
+y^{(t+1)}_{i,j} = f \left[ y^{(t)}_{i,j}, 
+    \left\{ y^{(t)}_{h,k} : y_{h,k} \in B\left( y_{i,j} \right) \right\}, \cdot \right]
+\end{equation}
+Where $f$ is a function which defines how the three factors are used to compute the next state.
+$f$ is different in every model.
+\end{proposition}
+
+df
