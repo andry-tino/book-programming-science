@@ -27,28 +27,56 @@ a cool name like: \texttt{cellautom}. Inside this new directory, do the followin
 \end{enumerate}
 
 These three files represent the basic organization of our visual CA we are going to develop.
+Table \ref{tab:files} offers a good overview of what they are needed for.
 
-% Use the \index{} command to code your index words
 %
-% For tables use
+% Table
 %
 \begin{table}[!t]
+\centering
 \caption{Please write your table caption here}
-\label{tab:1}       % Give a unique label
+\label{tab:files}
 %
 % Follow this input for your own table layout
 %
-\begin{tabular}{p{2cm}p{2.4cm}p{2cm}p{4.9cm}}
+\begin{tabular}{p{0.2\textwidth}p{0.2\textwidth}p{0.5\textwidth}}
 \hline\noalign{\smallskip}
-Classes & Subclass & Length & Action Mechanism  \\
+File & Type & Description \\
 \noalign{\smallskip}\svhline\noalign{\smallskip}
-Translation & mRNA$^a$  & 22 (19--25) & Translation repression, mRNA cleavage\\
-Translation & mRNA cleavage & 21 & mRNA cleavage\\
-Translation & mRNA  & 21--22 & mRNA cleavage\\
-Translation & mRNA  & 24--26 & Histone and DNA Modification\\
+\texttt{index.html} & Web page & This is the web pae that will display the CA and its evolution.\\
+\texttt{ca.js} & Javascript code file  & This file will contain the J
+    avascript code that will make the CA appear and evolve.\\
+\texttt{style.css} & CSS Stylesheet  & The stylesheet we will use to apply colors, fonts 
+    and make our CA beautiful.\\
 \noalign{\smallskip}\hline\noalign{\smallskip}
 \end{tabular}
 \end{table}
 %
 
-as
+\subsection{Defining the barebones}
+Time to write some initial code to see something appearing on the page once we run in the browser.
+Open file \texttt{index.html} with tyour favorite editor and input this code:
+
+\begin{programcode}{Code: index.html}
+Write this code minding casing and spacing.
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Cellular Automaton</title>
+</head>
+
+<body>
+  Hello world!
+</body>
+</html>
+\end{verbatim}
+\end{programcode}
+
+Save the file and now try to open it in your browser.
+
+\begin{tips}{Coding tip: a first glance at HTML}
+We have just written down oue first HTML snippet!
+\end{tips}
+
+df
