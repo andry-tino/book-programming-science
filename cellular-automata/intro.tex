@@ -170,10 +170,26 @@ includes only the cells that are
 directly adjacent to $y_{i,j}$.
 \end{definition}
 
+% For figures use
+%
+\begin{figure}[b]
+\sidecaption
+% tikz diagram
+\input{diag-neigh}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+\caption{If the width of the figure is less than 7.8 cm use the \texttt{sidecapion} command to flush the caption on the left side of the page. If the figure is positioned at the top of the page, align the sidecaption with the top of the figure -- to achieve this you simply need to use the optional argument \texttt{[t]} with the \texttt{sidecaption} command}
+\label{fig:exampleca}
+\end{figure}
+%
+
 \begin{example}[CA with Moore neighborhood and binary states]
 \label{ex:simpleca}
-Figure aaa shows a simple square 6x6 CA where the alphabet is $\mathcal{A}=\{ 0, 1 \}$ and the
-cells are: $E = \left\{ y_{i,j} : i,j = 1 \dots 6 \right\}$. The neighborhood of cell $y_{4,4}$
+Figure \ref{fig:exampleca} shows a simple square 6x6 CA
+where the alphabet is $\mathcal{A}=\{ 0, 1 \}$ and the
+cells are: $E = \left\{ y_{i,j} : i,j = 1 \dots 6 \right\}$. The neighborhood of cell $y_{3,3}$
 is shown, as it is possible to see, it is a Moore neighborhood because all surrounding cells are
 included.
 \end{example}
