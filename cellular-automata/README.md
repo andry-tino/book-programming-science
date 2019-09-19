@@ -1,2 +1,2 @@
-# Paper
-This is the research advance journal collecting the efforts and finding in the context of this project.
+# Cellular Automata - Latex
+This holds the publication material for the section on Cellular Automata.
