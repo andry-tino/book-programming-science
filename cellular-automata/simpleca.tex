@@ -129,13 +129,22 @@ A \texttt{<div>} block is used to group things. We are going to write some code 
 inside it. Before leaving this file, we need to import inside it the other two files we have created.
 
 \begin{programcode}{index.html (snippet)}
-Place these new tags below block \texttt{<title>}.
+Place these new tags right below block \texttt{<title>}.
 \begin{verbatim}
 <head>
   <title>My Cellular Automaton</title>
-  <script src="./ca.js"></script>
+  <script src="ca.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 \end{verbatim}
 \end{programcode}
 
+The first new tag we have added is a \texttt{<script>} which instructs the browser to load and run the
+Javascript code inside \texttt{ca.js}. The next one is a \texttt{<link>} tag (this one does not have a closing tag)
+and tells the browser to load the styles defined inside \texttt{style.css}.
+
+\subsection{Creating the grid}
 For now we are done with \texttt{index.html}, so let.
+
+\subsection{Coding the evolution logic}
+For now w
