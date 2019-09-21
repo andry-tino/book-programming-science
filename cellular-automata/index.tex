@@ -23,6 +23,7 @@
 \usepackage{makeidx}         % allows index generation
 \usepackage{graphicx}        % standard LaTeX graphics tool
                                        % when including figure files
+\usepackage{forest}
 \usepackage{multicol}         % used for the two-column index
 \usepackage[bottom]{footmisc} % places footnotes at page bottom
 
@@ -35,6 +36,7 @@
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{math}
 \usetikzlibrary{matrix}
+\usetikzlibrary{arrows,tikzmark,shadows,positioning}
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -46,6 +48,18 @@
 %%
 %%
 %%
+
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
+\def\FolderSize{4pt}
+\tikzset{
+  folder/.pic={
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.05*\FolderSize,0.2\FolderSize+5pt) rectangle ++(.75*\FolderSize,-0.2\FolderSize-5pt);  
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.15*\FolderSize,-\FolderSize) rectangle (1.15*\FolderSize,\FolderSize);
+  }
+}
 
 % see the list of further useful packages
 % in the Reference Guide

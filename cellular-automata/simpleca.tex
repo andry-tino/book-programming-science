@@ -53,11 +53,26 @@ File & Type & Description \\
 \end{table}
 %
 
+% Figure
+%
+\begin{figure}[b]
+\sidecaption
+% tikz diagram
+\input{diag-dirstruct1}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+\caption{Your project folder should look like this.}
+\label{fig:dirstruct1}
+\end{figure}
+%
+
 \subsection{Defining the barebones}
 Time to write some initial code to see something appearing on the page once we run in the browser.
 Open file \texttt{index.html} with tyour favorite editor and input this code:
 
-\begin{programcode}{Code: index.html}
+\begin{programcode}{index.html}
 Write this code minding casing and spacing.
 \begin{verbatim}
 <!DOCTYPE html>
@@ -75,8 +90,52 @@ Write this code minding casing and spacing.
 
 Save the file and now try to open it in your browser.
 
-\begin{tips}{Coding tip: a first glance at HTML}
-We have just written down oue first HTML snippet!
+\begin{tips}{A first glance at HTML}
+The code we just wrote is read by the browser to create a graphical visualization. HTML is used to
+create web pages. It is not a \textit{programming language} (it does not tell a computer what to do),
+but a \textit{markup language} (it tells a computer what to display and paint on the screen).
+
+A minimal HTML page is exactly the one we wrote. It is all based on the concept of \textit{tags}. The
+first line \texttt{<!DOCTYPE html>} is special and tells the browser that we are using the latest
+version of HTML (you should always use this). Then a new tag \texttt{<html>} is opened and is
+closed at the end of the file: \texttt{</html>}. An opening tag and a closing tag make a \textit{block}.
+Blocks can contain other blocks.
+
+The \texttt{<html>} block must contain, in order, two other blocks:
+\texttt{<head>} and \texttt{<body>}. The first block contains the block for defining the title of the page
+(this text is displayed on the browser's top bar). Everything inside \texttt{<head>} will not generate any 
+graphics, it only contains information about the page. What's inside \texttt{body} is, on the other hand, 
+painted (or, more technically speaking, rendered\footnote{The term \textit{render} is used to indicate
+the complex set of operations that a program does in order to visualize something on the screen.})
+inside the browser window. As you can see, we only have a piece of 
+text\footnote{The \textit{Hello World} is, historically, the first thing one learns
+to do when learning a new programming language, we had to respect tradition here.}, which
+is in fact rendered on a blank, empty page.
 \end{tips}
 
-df
+Of course we don't want to just display text, we want to render a full CA! So, in the same file, replace
+that text.
+
+\begin{programcode}{index.html (snippet)}
+Remove \texttt{Hello world!} and insert a \texttt{<div>} block instead.
+\begin{verbatim}
+<body>
+  <div id="ca"></div>
+</body>
+\end{verbatim}
+\end{programcode}
+
+A \texttt{<div>} block is used to group things. We are going to write some code that puts some graphics
+inside it. Before leaving this file, we need to import inside it the other two files we have created.
+
+\begin{programcode}{index.html (snippet)}
+Place these new tags below block \texttt{<title>}.
+\begin{verbatim}
+<head>
+  <title>My Cellular Automaton</title>
+  <script src="./"></script>
+</head>
+\end{verbatim}
+\end{programcode}
+
+For now we are done with \texttt{index.html}, so let.
