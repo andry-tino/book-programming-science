@@ -141,10 +141,186 @@ Place these new tags right below block \texttt{<title>}.
 
 The first new tag we have added is a \texttt{<script>} which instructs the browser to load and run the
 Javascript code inside \texttt{ca.js}. The next one is a \texttt{<link>} tag (this one does not have a closing tag)
-and tells the browser to load the styles defined inside \texttt{style.css}.
+and tells the browser to load the styles defined inside \texttt{style.css}. As of now, if you refresh the
+page in the browser, you will just see a blank page (not for long!).
 
 \subsection{Creating the grid}
-For now we are done with \texttt{index.html}, so let.
+For now we are done with \texttt{index.html}; the next staep is to write the code to render the CA
+in our page. To do this, let's open \texttt{ca.js} and insert the first lines of code.
+
+\begin{programcode}{ca.js}
+These first lines of Javascript code create our \textit{module}.
+\begin{verbatim}
+(function(){
+  // This is a module
+})();
+\end{verbatim}
+\end{programcode}
+
+We have just created a \textit{module}, let's try to understand a bit more about them.
+
+\begin{tips}{Javascript modules}
+Javascript language does not have an intrinsic concept of module, this is something programmers create in
+different ways. A \textit{module} is a programming structure encapsulating some code that is isolated
+from other codes running in the page.
+
+It is a very generic definition because there is really not much more about it. For now, everytime
+we write some code that needs to run in the page, we will wrap it inside a module like shown before,
+this is a standard procedure to make sure other Javascript codes on the page, in future, do not
+affect our code.
+\end{tips}
+
+We have imported \texttt{ca.js} inside \texttt{index.html}, so when we refresh the page the module
+we wrote will run. However, since there is really no code inside the module (just a comment),
+nothing will happen. Our objective here is to render a grid of cells which will be our automaton,
+to achieve this, let's start by defining a few constants:
+
+\begin{programcode}{ca.js}
+Define the constants we will use at the beginning on the module.
+\begin{verbatim}
+(function(){
+  const rowsnum = 9;
+  const colsnum = 9;
+  const cellsize = 20; // In px
+})();
+\end{verbatim}
+\end{programcode}
+
+The constants we defined will be used to create an automaton of the size we specify in 
+\texttt{rowsnum} and \texttt{colsnum}. Constant \texttt{cellsize} will be used to defined the
+width and height of each (square) cell. Moving on, we now want to create the code that renders the grid.
+
+\begin{programcode}{ca.js}
+Inside the module, after the constants, add a function and the code to invoke it.
+\begin{verbatim}
+(function(){
+  const rowsnum = 9;
+  const colsnum = 9;
+  const cellsize = 20; // In px
+
+  function create() {
+    // Here the code to create the grid
+  }
+
+  window.addEventListener("load", function(){
+    create();
+  });
+})();
+\end{verbatim}
+\end{programcode}
+
+We have added two things: we have defined function \texttt{create}, and we have added some code in
+the module that uses \texttt{window.addEventListener}. This is what happens when we run the page:
+
+\begin{enumerate}
+\item The module is executed.
+\item Function \texttt{window.addEventListener} is run. This code will register a function (the one
+passed as second parameter), once the event specified in the first parameter fires.
+\item When the page has finished loading and everything is ready, function \texttt{create} is called.
+\end{enumerate}
+
+If we didn't use \texttt{window.addEventListener}, but just executed \texttt{create()}, our
+application might error sometimes. This code guarantees that we start doing things only when
+the page is fully loaded; we need this guard and it is always good to have.
+
+\begin{programcode}{ca.js (snippet)}
+Add a new function after function \texttt{create} inside the module.
+\begin{verbatim}
+function create() {
+  // Here the code to create the grid
+}
+
+function getContainer() {
+  return document.getElementById("ca");
+}
+\end{verbatim}
+\end{programcode}
+
+Function \texttt{getContainer} is going to be important for us later. The function simply
+uses \texttt{document.getElementById} to retrieve the \texttt{<div>} we added before in
+\texttt{index.html} (we do this by using the \texttt{id} property on the tag).
+At this point, we are ready to fill function
+\texttt{create} with the code which renders the grid inside the page.
+
+\begin{programcode}{ca.js (snippet)}
+Focusing on function \texttt{create}, remove the comment and add these code instead.
+\begin{verbatim}
+function create() {
+  let container = getContainer();
+  container.style.width = (colsnum * cellsize + colsnum) + "px";
+
+  for (let i = 1; i <= rowsnum; i++) {
+    for (let j = 1; j <= colsnum; j++) {
+      let cell = document.createElement("div");
+      cell.id = i + ":" + j;
+      cell.classList.add("cell");
+      cell.style.width = cellsize + "px";
+      cell.style.height = cellsize + "px";
+
+      container.appendChild(cell);
+    }
+  }
+}
+\end{verbatim}
+\end{programcode}
+
+The code above does a few things. In the first lines, we get a reference to the CA container
+(the \texttt{<div>} in the page), and set its width according to the size we specified in the
+constants. Later on, we create a row-by-column scanning by using one loop nested into the other.
+The outer loop will be used to set the current row, the inner loop to set the column. The code
+inside the two loops will be executed $\text{rowsnum} \cdot \text{colsnum}$ times
+(for each cell to create).
+
+The code inside the loops first creates a \texttt{<div>} block, then assigns it an id (very
+important step, so that we can reference each cell later
+by using \texttt{document.getElementById}), adds a style class to it and defines its width and height.
+The last command invokes \texttt{appendChild} on the container: this will make the cell appear
+inside the container.\\
+
+Try to refresh the page! What can you see? Not really what we were hoping right? Well, the fact that
+we cannot see mush does not mean that the page is empty. Let's have a look by inspecting the page
+using the F12 tool. If we do so, the tool will display, under the \textit{Elements} tab, the
+content of the page: our \texttt{<div>}s are there, it's just that the browser is not rendering
+them on the page the way we want. The problem is styling, we must properly style the elements we
+have created by using some CSS.
+
+\begin{programcode}{style.css}
+Insert this code in \texttt{style.css}.
+\begin{verbatim}
+body {
+  margin: 10x;
+  padding: 10px;
+}
+
+#ca {
+  background-color: #000;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 1px;
+  padding-top: 1px;
+}
+
+.cell {
+  border: none;
+  background-color: #fff;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  flex: 0 0 auto;
+}
+\end{verbatim}
+\end{programcode}
+
+We have filled the stylesheet with 3 sets of rules. The first set is for the \texttt{<body>} element
+and just defines a 10 pixel spacing between the borders and the content. The second targets
+all elements with \texttt{id="ca"} which is our container; we set the background to black and
+make sure contained cells are wrapped by using \texttt{display: flex} and \texttt{flex-wrap: wrap}.
+
+If you try to refresh the page now, you will see the grid!
+
+\begin{problem}
+\label{prob:changecasize}
+Change the size of the CA/grid to 21x21 cells instead.
+\end{problem}
 
 \subsection{Coding the evolution logic}
 For now w
