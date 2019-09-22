@@ -32,3 +32,5 @@ can be useful:
     - What mathematical notions are you expected to be familiar with?
 
 Define chapters as a sequence.
+
+### Ideas

@@ -1,7 +1,8 @@
-(function(){
+(function () {
     const rowsnum = 9;
     const colsnum = 9;
     const cellsize = 20; // In px
+    const initConfig = ["2:2", "4:7", "7:4", "5:5", "3:8"];
 
     let t = 0; // Cycles (time)
 
@@ -22,12 +23,19 @@
         }
     }
 
-    function initialize() {
+    function initializeGrid() {
         for (let i = 1; i <= rowsnum; i++) {
             for (let j = 1; j <= colsnum; j++) {
-                off(i, j);
+                set(i, j, 0);
             }
         }
+    }
+
+    function initializeButton() {
+        let button = document.getElementById("buttonNext");
+        button.addEventListener("click", function(){
+            next();
+        });
     }
 
     function getContainer() {
@@ -38,14 +46,9 @@
         return document.getElementById(i + ":" + j);
     }
 
-    function on(i, j) {
+    function set(i, j, value) {
         let cell = getCell(i, j);
-        cell.setAttribute("data-value", "1");
-    }
-
-    function off(i, j) {
-        let cell = getCell(i, j);
-        cell.setAttribute("data-value", "0");
+        cell.setAttribute("data-value", value);
     }
 
     function get(i, j) {
@@ -53,17 +56,12 @@
         return parseInt(cell.getAttribute("data-value"));
     }
 
-    function _on(i, j) {
+    function setTmp(i, j, value) {
         let cell = getCell(i, j);
-        cell.setAttribute("data-tmpvalue", "1");
+        cell.setAttribute("data-tmpvalue", value);
     }
 
-    function _off(i, j) {
-        let cell = getCell(i, j);
-        cell.setAttribute("data-tmpvalue", "0");
-    }
-
-    function _get(i, j) {
+    function getTmp(i, j) {
         let cell = getCell(i, j);
         return parseInt(cell.getAttribute("data-tmpvalue"));
     }
@@ -74,49 +72,54 @@
     }
 
     function next() {
-        // Calculate
-        for (let i = 1; i <= rowsnum; i++) {
-            for (let j = 1; j <= colsnum; j++) {
+        // Calculate the values
+        for (let i = 2; i <= rowsnum - 1; i++) {
+            for (let j = 2; j <= colsnum - 1; j++) {
                 let cell = get(i, j);
 
                 // Neighborhood
-                let north = get(i-1, j);
-                let south = get(i+1, j);
-                let east = get(i, j+1);
-                let west = get(i, j-1);
-                let northeast = get(i-1, j+1);
-                let southeast = get(i+1, j+1);
-                let northwest = get(i-1, j-1);
-                let southwest = get(i+1, j-1);
+                let north = get(i - 1, j);
+                let south = get(i + 1, j);
+                let east = get(i, j + 1);
+                let west = get(i, j - 1);
+                let northeast = get(i - 1, j + 1);
+                let southeast = get(i + 1, j + 1);
+                let northwest = get(i - 1, j - 1);
+                let southwest = get(i + 1, j - 1);
 
                 // Calculate new state
                 let sum = north + south + east + west + northeast + southeast + northwest + southwest;
                 if (cell + sum >= 5) {
-                    _on(i, j);
+                    setTmp(i, j, 1);
                 } else {
-                    _off(i, j);
+                    setTmp(i, j, 0);
                 }
-
-                removeTmpValue(i, j);
             }
         }
 
-        // Apply
+        // Apply the values
         for (let i = 1; i <= rowsnum; i++) {
             for (let j = 1; j <= colsnum; j++) {
-                if (_get(i, j) == 1) {
-                    on(i, j);
-                } else {
-                    off(i, j);
-                }
+                set(i, j, getTmp(i, j));
+                removeTmpValue(i, j); // Clean up
             }
         }
 
         t++;
     }
 
-    window.addEventListener("load", function(){
+    function updateCycleText() {
+        let text = document.getElementById("cycleText");
+        text.textContent = "cycle " + t;
+    }
+
+    window.addEventListener("load", function () {
+        if (rowsnum < 9 || colsnum < 9) {
+            throw new Error("The CA must be at least 9x9.");
+        }
+
         create();
-        initialize();
+        initializeGrid();
+        initializeButton();
     });
 })();

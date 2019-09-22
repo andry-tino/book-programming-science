@@ -27,15 +27,15 @@ body {
     margin-top: 10px;
 }
 
-.control-next {
+#buttonNext {
     background-color: #ddd;
     color: #000;
     border: none;
     padding: 5px;
 }
-.control-next:hover {
+#buttonNext:hover {
     background-color: #ccc;
 }
-.control-next:active {
+#buttonNext:active {
     background-color: #bbb;
 }
