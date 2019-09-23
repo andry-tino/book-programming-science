@@ -319,7 +319,8 @@ If you try to refresh the page now, you will see the grid!
 
 \begin{problem}
 \label{prob:changecasize}
-Change the size of the CA/grid to 21x21 cells instead.
+Change the size of the CA/grid by setting it to different dimensions. Also try to make rectangular CAs, not
+just square grids.
 \end{problem}
 
 \subsection{Coding the evolution logic}
@@ -331,3 +332,48 @@ to develop for an application. In our case, we need to code the behavior of evol
 so that it can change configuration during every cycle. You can replace the word
 \textit{behavior} with \textit{logic}, as many among software engineers and programmers like to
 use the latter in their everyday jargon.}.
+
+But what kind of CA are we going to build? What is the state going to be? How about the neighborhood? We
+need to define all these properties. The CA we are going to build is a simple and very famour one called:
+\textit{Conway's Game of Life} \cite{wolfram-ca}. This CA has the following characteristics:
+
+\begin{itemize}
+\item The set of states (alphabet) is: $\mathcal{A} = \{ 0, 1 \}$, where $0$ means "off" (inactive, dead) and
+$1$ means "on" (active, alive).
+\item Each cell has a Moore neighborhood (recall definition \ref{def:neighmoore} and example \ref{ex:simpleca}).
+\item The CA describes pixels in a screen. When a pixel (cell) is on, it turns black; when it's off, it
+turns white. 
+\end{itemize}
+
+This CA was the first ever published in the history of Mathematics, and it has very interesting properties.
+
+\subsubsection{Setting the initial state}
+In CA, it is crucial that we are able to set the initial condition (remember what we talked about in
+theorem \ref{theo:evinitcond}). To do so, let's add this code.
+
+\begin{programcode}{ca.js (snippet)}
+Insert this constant in \texttt{ca.js} right after the existing contants at the beginning of the module.
+\begin{verbatim}
+const cellsize = 20; // In px
+const initConfig = ["2:2", "4:7", "7:4", "5:5", "3:8"];
+\end{verbatim}
+\end{programcode}
+
+The line we have added defines a constant which will hold the array of cell identifiers with an initial state
+of $1$ in the CA. The code we have at the moment simply creates the cells, as soon as we finish rendering the grid,
+we must set the initial state.
+
+\begin{programcode}{ca.js (snippet)}
+Do this
+\begin{verbatim}
+some
+\end{verbatim}
+\end{programcode}
+
+df
+
+\subsubsection{Defining the neighborhood}
+Todo
+
+\subsubsection{Rendering cycles}
+Todo

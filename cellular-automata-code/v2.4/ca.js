@@ -26,7 +26,11 @@
     function initializeGrid() {
         for (let i = 1; i <= rowsnum; i++) {
             for (let j = 1; j <= colsnum; j++) {
-                set(i, j, 0);
+                if (initConfig.indexOf(i + ":" + j) >= 0) {
+                    set(i, j, 1);
+                } else {
+                    set(i, j, 0);
+                }
             }
         }
     }
@@ -35,6 +39,7 @@
         let button = document.getElementById("buttonNext");
         button.addEventListener("click", function(){
             next();
+            updateCycleText();
         });
     }
 

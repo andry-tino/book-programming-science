@@ -19,7 +19,7 @@ body {
     flex: 0 0 auto;
 }
 
-.cell.on {
+.cell[data-value="1"] {
     background-color: #000;
 }
 
