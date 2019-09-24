@@ -364,13 +364,45 @@ of $1$ in the CA. The code we have at the moment simply creates the cells, as so
 we must set the initial state.
 
 \begin{programcode}{ca.js (snippet)}
-Do this
+Add this function just below function \texttt{create} inside the module.
 \begin{verbatim}
-some
+function initializeGrid() {
+  for (let i = 1; i <= rowsnum; i++) {
+    for (let j = 1; j <= colsnum; j++) {
+      if (initConfig.indexOf(i + ":" + j) >= 0) {
+        set(i, j, 1);
+      } else {
+        set(i, j, 0);
+      }
+    }
+  }
+}
 \end{verbatim}
 \end{programcode}
 
-df
+We are going to invoke \texttt{initializeGrid} right after the grid is rendered. As you can see, we traverse
+all cells by scanning them row by column as we did before. Inside both loops, we invoke function \texttt{set}
+(this function does not exist yet, we will write it in a moment) which will configure the cell state to either
+$0$ or $1$ depending on whether the cell identifier is in the \texttt{initConfig} list or not. This will allow us
+to set the initial configuration of the CA.
+
+\begin{important}{Bottom-up vs. top-down programming}
+We cannot execute the code at this time because we still need to write function \texttt{set}.
+This approach we have taken now is a bit different from before. Previously, if, say, function $A$ had to
+be called inside function $B$, we would write function $A$ first, and then write down function $B$. Now we are
+doing the opposite. The first approach is called \textit{bottom-up programming}
+as we build from the foundations and the adding on top.
+The latter is called \textit{top-down programming} because we start from the higher levels, then moving down
+writing what's needed.
+
+The good thing of bottom-up coding is that it's possible to test radually every step, but the final code takes
+shape later. On the other end, top-down programming is cumbersome because we cannot test our progress until
+all the layers have been built, but the code takes the final shape from the very beginning.
+\end{important}
+
+SET
+
+GET
 
 \subsubsection{Defining the neighborhood}
 Todo
