@@ -400,7 +400,24 @@ shape later. On the other end, top-down programming is cumbersome because we can
 all the layers have been built, but the code takes the final shape from the very beginning.
 \end{important}
 
-SET
+We have written the function responsible for initializing the CA, but we have only defined it, no place in code
+is invoking it. We need to invoke it, where? As we mentioned, this phase must occur right after the grid is
+rendered; who renders the grid? That would be function \texttt{create}, and who calls that function? If you
+scroll down in \texttt{ca.js}, you see that, at the end of the module, the module itself calls it!
+
+\begin{programcode}{ca.js (snippet)}
+Invoke function \texttt{initializeGrid} right after calling \texttt{create}.
+\begin{lstlisting}[style=JavaScript2]
+window.addEventListener("load", function(){
+  create();
+  (*@
+  \textcolor{black}{initializeGrid();}
+  @*)
+});
+\end{lstlisting}
+\end{programcode}
+
+dfg
 
 GET
 

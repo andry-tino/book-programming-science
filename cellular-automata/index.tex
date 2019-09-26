@@ -41,9 +41,60 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
-%\usepackage{listings}
-
 \usepackage{xstring}
+
+%%%
+%%%
+%%%
+
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+\lstset{escapeinside={(*@}{@*)}}
+
+%
+% ECMAScript 2015 (ES6) definition
+%
+
+\lstdefinelanguage[ECMAScript2015]{JavaScript}[]{JavaScript}{
+  morekeywords=[1]{await, async, case, catch, class, const, default, do,
+    enum, export, extends, finally, from, implements, import, instanceof,
+    let, static, super, switch, throw, try},
+  morestring=[b]` % Interpolation strings.
+}
+
+%
+% JavaScript version 1.1
+%
+
+\lstdefinelanguage{JavaScript}{
+  morekeywords=[1]{break, continue, delete, else, for, function, if, in,
+    new, return, this, typeof, var, void, while, with},
+  % Literals, primitive types, and reference types.
+  morekeywords=[2]{false, null, true, boolean, number, undefined,
+    Array, Boolean, Date, Math, Number, String, Object},
+  % Built-ins.
+  morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape},
+  sensitive,
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morecomment=[s]{/**}{*/}, % JavaDoc style comments
+  morestring=[b]',
+  morestring=[b]"
+}[keywords, comments, strings]
+
+\lstalias[]{ES6}[ECMAScript2015]{JavaScript}
+
+\lstdefinestyle{JavaScript}{
+  language=JavaScript
+}
+\lstdefinestyle{JavaScript2}{
+  language=JavaScript,
+  basicstyle=\ttfamily\footnotesize\color{gray}
+}
+\lstdefinestyle{ES6}{
+  language=ES6
+}
 
 %%
 %%
