@@ -74,7 +74,7 @@ Open file \texttt{index.html} with tyour favorite editor and input this code:
 
 \begin{programcode}{index.html}
 Write this code minding casing and spacing.
-\begin{verbatim}
+\begin{codehtml}
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +85,7 @@ Write this code minding casing and spacing.
   Hello world!
 </body>
 </html>
-\end{verbatim}
+\end{codehtml}
 \end{programcode}
 
 Save the file and now try to open it in your browser.
@@ -118,11 +118,11 @@ that text.
 
 \begin{programcode}{index.html (snippet)}
 Remove \texttt{Hello world!} and insert a \texttt{<div>} block instead.
-\begin{verbatim}
+\begin{codehtml}
 <body>
   <div id="ca"></div>
 </body>
-\end{verbatim}
+\end{codehtml}
 \end{programcode}
 
 A \texttt{<div>} block is used to group things. We are going to write some code that puts some graphics
@@ -130,13 +130,13 @@ inside it. Before leaving this file, we need to import inside it the other two f
 
 \begin{programcode}{index.html (snippet)}
 Place these new tags right below block \texttt{<title>}.
-\begin{verbatim}
+\begin{codehtmlh1}{2}{5}
 <head>
   <title>My Cellular Automaton</title>
   <script src="ca.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-\end{verbatim}
+\end{codehtmlh1}
 \end{programcode}
 
 The first new tag we have added is a \texttt{<script>} which instructs the browser to load and run the
@@ -150,11 +150,11 @@ in our page. To do this, let's open \texttt{ca.js} and insert the first lines of
 
 \begin{programcode}{ca.js}
 These first lines of Javascript code create our \textit{module}.
-\begin{verbatim}
+\begin{code}
 (function(){
   // This is a module
 })();
-\end{verbatim}
+\end{code}
 \end{programcode}
 
 We have just created a \textit{module}, let's try to understand a bit more about them.
@@ -177,13 +177,13 @@ to achieve this, let's start by defining a few constants:
 
 \begin{programcode}{ca.js}
 Define the constants we will use at the beginning on the module.
-\begin{verbatim}
+\begin{codeh1}{1}{5}
 (function(){
   const rowsnum = 9;
   const colsnum = 9;
   const cellsize = 20; // In px
 })();
-\end{verbatim}
+\end{codeh1}
 \end{programcode}
 
 The constants we defined will be used to create an automaton of the size we specify in 
@@ -192,7 +192,7 @@ width and height of each (square) cell. Moving on, we now want to create the cod
 
 \begin{programcode}{ca.js}
 Inside the module, after the constants, add a function and the code to invoke it.
-\begin{verbatim}
+\begin{codeh1}{5}{13}
 (function(){
   const rowsnum = 9;
   const colsnum = 9;
@@ -202,11 +202,11 @@ Inside the module, after the constants, add a function and the code to invoke it
     // Here the code to create the grid
   }
 
-  window.addEventListener("load", function(){
+  window.addEventListener("load", function() {
     create();
   });
 })();
-\end{verbatim}
+\end{codeh1}
 \end{programcode}
 
 We have added two things: we have defined function \texttt{create}, and we have added some code in
@@ -225,7 +225,7 @@ the page is fully loaded; we need this guard and it is always good to have.
 
 \begin{programcode}{ca.js (snippet)}
 Add a new function after function \texttt{create} inside the module.
-\begin{verbatim}
+\begin{codeh1}{4}{8}
 function create() {
   // Here the code to create the grid
 }
@@ -233,7 +233,7 @@ function create() {
 function getContainer() {
   return document.getElementById("ca");
 }
-\end{verbatim}
+\end{codeh1}
 \end{programcode}
 
 Function \texttt{getContainer} is going to be important for us later. The function simply
@@ -243,8 +243,8 @@ At this point, we are ready to fill function
 \texttt{create} with the code which renders the grid inside the page.
 
 \begin{programcode}{ca.js (snippet)}
-Focusing on function \texttt{create}, remove the comment and add these code instead.
-\begin{verbatim}
+Focusing on function \texttt{create}, remove the comment and add this code instead.
+\begin{codeh1}{1}{16}
 function create() {
   let container = getContainer();
   container.style.width = (colsnum * cellsize + colsnum) + "px";
@@ -261,7 +261,7 @@ function create() {
     }
   }
 }
-\end{verbatim}
+\end{codeh1}
 \end{programcode}
 
 The code above does a few things. In the first lines, we get a reference to the CA container
@@ -286,7 +286,7 @@ have created by using some CSS.
 
 \begin{programcode}{style.css}
 Insert this code in \texttt{style.css}.
-\begin{verbatim}
+\begin{codecss}
 body {
   margin: 10x;
   padding: 10px;
@@ -307,7 +307,7 @@ body {
   margin-bottom: 1px;
   flex: 0 0 auto;
 }
-\end{verbatim}
+\end{codecss}
 \end{programcode}
 
 We have filled the stylesheet with 3 sets of rules. The first set is for the \texttt{<body>} element
@@ -353,10 +353,10 @@ theorem \ref{theo:evinitcond}). To do so, let's add this code.
 
 \begin{programcode}{ca.js (snippet)}
 Insert this constant in \texttt{ca.js} right after the existing contants at the beginning of the module.
-\begin{verbatim}
+\begin{codeh1}{1}{3}
 const cellsize = 20; // In px
 const initConfig = ["2:2", "4:7", "7:4", "5:5", "3:8"];
-\end{verbatim}
+\end{codeh1}
 \end{programcode}
 
 The line we have added defines a constant which will hold the array of cell identifiers with an initial state
@@ -365,7 +365,7 @@ we must set the initial state.
 
 \begin{programcode}{ca.js (snippet)}
 Add this function just below function \texttt{create} inside the module.
-\begin{verbatim}
+\begin{code}
 function initializeGrid() {
   for (let i = 1; i <= rowsnum; i++) {
     for (let j = 1; j <= colsnum; j++) {
@@ -377,7 +377,7 @@ function initializeGrid() {
     }
   }
 }
-\end{verbatim}
+\end{code}
 \end{programcode}
 
 We are going to invoke \texttt{initializeGrid} right after the grid is rendered. As you can see, we traverse
@@ -407,14 +407,12 @@ scroll down in \texttt{ca.js}, you see that, at the end of the module, the modul
 
 \begin{programcode}{ca.js (snippet)}
 Invoke function \texttt{initializeGrid} right after calling \texttt{create}.
-\begin{lstlisting}[style=JavaScript2]
+\begin{codeh1}{2}{4}
 window.addEventListener("load", function(){
   create();
-  (*@
-  \textcolor{black}{initializeGrid();}
-  @*)
+  initializeGrid();
 });
-\end{lstlisting}
+\end{codeh1}
 \end{programcode}
 
 dfg

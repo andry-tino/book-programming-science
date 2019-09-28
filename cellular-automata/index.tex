@@ -48,7 +48,11 @@
 %%%
 
 \usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.90}
+
 \usepackage{listings}
+\usepackage{lstlinebgrd}
+
 \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
 \lstset{escapeinside={(*@}{@*)}}
 
@@ -94,6 +98,42 @@
 }
 \lstdefinestyle{ES6}{
   language=ES6
+}
+
+%%%
+
+\lstnewenvironment{codecss}{}{}
+
+\lstnewenvironment{code}
+{
+\lstset{style=JavaScript}
+}
+{
+}
+
+\lstnewenvironment{codehtml}
+{
+\lstset{language=HTML}
+}
+{
+}
+
+\lstnewenvironment{codehtmlh1}[2]
+{
+\lstset{
+        language=HTML,
+        linebackgroundcolor={\ifnum\value{lstnumber}<#2\ifnum\value{lstnumber}>#1\color{light-gray}\fi\fi}}
+}
+{
+}
+
+\lstnewenvironment{codeh1}[2]
+{
+\lstset{
+        style=JavaScript,
+        linebackgroundcolor={\ifnum\value{lstnumber}<#2\ifnum\value{lstnumber}>#1\color{light-gray}\fi\fi}}
+}
+{
 }
 
 %%
