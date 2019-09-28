@@ -415,9 +415,44 @@ window.addEventListener("load", function(){
 \end{codeh1}
 \end{programcode}
 
-dfg
+At this point we have almost everything, as soon as the page starts, the grid is created and then
+\texttt{initializeGrid} will be called to set the initial state. However that function is trying to
+call \texttt{set}, which is another function we still need to define. The purpose of function
+\texttt{set(row, column, value)} will be to set the value of the cell at position
+$(\text{row}, \text{column})$ to the value in parameter \texttt{value}: $0$ means off and $1$ means on.
 
-GET
+\begin{programcode}{ca.js (snippet)}
+Add this function right below \texttt{initializeGrid}.
+\begin{code}
+function set(i, j, value) {
+  let cell = getCell(i, j);
+  cell.setAttribute("data-value", value);
+}
+\end{code}
+\end{programcode}
+
+The function will first try to get the HTML element of the cell, and then it will try to set attribute
+\texttt{data-value} to that. As you can see, here as well we are doing top-down programming because
+function \texttt{getCell} does not yet exist, we need to write it.
+
+\begin{programcode}{ca.js (snippet)}
+Add this function right above \texttt{set}.
+\begin{code}
+function getCell(i, j) {
+  return document.getElementById(i + ":" + j);
+}
+\end{code}
+\end{programcode}
+
+When we created the grid, we set an identifier to every cell element. Function \texttt{document.getElementById}
+is present in every browser and it returns the first HTML element whose \texttt{id} corresponds to the one
+provided as input. Now our code is finished and we can refresh the page to see our CA getting an initial
+condition.
+
+\begin{problem}
+\label{prob:changeinit}
+Change the initial condition of the grid to set as on only cells: $(3,1)$, $(1,3)$ and $(4,4)$.
+\end{problem}
 
 \subsubsection{Defining the neighborhood}
 Todo
