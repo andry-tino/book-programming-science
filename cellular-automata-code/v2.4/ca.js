@@ -2,7 +2,7 @@
     const rowsnum = 9;
     const colsnum = 9;
     const cellsize = 20; // In px
-    const initConfig = ["2:2", "2:3", "2:4", "3:2", "4:2", "4:7", "7:4", "5:5", "5:6", "5:7", "4:6", "4:7", "5:3", "5:4", "3:8", "6:2", "6:3", "6:5", "6:6", "6:7", "7:2", "7:3"];
+    const initConfig = ["3:4", "3:5", "4:3", "4:4", "5:4"];
 
     let t = 0; // Cycles (time)
 
@@ -95,11 +95,7 @@
 
                 // Calculate new state
                 let sum = north + south + east + west + northeast + southeast + northwest + southwest;
-                if (cell + sum >= 5) {
-                    setTmp(i, j, 1);
-                } else {
-                    setTmp(i, j, 0);
-                }
+                setTmp(i, j, calculateState(cell, sum));
             }
         }
 
@@ -112,6 +108,22 @@
         }
 
         t++;
+    }
+
+    function calculateState(state, neighSum) {
+        if (state === 1 && neighSum < 2) {
+            return 0; // Any active cell with fewer than 2 active neighbors becomes inactive
+        }
+        if (state === 1 && neighSum >= 2 && neighSum <= 3) {
+            return 1; // Any active cell with 2 or 3 active neighbors remains active
+        }
+        if (state === 1 && neighSum > 3) {
+            return 0; // Any active cell with more than 3 active neighbors becomes inactive
+        }
+        if (state === 0 && neighSum === 3) {
+            return 1; // Any inactive cell with exactly 3 active neighbors becomes active
+        }
+        return state; // Otherwise the cell's state remains the same
     }
 
     function updateCycleText() {
