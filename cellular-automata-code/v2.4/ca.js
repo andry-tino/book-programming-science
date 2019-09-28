@@ -2,7 +2,7 @@
     const rowsnum = 9;
     const colsnum = 9;
     const cellsize = 20; // In px
-    const initConfig = ["2:2", "4:7", "7:4", "5:5", "3:8"];
+    const initConfig = ["2:2", "2:3", "2:4", "3:2", "4:2", "4:7", "7:4", "5:5", "5:6", "5:7", "4:6", "4:7", "5:3", "5:4", "3:8", "6:2", "6:3", "6:5", "6:6", "6:7", "7:2", "7:3"];
 
     let t = 0; // Cycles (time)
 
@@ -58,7 +58,8 @@
 
     function get(i, j) {
         let cell = getCell(i, j);
-        return parseInt(cell.getAttribute("data-value"));
+        let value = cell.getAttribute("data-value") || 0;
+        return parseInt(value);
     }
 
     function setTmp(i, j, value) {
@@ -103,8 +104,8 @@
         }
 
         // Apply the values
-        for (let i = 1; i <= rowsnum; i++) {
-            for (let j = 1; j <= colsnum; j++) {
+        for (let i = 2; i <= rowsnum - 1; i++) {
+            for (let j = 2; j <= colsnum - 1; j++) {
                 set(i, j, getTmp(i, j));
                 removeTmpValue(i, j); // Clean up
             }
