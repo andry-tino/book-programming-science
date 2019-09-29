@@ -756,7 +756,7 @@ configuration of a CA, we are not going to update the state of border and corner
 
 \begin{programcode}{ca.js (snippet)}
 Replace the \texttt{// Todo} comments with the following lines.
-\begin{code}
+\begin{codeh2}{2}{8}{9}{15}
 function next() {
     // Calculate the values
     for (let i = 2; i <= rowsnum - 1; i++) {
@@ -774,7 +774,7 @@ function next() {
 
     t++;
 }
-\end{code}
+\end{codeh2}
 \end{programcode}
 
 The scanning block is different. Look at the indices in the nested cycles, this time they start from
@@ -785,6 +785,7 @@ We are now ready to start calculating the next state of every cell, however we d
 transition rule to follow.
 
 \begin{definition}[State transition rules in Conway's Game of Life]
+\label{def:cglrules}
 In the CA of \textit{Conway's Game of Life}, the transition rules are the following:
 \begin{enumerate}
 \item Any \textbf{active} cell with fewer than 2 active neighbors becomes \textbf{inactive}.
@@ -795,7 +796,10 @@ In the CA of \textit{Conway's Game of Life}, the transition rules are the follow
 \end{enumerate}
 \end{definition}
 
-dfg
+The first thing we wanna do is translating the rules in definition \ref{def:cglrules} into Javascript
+inside our module.
+
+sdf
 
 \subsubsection{Final touches}
 Todo (handle here the exception on size of CA)

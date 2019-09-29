@@ -145,6 +145,26 @@
 {
 }
 
+\lstnewenvironment{codeh2}[4]
+{
+\lstset{
+        style=JavaScript,
+        linebackgroundcolor={
+        \ifnum \value{lstnumber}<#2
+          \ifnum\value{lstnumber}>#1
+            \color{light-gray}
+          \fi
+        \else
+          \ifnum \value{lstnumber}<#4
+            \ifnum \value{lstnumber}>#3
+              \color{light-gray}
+            \fi
+          \fi
+        \fi}}
+}
+{
+}
+
 %%
 %%
 %%
