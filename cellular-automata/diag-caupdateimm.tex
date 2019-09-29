@@ -22,11 +22,17 @@
   square matrix/.default=\S
 }
 
-\matrix[square matrix] (m1) at (0,0)
+\matrix[square matrix] (mg1) at (0.5,-1.6)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
-\phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+};
+\matrix[square matrix] (m1) at (0,0)
+{
+|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} \\
+|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} \\
+|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} \\
 };
 \draw[opacity=.5, ultra thick, red] (m1-1-1.north west)-|
    (m1-3-3.south east)-|
@@ -40,11 +46,17 @@
 \draw [->, thick] (m1-2-2.center) -- (m1-3-2.center);
 \draw [->, thick] (m1-2-2.center) -- (m1-3-3.center);
 
-\matrix[square matrix] (m2) at (4.5,0)
+\matrix[square matrix] (mg2) at (5,-1.6)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
-\phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+};
+\matrix[square matrix] (m2) at (4.5,0)
+{
+|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} \\
+|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} \\
+|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} &|[fill=white]| \phantom{} \\
 };
 \draw[opacity=.5, ultra thick, red] (m2-1-2.north west)-|
    (m2-3-4.south east)-|
@@ -58,8 +70,8 @@
 \draw [->, thick] (m2-2-3.center) -- (m2-3-3.center);
 \draw [->, thick] (m2-2-3.center) -- (m2-3-4.center);
 
-\node[text width=2cm] at (0.7,-1.5) {$t = k$};
-\node[text width=2cm] at (5.25,-1.5) {$t = k+1$};
+\node[text width=2cm] at (0.7,-3.15) {$t = k$};
+\node[text width=2cm] at (5.25,-3.15) {$t = k+1$};
 
 \draw [->, double] (1.75,0) -- (2.75,0);
 

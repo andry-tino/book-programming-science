@@ -25,7 +25,7 @@
 \matrix[square matrix] (m1) at (0,0)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
-\phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 };
 \draw[opacity=.5, ultra thick, red] (m1-1-1.north west)-|
@@ -43,7 +43,7 @@
 \matrix[square matrix] (m2) at (4.5,0)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
-\phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 };
 \draw[opacity=.5, ultra thick, red] (m2-1-2.north west)-|
