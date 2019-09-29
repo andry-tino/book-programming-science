@@ -1,0 +1,66 @@
+%
+% Tikz Diagram
+%
+
+\begin{tikzpicture}
+
+\tikzmath{
+	\S = 0.7cm;
+}
+
+\tikzset{square matrix/.style={
+    matrix of nodes,
+    column sep=-\pgflinewidth, row sep=-\pgflinewidth,
+    nodes={draw,
+      minimum height=#1,
+      anchor=center,
+      text width=#1,
+      align=center,
+      inner sep=0pt
+    },
+  },
+  square matrix/.default=\S
+}
+
+\matrix[square matrix] (m1) at (0,0)
+{
+\phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+};
+\draw[opacity=.5, ultra thick, red] (m1-1-1.north west)-|
+   (m1-3-3.south east)-|
+   (m1-3-1.south west)-|cycle;
+\draw [->, thick] (m1-2-2.center) -- (m1-1-1.center);
+\draw [->, thick] (m1-2-2.center) -- (m1-1-2.center);
+\draw [->, thick] (m1-2-2.center) -- (m1-1-3.center);
+\draw [->, thick] (m1-2-2.center) -- (m1-2-1.center);
+\draw [->, thick] (m1-2-2.center) -- (m1-2-3.center);
+\draw [->, thick] (m1-2-2.center) -- (m1-3-1.center);
+\draw [->, thick] (m1-2-2.center) -- (m1-3-2.center);
+\draw [->, thick] (m1-2-2.center) -- (m1-3-3.center);
+
+\matrix[square matrix] (m2) at (4.5,0)
+{
+\phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+};
+\draw[opacity=.5, ultra thick, red] (m2-1-2.north west)-|
+   (m2-3-4.south east)-|
+   (m2-3-2.south west)-|cycle;
+\draw [->, thick] (m2-2-3.center) -- (m2-1-2.center);
+\draw [->, thick] (m2-2-3.center) -- (m2-1-3.center);
+\draw [->, thick] (m2-2-3.center) -- (m2-1-4.center);
+\draw [->, thick] (m2-2-3.center) -- (m2-2-2.center);
+\draw [->, thick] (m2-2-3.center) -- (m2-2-4.center);
+\draw [->, thick] (m2-2-3.center) -- (m2-3-2.center);
+\draw [->, thick] (m2-2-3.center) -- (m2-3-3.center);
+\draw [->, thick] (m2-2-3.center) -- (m2-3-4.center);
+
+\node[text width=2cm] at (0.7,-1.5) {$t = k$};
+\node[text width=2cm] at (5.25,-1.5) {$t = k+1$};
+
+\draw [->, double] (1.75,0) -- (2.75,0);
+
+\end{tikzpicture}

@@ -624,5 +624,112 @@ Everything is prepared now. We have the CA initialized and we also have the UI t
 Next step is to create the logic to make the the CA evolve.
 This piece of code will be executed when we press the button.
 
+\begin{programcode}{ca.js (snippet)}
+In function \texttt{initializeButton}, remove the line of code to print to console, and write these lines
+instead.
+\begin{codeh1}{3}{6}
+function initializeButton() {
+  let button = document.getElementById("buttonNext");
+  button.addEventListener("click", function(){
+    next();
+    updateCycleText();
+  });
+}
+\end{codeh1}
+\end{programcode}
+
+Every time we click on the button we do 2 things:
+
+\begin{enumerate}
+\item We first move the CA to the next configuration by using
+function \texttt{next} (which does not exist yet, we will write it later).
+\item We invoke function \texttt{updateCycleText} to update the time label.
+\end{enumerate}
+
+Let's write down function \texttt{next} which is the core of the evolution logic we need to develop.
+
+\begin{programcode}{ca.js (snippet)}
+Add these lines after function \texttt{set}.
+\begin{code}
+function next() {
+    // Calculate the values
+    // Todo
+
+    // Apply the values
+    // Todo
+
+    t++;
+}
+\end{code}
+\end{programcode}
+
+We haven't really written the whole logic. Since function \texttt{next} will need to do a few things, we
+have just prepared it by defining the 3 main actions. As you can see, we have basically created 3 phases:
+
+\begin{enumerate}
+\item Calculating the new states for each cell.
+\item Applying the states.
+\item Incrementing (updating) time.
+\end{enumerate}
+
+We are going to replace the \texttt{// Todo} comments with actual code, but now we need to explain a few
+things about why we have decided to use this approach, why we have defined these 2 phases: 
+\textit{calculate} and \textit{apply}. Our strategy is to:
+
+\begin{enumerate}
+\item Scan all the cells in the CA (as we did before) and calculate the state for each cell.
+The new states will be memorized in a temporary location.
+\item In the second phase, we are going to scan again the cells, and we will apply the new states.
+\end{enumerate}
+
+Why do we want to scan the cells twice? Can't we just scan the cells one time and apply each new state
+right after calculating it? The answer is no, because otherwise we would calculate the CA's new configuration
+in an undesired way. Look at figure \ref{fig:updatecainc},
+the diagram shows what happens if we do not use the double
+scanning and the problem of dirtying the CA. For this reason we need to scan the cells twice. This is because
+our CA is going to be an \textit{immediate CA}, it means that all the cells update at the same time
+as shown in figure \ref{fig:updatecaimm}.
+With the other
+approach we would otherwise have an \textit{incremental CA} when every new configuration of a cell depends on the
+newly updated value of the neighbors. Incremental CA are not wrong CA, they are just different. In this chapter,
+however, we want to use immediate CA!
+
+% Figure
+%
+\begin{figure}[b]
+\sidecaption
+% tikz diagram
+\input{diag-caupdateinc}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+\caption{An example of incremental CA. As you can see in iteration $t=k$, one cell is updated
+with its new state. In the next iteration ($t=k+1$), the next cell is updated, however its state
+will be calculated on the new value of the previous.}
+\label{fig:updatecainc}
+\end{figure}
+%
+
+% Figure
+%
+\begin{figure}[b]
+\sidecaption
+% tikz diagram
+\input{diag-caupdateimm}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+\caption{An example of immediate CA. By using of a temporary CA (a ghost CA) we can update
+the state of the cells of the CA without polluting our calculations. After all cells have been scanned, the
+ghost CA is used to replace the saved states in the original CA. At the end of the process, the ghost CA is
+destroyed.}
+\label{fig:updatecaimm}
+\end{figure}
+%
+
+dfg
+
 \subsubsection{Final touches}
 Todo
