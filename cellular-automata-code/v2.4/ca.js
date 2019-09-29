@@ -139,5 +139,6 @@
         create();
         initializeGrid();
         initializeButton();
+        updateCycleText();
     });
 })();

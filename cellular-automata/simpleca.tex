@@ -450,7 +450,33 @@ function getCell(i, j) {
 
 When we created the grid, we set an identifier to every cell element. Function \texttt{document.getElementById}
 is present in every browser and it returns the first HTML element whose \texttt{id} corresponds to the one
-provided as input. Now our code is finished and we can refresh the page to see our CA getting an initial
+provided as input. At this point it seems like everything is done, so try and refresh the page; unfortunately
+you will not see anything different. Did we make any mistake? Let's try to see.
+
+\begin{enumerate}
+\item Open the browser and refresh the page. You should see the grid.
+\item Open the F12 tools and navigate to the \textit{Elements} panel.
+\item Expand the \texttt{<body>} tag. Also expand the \texttt{<div id="ca" ...>} tag.
+\end{enumerate}
+
+You should, at this point, see the list of \texttt{<div>} tags that represent the cells. See how, in correspondance
+of the IDs in array \texttt{initConfig}, the tag shows \texttt{data-value="1"} and \texttt{data-value="0"}
+otherwise. So our logic is actually working. The actual problem, is the styling. We want the cells marked with
+\texttt{data-value="1"} to appear as black, and not white. So let's head to \texttt{style.css} and make some
+modifications.
+
+\begin{programcode}{style.css (snippet)}
+Add this code at the bottom of the file.
+\begin{codecss}
+.cell[data-value="1"] {
+  background-color: #000;
+}
+\end{codecss}
+\end{programcode}
+
+Make sure you always save. The code we just added instructs the browser to apply a black background color
+to our cells when their HTML elements have attribute \texttt{data-value} set to \texttt{1}.
+Now our code is finished and we can refresh the page to see our CA getting an initial
 condition.
 
 \begin{problem}
@@ -459,8 +485,144 @@ Change the initial condition of the grid. Set to \textit{on} only the following
 cells: $(3,1)$, $(1,3)$ and $(4,4)$.
 \end{problem}
 
-\subsubsection{Defining the neighborhood}
-Todo
+\subsubsection{Building the UI}
+At this point we have succeeded setting the initial condition. This means that we can configure the CA however
+we want by just changing array \texttt{initConfig} at the beginning of the module. Our final goal is to
+make the CA evolve and see it as it changes. We need to build a \textit{User Interface} (or simply: \textit{UI})
+that gives us the ability to:
 
-\subsubsection{Rendering cycles}
+\begin{enumerate}
+\item Render the CA in its next configurartion. We can accomplish this with a button: every time we
+click on this button, the CA will shift to its next configuration from the current one.
+\item Visualize what iteration we are in. We can create a piece of text that displays a number
+representing the index of the current configuration (discrete time).
+\end{enumerate}
+
+So we basically need to create 2
+\textit{controls}\footnote{A web page, or more generally, a user interface in every application or app, is made
+of different things: buttons, texts, text boxes, input fields and so on. Each one of them is a piece of the UI,
+one common way to refer to them is by using the word: \textit{control} in design jargon.}: one button and
+one text label. We want to display them at the bottom of the grid, on the left.
+
+\begin{programcode}{index.html (snippet)}
+Add a new \texttt{<div>} block right after the one containing the CA.
+\begin{codehtmlh1}{2}{5}
+<body>
+  <div id="ca"></div>
+  <div class="controls">
+  </div>
+</body>
+\end{codehtmlh1}
+\end{programcode}
+
+The new \texttt{<div>} we just added will be the container for our button and text label. Next step
+is adding them inside their container.
+
+\begin{programcode}{index.html (snippet)}
+Place these new lines inside the \texttt{<div>} block we added before.
+\begin{codehtmlh1}{1}{4}
+<div class="controls">
+  <button id="buttonNext">Next</button>
+  <span id="cycleText"></span>
+</div>
+\end{codehtmlh1}
+\end{programcode}
+
+Tag \texttt{<button>} creates, as you probably already figured out, a button. While tag \texttt{<span>}
+is used to show text. If you go ahead and refresh the page, you will see the button but you not see
+the label next to it. That is because we need to put some text inside it. Since the text in the label
+must show the current CA's iteration, we need to track time.
+
+\begin{programcode}{ca.js (snippet)}
+Create a variable in the module right after constant \texttt{initConfig} (add spaces before and after to
+have a nice code formatting by separating constants, variables and functions in the module).
+\begin{codeh1}{3}{5}
+const cellsize = 20; // In px
+const initConfig = ["3:4", "3:5", "4:3", "4:4", "5:4"];
+
+let t = 0; // Cycles (time)
+
+function create() {
+\end{codeh1}
+\end{programcode}
+
+Variable \texttt{t} will keep track of time by storing the current CA's iteration. As you can see, when the
+module starts, its initial value is set to \texttt{0}, because the initial configuration is cycle 0!
+Now we need to show the value of \texttt{t} in the label we just created. To do this, we create a function
+which will update the label text:
+
+\begin{programcode}{ca.js (snippet)}
+Add this function in the last part of the module.
+\begin{codeh1}{0}{5}
+function updateCycleText() {
+  let text = document.getElementById("cycleText");
+  text.textContent = "cycle " + t;
+}
+
+window.addEventListener("load", function () {
+\end{codeh1}
+\end{programcode}
+
+As you can see, function \texttt{updateCycleText} will first locate the label in our page by using
+\texttt{document.getElementById} and ID \texttt{"cycleText"} we placed on that element; so that later
+we can access the element's \texttt{textContent} and set it to the value we want. We will invoke
+this function everytime the CA moves to the next configuration but also when the CA is first created.
+This last part we can actually do now.
+
+\begin{programcode}{ca.js (snippet)}
+Invoke function \texttt{updateCycleText} right after we call the function to initialize the grid in
+the last part of the module.
+\begin{codeh1}{3}{5}
+window.addEventListener("load", function () {
+  create();
+  initializeGrid();
+  updateCycleText();
+});
+\end{codeh1}
+\end{programcode}
+
+If we refresh the page now, we will see the label next to the button showing text: "cycle 0". Of course,
+if we press the button, nothing happens because we haven't written anything for that yet, so let's add
+the code to react and do something when the button is clicked.
+
+\begin{programcode}{ca.js (snippet)}
+Add this function in the module right after function \texttt{initializeGrid}.
+\begin{code}
+function initializeButton() {
+  let button = document.getElementById("buttonNext");
+  button.addEventListener("click", function(){
+    console.log("You have clicked me!");
+  });
+}
+\end{code}
+\end{programcode}
+
+This function will search for the button element in the page and then add a listener for the \texttt{click}
+event. It means that the function we pass as second parameter to \texttt{addEventListener} will be executed
+every time the button is clicked. At the  moment we will just display a message in the console. We
+of course need to call function \texttt{initializeButton} to make this happen, we invoke the function
+right after the grid has been initialized.
+
+\begin{programcode}{ca.js (snippet)}
+Invoke function \texttt{initializeButton} right after we call the function to initialize the grid in
+the last part of the module.
+\begin{codeh1}{3}{5}
+window.addEventListener("load", function () {
+  create();
+  initializeGrid();
+  initializeButton();
+  updateCycleText();
+});
+\end{codeh1}
+\end{programcode}
+
+If you refresh the page, make sure the F12 tools are open and visible on your screen, and click the button,
+you will the message appearing in the console.
+
+\subsubsection{Coding the evolution}
+Everything is prepared now. We have the CA initialized and we also have the UI to interact with the CA.
+Next step is to create the logic to make the the CA evolve.
+This piece of code will be executed when we press the button.
+
+\subsubsection{Final touches}
 Todo
