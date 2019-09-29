@@ -1,0 +1,34 @@
+%
+% Tikz Diagram
+%
+
+\begin{tikzpicture}
+
+\tikzmath{
+	\S = 0.7cm;
+}
+
+\tikzset{square matrix/.style={
+    matrix of nodes,
+    column sep=-\pgflinewidth, row sep=-\pgflinewidth,
+    nodes={draw,
+      minimum height=#1,
+      anchor=center,
+      text width=#1,
+      align=center,
+      inner sep=0pt
+    },
+  },
+  square matrix/.default=\S
+}
+
+\matrix[square matrix] (m1) at (0,0)
+{
+$\dots$ & $\dots$ & $\dots$ & $\dots$ & $\dots$ \\
+$\dots$ & |[fill=lightgray]| $y_{\begin{subarray}{l}i-1\\j-1\end{subarray}}$ &|[fill=lightgray]| $y_{\begin{subarray}{l}i-1\\j\end{subarray}}$ &|[fill=lightgray]| $y_{\begin{subarray}{l}i-1\\j+1\end{subarray}}$ & $\dots$ \\
+$\dots$ & |[fill=lightgray]| $y_{\begin{subarray}{l}i\\j-1\end{subarray}}$ &|[fill=black,text=white]| $y_{i,j}$ &|[fill=lightgray]| $y_{\begin{subarray}{l}i\\j+1\end{subarray}}$ & $\dots$ \\
+$\dots$ & |[fill=lightgray]| $y_{\begin{subarray}{l}i+1\\j-1\end{subarray}}$ &|[fill=lightgray]| $y_{\begin{subarray}{l}i+1\\j\end{subarray}}$ &|[fill=lightgray]| $y_{\begin{subarray}{l}i+1\\j+1\end{subarray}}$ & $\dots$ \\
+$\dots$ & $\dots$ & $\dots$ & $\dots$ & $\dots$ \\
+};
+
+\end{tikzpicture}
