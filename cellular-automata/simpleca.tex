@@ -686,7 +686,7 @@ Why do we want to scan the cells twice? Can't we just scan the cells one time an
 right after calculating it? The answer is no, because otherwise we would calculate the CA's new configuration
 in an undesired way. Look at figure \ref{fig:updatecainc},
 the diagram shows what happens if we do not use the double
-scanning and the problem of dirtying the CA. For this reason we need to scan the cells twice. This is because
+scanning and the problem of polluting the grid. For this reason we need to scan the cells twice. This is because
 our CA is going to be an \textit{immediate CA}, it means that all the cells update at the same time
 as shown in figure \ref{fig:updatecaimm}.
 With the other
@@ -729,7 +729,73 @@ destroyed.}
 \end{figure}
 %
 
+In an immediate CA, all the cell's new state can be actually updated in parallel. But we are not going to go
+that far here (the code for doing this is much more complicated).
+
+We need to talk about one last thing before resuming coding: the \textit{border effect}. We know how to
+calculate the next configuration of a CA: we need to compute all the new states of all the cells. And the state
+of a cell depends on the state of its neighbors. Normally a cell has 8 neighbors as we explained in definition
+\ref{def:neigh}, however the cells on the border have fewer neighbors:
+
+\begin{itemize}
+\item If a cell is on the border, it will have 3 neighbors less, for a total of 5.
+\item A corner cell loses 5 neighbors, for a total of 3.
+\end{itemize}
+
+What do we do with them? There are many approaches: we could have special rules for them when updating their
+state for instance. Consider a CA where every cell can either be active or inactive, like the LED CA in
+example \ref{ex:stateled}; in this automaton we set a transition rule for which 
+a cell becomes active only if at least half of its neighbors are active. For a
+normal cell that number is 4, but for a border cell or corner cell? We could use a special rule for border
+cells and set that number to 2 or 3, and for corner cells we could set that number to 1 or 2.
+Using different rules for cells makes the CA more complex though, and we don't want that.
+So we are going to
+choose the simplest approach: ignoring border and corner cells. It means that, when computing the next
+configuration of a CA, we are not going to update the state of border and corner cells, they will always retain their initial state. Practically speaking, it means that our scanning will exclude border and corner cells
+(we will see this in action in code). With all this in mind, let's go back to code.
+
+\begin{programcode}{ca.js (snippet)}
+Replace the \texttt{// Todo} comments with the following lines.
+\begin{code}
+function next() {
+    // Calculate the values
+    for (let i = 2; i <= rowsnum - 1; i++) {
+      for (let j = 2; j <= colsnum - 1; j++) {
+        // This is the first scan
+      }
+    }
+
+    // Apply the values
+    for (let i = 2; i <= rowsnum - 1; i++) {
+      for (let j = 2; j <= colsnum - 1; j++) {
+        // This is the second scan
+      }
+    }
+
+    t++;
+}
+\end{code}
+\end{programcode}
+
+The scanning block is different. Look at the indices in the nested cycles, this time they start from
+$2$ not $1$. And they finish with $rowsnum - 1$ and $colsnum - 1$ instead of $rowsnum$ and $colsnum$.
+When we do this, we are effectively excluding from the scan all border and corner cells.
+
+We are now ready to start calculating the next state of every cell, however we don't know what
+transition rule to follow.
+
+\begin{definition}[State transition rules in Conway's Game of Life]
+In the CA of \textit{Conway's Game of Life}, the transition rules are the following:
+\begin{enumerate}
+\item Any \textbf{active} cell with fewer than 2 active neighbors becomes \textbf{inactive}.
+\item Any \textbf{active} cell with 2 or 3 active neighbors remains \textbf{active}.
+\item Any \textbf{active} cell with more than 3 active neighbors becomes \textbf{inactive}.
+\item Any \textbf{inactive} cell with exactly 3 active neighbors becomes \textbf{active}.
+\item If none of the above rules apply, the cell's state remains \textbf{the same}.
+\end{enumerate}
+\end{definition}
+
 dfg
 
 \subsubsection{Final touches}
-Todo
+Todo (handle here the exception on size of CA)
