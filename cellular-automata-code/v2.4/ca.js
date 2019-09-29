@@ -81,9 +81,10 @@
         // Calculate the values
         for (let i = 2; i <= rowsnum - 1; i++) {
             for (let j = 2; j <= colsnum - 1; j++) {
+                // Cell (i,j)'s state
                 let cell = get(i, j);
 
-                // Neighborhood
+                // States of cell (i,j)'s neighbors
                 let north = get(i - 1, j);
                 let south = get(i + 1, j);
                 let east = get(i, j + 1);
@@ -92,9 +93,9 @@
                 let southeast = get(i + 1, j + 1);
                 let northwest = get(i - 1, j - 1);
                 let southwest = get(i + 1, j - 1);
-
-                // Calculate new state
                 let sum = north + south + east + west + northeast + southeast + northwest + southwest;
+
+                // Calculate new state and save it
                 setTmp(i, j, calculateState(cell, sum));
             }
         }

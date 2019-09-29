@@ -796,10 +796,121 @@ In the CA of \textit{Conway's Game of Life}, the transition rules are the follow
 \end{enumerate}
 \end{definition}
 
-The first thing we wanna do is translating the rules in definition \ref{def:cglrules} into Javascript
-inside our module.
+The first thing we wanna do is translating the rules in definition \ref{def:cglrules} into
+actual Javascript code inside our module.
 
-sdf
+\begin{programcode}{ca.js (snippet)}
+Add this code in the module right below function \texttt{next}.
+\begin{code}
+function calculateState(state, neighSum) {
+  if (state === 1 && neighSum < 2) {
+    return 0; // Any active cell with fewer than 2 active neighbors becomes inactive
+  }
+  if (state === 1 && neighSum >= 2 && neighSum <= 3) {
+    return 1; // Any active cell with 2 or 3 active neighbors remains active
+  }
+  if (state === 1 && neighSum > 3) {
+    return 0; // Any active cell with more than 3 active neighbors becomes inactive
+  }
+  if (state === 0 && neighSum === 3) {
+    return 1; // Any inactive cell with exactly 3 active neighbors becomes active
+  }
+  return state; // Otherwise the cell's state remains the same
+}
+\end{code}
+\end{programcode}
+
+Function \texttt{calculateState} implements the 5 rules in the CA as per definition \ref{def:cglrules} and
+can be used to calculate the next state of a single cell.
+It accepts 2 arguments: \texttt{state} is the cell's current state, and \texttt{neighSum} is the number of
+neighbor cells that are active in the current configuration. We are going to use this function
+inside \texttt{next}.
+
+\begin{programcode}{ca.js (snippet)}
+Remove comment \texttt{// This is the first scan} from the first scanning double loop and add this
+code instead.
+\begin{codeh1}{2}{16}
+for (let i = 2; i <= rowsnum - 1; i++) {
+  for (let j = 2; j <= colsnum - 1; j++) {
+    // Cell (i,j)'s state
+    let cell = get(i, j);
+
+    // States of cell (i,j)'s neighbors
+    let north = get(i - 1, j);
+    let south = get(i + 1, j);
+    let east = get(i, j + 1);
+    let west = get(i, j - 1);
+    let northeast = get(i - 1, j + 1);
+    let southeast = get(i + 1, j + 1);
+    let northwest = get(i - 1, j - 1);
+    let southwest = get(i + 1, j - 1);
+    let sum = north + south + east + west + northeast + southeast + northwest + southwest;
+  }
+}
+\end{codeh1}
+\end{programcode}
+
+The code we have added is needed to collect all the info we need to calculate the next state for every cell.
+Recall that in a CA, the new state of a cell is calculated by using:
+
+\begin{itemize}
+\item The cell's current state.
+\item The current states of the cell's neighbors.
+\end{itemize}
+
+We are using top-down programming again by invoking function \texttt{get} (which does not exist yet). This function
+will return a cell's current state by passing its row and column number. Apart from that, the code we
+just wrote is not dificult to understand: we first get the state of the cell we are scanning, then we get the states
+of its neighbors. We compute 9 variables in total and then we create variable \texttt{sum} which will
+contain the number of active neighbors (remember that an active cell has state $1$, $0$ otherwise). In this
+code, there si one more thing left to do: calculating the new state and saving it.
+
+\begin{programcode}{ca.js (snippet)}
+Always inside the first double loop, add these lines at the end.
+\begin{codeh1}{2}{5}
+let sum = north + south + east + west + northeast + southeast + northwest + southwest;
+
+// Calculate new state and save it
+setTmp(i, j, calculateState(cell, sum));
+\end{codeh1}
+\end{programcode}
+
+Function \texttt{setTmp} (which we still need to write, yes more top-down programming) will save the new state
+for the currently scanned cell. The first two parameters are the row and the column of the cell whose
+new state we need to save, the thirst parameter is the value of the new state, of course we use function
+\texttt{calculateState} (which we write before) for this task. We use top-down programming quite much here,
+let's write down the code of what's missing: we need to define two functions: \texttt{get} and \texttt{setTmp}.
+
+\begin{programcode}{ca.js (snippet)}
+In the module, add this code right below function \texttt{set}.
+\begin{code}
+function get(i, j) {
+  let cell = getCell(i, j);
+  let value = cell.getAttribute("data-value") || 0;
+  return parseInt(value);
+}
+\end{code}
+\end{programcode}
+
+Function \texttt{get} is quite simple: first we get the \texttt{<div>} element of the cell and then we
+extract the value associated with attribute \texttt{data-value}. It is possible that the attribute
+is not set on the element, in that case \texttt{getAttribute} would return \texttt{undefined} so we
+use operator \texttt{||}. Expressionn \texttt{a || b} returns \texttt{a} if \texttt{b} is \texttt{undefined}
+or \texttt{b} if \texttt{a} is \texttt{undefined}; if both variables have values, then the one on the
+left is returned. In this case, if there is no state defined for a cell, we assume it is \texttt{0}
+(inactive, off).
+
+\begin{programcode}{ca.js (snippet)}
+In the module, add this code right below function \texttt{get}.
+\begin{code}
+function setTmp(i, j, value) {
+  let cell = getCell(i, j);
+  cell.setAttribute("data-tmpvalue", value);
+}
+\end{code}
+\end{programcode}
+
+sf
 
 \subsubsection{Final touches}
 Todo (handle here the exception on size of CA)
