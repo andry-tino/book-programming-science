@@ -136,6 +136,9 @@
         if (rowsnum < 9 || colsnum < 9) {
             throw new Error("The CA must be at least 9x9.");
         }
+        if (cellsize < 4) {
+            throw new Error("Cells are too small. A cell must be at least 4px!");
+        }
 
         create();
         initializeGrid();

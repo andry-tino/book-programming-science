@@ -1051,7 +1051,58 @@ In the stylesheet, add these lines at the end of the file.
 
 By using pseudo-classes \texttt{:hover} and \texttt{:active}, we can decide what style the button should
 have when the mouse hovers on it, or presses it. If you refresh the page and try to click the button, you
-will see the experience has much improved.
+will see the experience has much improved.\\
+
+One last thing, before calling it a fully working automaton, is adding a small piece of code to prevent
+errors. What errors? A golden rule that programmers should respect when building configurable applications
+is that the configuration parameters are in the allowed range. Why do we bother about this here?
+Do we have configuration parameters? Well, turns out that the answer is yes. Look at the beginning
+of our module in \texttt{ca.js}: you will see we have created three constants that we use to configure
+our automaton. What happens if:
+
+\begin{itemize}
+\item The CA is configured to be 2x2?
+\item The size of a cell is changed to a negative number?
+\end{itemize}
+
+In the first case, the CA would not make much sense because we ignore the border cells remember! A 2x2 CA
+is made only of border cells so it would do nothing. Also, a very small CA is not interesting. To have some
+kind of observable interesting behavior, we need at least a 9x9 CA. About the second question, well we would
+get a very weird rendering. The browser would not accept a negative number for the width or the height of
+an element, so we would get unpredictable results. In general, the cells should have a minimum size to be
+visible, otherwise the final automaton would look too small. A minimum size of 4 pixels is fair.
+
+\begin{programcode}{ca.js (snippet)}
+At the end of the module, add these lines at the indicated position.
+\begin{codeh1}{1}{8}
+window.addEventListener("load", function () {
+  if (rowsnum < 9 || colsnum < 9) {
+    throw new Error("The CA must be at least 9x9.");
+  }
+  if (cellsize < 4) {
+    throw new Error("Cells are too small. A cell must be at least 4px!");
+  }
+
+  create();
+  initializeGrid();
+  initializeButton();
+  updateCycleText();
+});
+\end{codeh1}
+\end{programcode}
+
+We have just translated in code the conditions we decided a moment ago.
+
+\begin{tips}{Throwing errors}
+How can a web application send an error? The proper way of doing it is by using this syntax:
+\begin{code}
+throw new Error("Your error message here");
+\end{code}
+When this code is executed, the F12 Javascript console will show an error message with the text
+specified inside \texttt{Error} and no more code will be executed.
+\end{tips}
+
+If our CA is not configured properly, we emit an error and block the code from running.
 
 \begin{trailer}{Media content}
 All the code we have written up to this point can be found under folder \texttt{v2.4}.
