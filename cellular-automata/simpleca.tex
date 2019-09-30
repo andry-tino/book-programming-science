@@ -922,16 +922,41 @@ left is returned. In this case, if there is no state defined for a cell, we assu
 (inactive, off).
 
 \begin{programcode}{ca.js (snippet)}
-In the module, add this code right below function \texttt{get}.
+In the module, add these two functions right below function \texttt{get}.
 \begin{code}
 function setTmp(i, j, value) {
   let cell = getCell(i, j);
   cell.setAttribute("data-tmpvalue", value);
 }
+
+function getTmp(i, j) {
+  let cell = getCell(i, j);
+  return parseInt(cell.getAttribute("data-tmpvalue"));
+}
 \end{code}
 \end{programcode}
 
-sf
+The functions we have created, as you can see, look quite similar to functions
+\texttt{get} and \texttt{set}. To be specific, we say they have the same
+\textit{signature}.
+
+\begin{tips}{Signature of a function}
+The signature of a function is the list of its input parameter and the type of returned
+value (if any). Consider the following function:
+\begin{code}
+function greetMe(name, surname) {
+  return "Hello " + name + " " + surname;
+}
+\end{code}
+Its signature can be represented as: \texttt{(string, string) => string} as it accepts
+two strings and returns another string.
+\end{tips}
+
+In fact they do the same thing but on different attributes. Maybe you are getting the
+idea now. What we want to do is saving the calculated new state of a cell into a
+different attribute called \texttt{data-tmpvalue} during the first scan. In the second scan
+we will then copy the value from \texttt{data-tmpvalue} to \texttt{data-value} on
+each cell.
 
 \subsubsection{Final touches}
 Todo (handle here the exception on size of CA)
