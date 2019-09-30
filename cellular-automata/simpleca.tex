@@ -954,9 +954,44 @@ two strings and returns another string.
 
 In fact they do the same thing but on different attributes. Maybe you are getting the
 idea now. What we want to do is saving the calculated new state of a cell into a
-different attribute called \texttt{data-tmpvalue} during the first scan. In the second scan
+different attribute called \texttt{data-tmpvalue} during the first scan. In the second scan,
 we will then copy the value from \texttt{data-tmpvalue} to \texttt{data-value} on
 each cell.
+
+At this point, we have completed writing the first scan. When finishing the first scan,
+every cell has memorized its next value, the second scan will apply these values.
+
+\begin{programcode}{ca.js (snippet)}
+Remove comment \texttt{// This is the second scan} from the second scanning double loop and add this
+code instead.
+\begin{codeh1}{2}{5}
+for (let i = 2; i <= rowsnum - 1; i++) {
+  for (let j = 2; j <= colsnum - 1; j++) {
+    set(i, j, getTmp(i, j));
+    removeTmpValue(i, j); // Clean up
+  }
+}
+\end{codeh1}
+\end{programcode}
+
+The lines we have added complete function \texttt{next}. As every cell is traversed again in the grid,
+its new state is read by using \texttt{getTmp} and then applied by using \texttt{set}. After the new
+state is applied, we do not need the temporary value anymore, so we destroy it by using function
+\texttt{removeTmpValue} which we will write now.
+
+\begin{programcode}{ca.js (snippet)}
+In the module, add these lines right below function \texttt{getTmp}.
+\begin{code}
+function removeTmpValue(i, j) {
+  let cell = getCell(i, j);
+  cell.removeAttribute("data-tmpvalue");
+}
+\end{code}
+\end{programcode}
+
+Function \texttt{removeTmpValue} is very simple: it first retrieves the \texttt{<div>} element of the cell
+(whose coordinates are passed as parameters), and then invokes function \texttt{removeAttribute} which
+deletes the \texttt{data-tmpvalue} attribute (effectively clearing the temporary value).
 
 \subsubsection{Final touches}
 Todo (handle here the exception on size of CA)
