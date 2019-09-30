@@ -994,4 +994,69 @@ Function \texttt{removeTmpValue} is very simple: it first retrieves the \texttt{
 deletes the \texttt{data-tmpvalue} attribute (effectively clearing the temporary value).
 
 \subsubsection{Final touches}
-Todo (handle here the exception on size of CA)
+At this time, you can actually refresh the page and see the CA being rendered and also interact with it.
+However we want to spend a short while now making a very few style adjustment to make the page look better.
+
+The first thing we want to do is introducing a little spacing between the grid and the controls below it.
+
+\begin{programcode}{style.css (snippet)}
+In the stylesheet, add these lines at the end of the file.
+\begin{codecss}
+.controls {
+  margin-top: 10px;
+}
+\end{codecss}
+\end{programcode}
+
+If you save and refresh the page, you will the button and the label now being rendered with a better
+spacing from the grid. If you prefer less spacing (or more), just change \texttt{margin-top} to a different
+value.
+
+Another thing we want to do is improving the style of the button. We want to make it a plain grey button
+with a black text and a better spacing between the text and the borders.
+
+\begin{programcode}{style.css (snippet)}
+In the stylesheet, add these lines at the end of the file.
+\begin{codecss}
+#buttonNext {
+  background-color: #ddd;
+  color: #000;
+  border: none;
+  padding: 5px;
+}
+\end{codecss}
+\end{programcode}
+
+By setting \texttt{border: none} we remove the 3D effect on the button which browsers commonly add.
+With this style, the button looks simpler and more modern.
+
+If you try to hover with the mouse the button, you will see it's kinda odd that nothing happens. Usually
+something signals that the button can be pressed and we are missing that feedback. A link would change to
+an underlines text style when hovered, a button typically changes the background to be darker and we want to
+achieve that effect. Also, if you click it, the button still has the same style: normally it is good
+practice that a button changes style when pressed to give the user some feedback about it. All these
+small details might seem minor, but they are quite important.
+
+\begin{programcode}{style.css (snippet)}
+In the stylesheet, add these lines at the end of the file.
+\begin{codecss}
+#buttonNext:hover {
+  background-color: #ccc;
+}
+#buttonNext:active {
+  background-color: #bbb;
+}
+\end{codecss}
+\end{programcode}
+
+By using pseudo-classes \texttt{:hover} and \texttt{:active}, we can decide what style the button should
+have when the mouse hovers on it, or presses it. If you refresh the page and try to click the button, you
+will see the experience has much improved.
+
+\begin{trailer}{Media content}
+All the code we have written up to this point can be found under folder \texttt{v2.4}.
+\end{trailer}
+
+\subsection{Playing with Conway's Game of Life automaton}
+There is a reason if we have decided to build this specific automaton as our first CA! Other than being
+the very first one to be published, other than being very famous, it has some very interesting properties.
