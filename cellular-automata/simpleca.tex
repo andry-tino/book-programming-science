@@ -1119,7 +1119,7 @@ the shapes at the center of the grid (unless asked otherwise).
 
 \begin{problem}
 \label{prob:cgl1}
-Create an initial configuration with 4 active cells that form a square.
+Create an initial configuration with 4 active cells that form a square (also called \textit{block}).
 How does the CA evolve?
 \end{problem}
 
@@ -1162,4 +1162,39 @@ matches the \textit{spaceship} shape. How does the CA evolve?
 
 If you have completed the problems proposed above, at this point you have probably had
 a lot of fun! CGL has the siplest state settings (black and white) and a set of
-transition rules that allow some really funny initial configurations.
+transition rules that help create very interesting evolutions. The first thing you have probably
+noticed is that problems \ref{prob:cgl1}, \ref{prob:cgl2}, \ref{prob:cgl3} and \ref{prob:cgl4}
+propose an initial configuration which is either static or periodic (recall definitions
+\ref{def:staticconf} and \ref{def:recconf}). 
+In the first problem, we have discovered that a block shape will cause the CA not to evolve,
+as it is a static condition in CGL!
+Problem \ref{prob:cgl2}, on the other side, generates a periodic pattern where the line rotates
+back and forth indefinitely (this scheme is called a \textit{blinker}). Problems
+\ref{prob:cgl3} and \ref{prob:cgl4} also let us discover recurrent configurations which are more
+complex, but all of them have period $T=2$!
+The last two problems (\ref{prob:cgl5} and \ref{prob:cgl6}) have shown something new though. The
+\textit{glider} and the \textit{spaceship} shapes are not periodic because they do not get back
+to the same exact configuration; they get back to the same shape at some point, but the shape has
+below and on the right! These two initial conditions are called: \textit{divergent}.
+
+\begin{definition}[Divergent condition]
+\label{def:divconf}
+An initial condition $x_0$ is said to be
+\textit{divergent} when it causes the CA to continuously evolve
+into a different configuration without ever reaching the same configuration twice
+(if the automaton had an infinite size).
+\end{definition}
+
+\begin{proposition}[More on divergent configurations]
+A divergent configuration is one which is not \textit{static}, not \textit{recurrent} and not
+\textit{final}.
+\end{proposition}
+
+Gliders and spaceships are divergent conditions.
+
+\begin{proposition}[Divergent condition]
+An automaton can start from an initial condition $x_0$ and never reach a final configuration or
+repeat itself. When this happens, the initial configuration is not final, 
+\end{proposition}
+
+sdsd

@@ -403,18 +403,22 @@ In example \ref{ex:stateled4}, we could see that any initial configuration with 
 LED on will lead to all LEDs on. In the specific case, we saw that:
 $(0,1,0) \overset{f}{\rightarrow} (1,1,1)$.
 
-\begin{proposition}[Static condition]
+\begin{definition}[Static condition]
+\label{def:staticconf}
 When an initial condition $x_0$ causes a CA not to change (not to evolve), we say that
 $x_0$ is a \textit{static configuration}.
-\end{proposition}
+\end{definition}
 
 In example \ref{ex:stateled3}, we saw that $(0,0,0)$ is a static configuration.
+A static configuration is like a final configuration, with the additional characteristic
+of happing at the very beginning.
 
-\begin{proposition}[Recurrent condition]
+\begin{definition}[Recurrent condition]
+\label{def:recconf}
 When an initial condition $x_0$ causes a CA to change different configurations and, after
 $T \in \mathbb{N}$ cycles, take that same initial condition and repeat the cycle, we say
 that $x_0$ is a \textit{cyclic (or recurrent) configuration of period $T$}.
-\end{proposition}
+\end{definition}
 
 In example \ref{ex:stateled3}, we saw that $(0,1,0)$ is a cyclic configuration of period 3.
 
