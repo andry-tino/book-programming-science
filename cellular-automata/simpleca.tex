@@ -339,7 +339,8 @@ use the latter in their everyday jargon.}.
 
 But what kind of CA are we going to build? What is the state going to be? How about the neighborhood? We
 need to define all these properties. The CA we are going to build is a simple and very famour one called:
-\textit{Conway's Game of Life} \cite{wolfram-ca}. This CA has the following characteristics:
+\textit{Conway's Game of Life} (CGL) \cite{wolfram-ca}.
+This CA has the following characteristics:
 
 \begin{itemize}
 \item The set of states (alphabet) is: $\mathcal{A} = \{ 0, 1 \}$, where $0$ means "off" (inactive, dead) and
@@ -786,7 +787,7 @@ transition rule to follow.
 
 \begin{definition}[State transition rules in Conway's Game of Life]
 \label{def:cglrules}
-In the CA of \textit{Conway's Game of Life}, the transition rules are the following:
+In CGL CA, the transition rules are the following:
 \begin{enumerate}
 \item Any \textbf{active} cell with fewer than 2 active neighbors becomes \textbf{inactive}.
 \item Any \textbf{active} cell with 2 or 3 active neighbors remains \textbf{active}.
@@ -1108,6 +1109,57 @@ If our CA is not configured properly, we emit an error and block the code from r
 All the code we have written up to this point can be found under folder \texttt{v2.4}.
 \end{trailer}
 
-\subsection{Playing with Conway's Game of Life automaton}
+\subsection{Playing with CGL automaton}
 There is a reason if we have decided to build this specific automaton as our first CA! Other than being
-the very first one to be published, other than being very famous, it has some very interesting properties.
+the very first one to be published very famous, it has some very interesting properties.
+The best way to experience these peculiarities is by playing with them, so try to
+solve the following problems all based on the CA we have just built. One recommendation,
+set the initial configurations by always avoiding border cells, always try to place
+the shapes at the center of the grid (unless asked otherwise).
+
+\begin{problem}
+\label{prob:cgl1}
+Create an initial configuration with 4 active cells that form a square.
+How does the CA evolve?
+\end{problem}
+
+\begin{problem}
+\label{prob:cgl2}
+Create an initial configuration that forms a \textit{bee-hive} or
+a \textit{tub} as shown in figure aaa.
+How does the CA evolve in the two cases?
+Later, try to create another initial configuration with both a
+\textit{bee-hive} and a \textit{tub} (you will need a CA bigger than 9x9).
+How does the CA evolve in this case?
+\end{problem}
+
+\begin{problem}
+\label{prob:cgl3}
+Create an initial configuration with 3 active cells one next to the other or one
+below the other to form a line (horizontal or vertical).
+How does the CA evolve?
+\end{problem}
+
+\begin{problem}
+\label{prob:cgl4}
+Create an initial configuration that forms a \textit{toad} as shown in figure aaa.
+How does the CA evolve?
+Later, try to create a \textit{beacon} as initial configuration. What happens in that
+case when you make the CA evolve?
+\end{problem}
+
+\begin{problem}
+\label{prob:cgl5}
+Set the CA to 30x30 and create an initial configuration, on the top left corner, that
+matches the \textit{glider} shape. What happens when the CA evolves?
+\end{problem}
+
+\begin{problem}
+\label{prob:cgl6}
+Set the CA to 50x50 and create an initial configuration, on the top left corner, that
+matches the \textit{spaceship} shape. How does the CA evolve?
+\end{problem}
+
+If you have completed the problems proposed above, at this point you have probably had
+a lot of fun! CGL has the siplest state settings (black and white) and a set of
+transition rules that allow some really funny initial configurations.
