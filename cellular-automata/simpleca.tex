@@ -1174,8 +1174,9 @@ back and forth indefinitely (this scheme is called a \textit{blinker}). Problems
 complex, but all of them have period $T=2$!
 The last two problems (\ref{prob:cgl5} and \ref{prob:cgl6}) have shown something new though. The
 \textit{glider} and the \textit{spaceship} shapes are not periodic because they do not get back
-to the same exact configuration; they get back to the same shape at some point, but the shape has
-below and on the right! These two initial conditions are called: \textit{divergent}.
+to the same exact configuration; the automaton gets back to the same shape at some point,
+but the shape has moved below and on the right!
+These two initial conditions are called: \textit{divergent}.
 
 \begin{definition}[Divergent condition]
 \label{def:divconf}
@@ -1190,7 +1191,8 @@ A divergent configuration is one which is not \textit{static}, not \textit{recur
 \textit{final}.
 \end{proposition}
 
-Gliders and spaceships are divergent conditions.
+Gliders and spaceships are divergent conditions and you might be surprised to hear that
+CGL has more of such initial conditions.
 
 \begin{proposition}[Divergent condition]
 An automaton can start from an initial condition $x_0$ and never reach a final configuration or
