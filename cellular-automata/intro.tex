@@ -18,9 +18,12 @@ to be a set of people, it can be animals. It does not even need to include the
 same type of elements, populations can be heterogeneous (e.g. a population
 of men and women).
 
-Why do we need to describe and analyze these structures? There are many answers
-but the most important is certainly: because our societies are organized in populations!
-There are populations everywhere: the city where we live, the building where we reside,
+Why do we need to describe and analyze these structures? There are many answers,
+but the most important is certainly: because Nature and our societies
+are organized in populations!
+There are populations everywhere:
+the trees in a forest, the bees in a hive, bacteria inside our guts,
+the cities where we live, the buildings where we reside,
 the means of transport we use everyday, the roads we fill with our cars, bycicles and
 scooters and so forth. We describe things because we want to extract information, knowledge
 that we can use later to achieve some level of control. A practical example is traffic
@@ -32,49 +35,57 @@ red signals at each joining road to maximize the
 throughput\footnote{The amount of something in unit of time: $\eta = \frac{N}{T}$. 
 Throughput is most often a measure of speed.}.
 
-Urban networks is not the only case scenario where population study comes handy. Other
+City planning is not the only case scenario where population study comes handy. Other
 examples include Biology and Virology: how does an infection propagate over a closed
 population of individuals? Kermack \& McKendrick \cite{kermack-mckendrick}
 gave an answer to that question by formulating what is known, today, as the \textit{SIR} model
-\cite{kermack-mckendrick-sir}, widely used today everytime an epidemic occurs in the world. The
-model was recently used in the outbreak of the T-virus and Ebola virus in Africa in order to
-come up with good and effective containment strategies to avoid worldwide spread.
+\cite{kermack-mckendrick-sir}, widely used every time an epidemic occurs in the world. The
+model was recently used (and is currently in use nowadays) to
+analyze and formulate the best containment strategies targeting outbreaks of the
+deadly Ebola virus \cite{who-ebola} in Uganda, Congo and Sudan, to avoid worldwide spread.
 
 One final example of the application of population study concerns relationships among two or more
 populations. Lotka \& Volterra \cite{lotka-volterra} created a model for describing how
-the sub-populations of predators and preys interact together. This model was recently used, for example,
-to try to find a solution to the problem of extinction in the population of Zebras in Kongo.\\
+the sub-populations of predators and preys interact together.
+With a little creativity and genius, the model can be used in different contexts where the population
+under study is not, strictly speaking, made of living things. Hung \& al. \cite{hung-lv} created a model,
+based on Lotka-Volterra equations, to describe the competition in retail and supply-chain markets. 
+Such a model imagines competing companies to be predators and preys in a population which represents the market
+where they operate. The model can be used, for instance, to predict revenue and costs; this helps retail companies be
+more efficient and maximixe profit.\\
 
 Now that you are, hopefully, convinced of the importance of studying populations, let's answer the
-second question: how do we analyze populations?
+second question: how do we analyze them?
 
 There are many approaches that have been put in practice and published so far. A generic approach cannot
 really be considered because the strategies vary case by case, depending on the type of population
-and what exactly is the the focus of the research. In the afore-mentioned examples, both
+and what exactly is the focus of the research. In the afore-mentioned examples, both
 Kermack-McKendrick and Lotka-Volterra studies employ
-compartmentalized\footnote{A population is seen as a compartment: a basin. In this description, each
-individual does not really count, the measure which is considered is the total amount of individuals
-in the group and how this number changes over time.}
+\textit{compartmentalized}\footnote{A population is seen as a compartment: a basin or a box.
+In this description, each
+individual does not really count, the only metric which is considered to be important
+is the total amount of individuals
+in the group, and how this number changes over time.}
 models to describe,
 respectively, the population of people being infected, and the populations of preys and predators.
-However other models have been used to tackle the same problem. In the case of Kermack-McKendrick,
+However, other models have been used to tackle the same problem. In the case of Kermack-McKendrick,
 for example, contact between individuals of a population is modeled using graphs, this helps
 having a better description of how a virus can spread.
 
 So, as you can see, different mathematical models can be used to solve the same problem. 
 It is important to highlight how every model has a different descriptive power that allows us to
 be in control of different aspects of the environment we want to study. In this chapter,
-we focus on one category of these called: \textit{Cellular Automata} (CA).
+we focus on one category of them called: \textit{Cellular Automata} (CA).
 
 \subsection{What are Cellular Automata?}
 A CA is a mathematical model built on the following base concepts:
 
 \begin{itemize}
 \item \textbf{Population:} A set of individuals is at the center of the description.
-\item \textbf{Connecctivity:} A CA is able to define relationships between different individuals in
-the population These connections will affect the behavior of the whole population.
-\item \textbf{Structure:} The individuals os the population are arranged in a regular geometrical structure
-which also affects the connections among individuals.
+\item \textbf{Connectivity:} A CA is able to define relationships between different individuals in
+the population. These connections will affect the behavior of the whole population.
+\item \textbf{Structure:} The individuals of the population are arranged in a precise geometrical structure,
+which also affects the connections among them.
 \item \textbf{Collective vs individual behavior:} A CA is capable of visualizing the state of each single
 member as well as the collective state of the whole population.
 \end{itemize}
@@ -102,16 +113,20 @@ Let's make a few examples.
 \label{ex:statesir}
 We mentioned the SIR model before. Though it does not employ CA, the concept of state is still applicable.
 This model is used to describe the spread of a virus in a population.
-The state, is prepresented by the individual's condition in relation to the virus; at each time, an individual can either be: \textit{Susceptible} (it has not yet been infected by the virus),
+The state, is represented by the individual's condition in relation
+to the virus; at each time, an individual can either be:
+\textit{Susceptible} (it has not yet been (therefore, can potentially become) infected by the virus),
 \textit{Infected} (it has been infected by the virus and is capable of passing it to others) or
-\textit{Removed} (it has recovered from the virus, or it has been killed by it. Either way,
+\textit{Removed} (it has recovered from the virus (therefore, gaining immunity),
+or it has been killed by it. Either way,
 it cannot pass the virus on anymore).
 \end{example}
 
 \begin{example}[State in grid of LEDs]
 \label{ex:stateled}
 Let's consider a grid of LED lights (simple light bulbs are ok too, but LEDs
-consume less energy so they are more eco-friendly). At every instant, each light can either be on or off,
+consume less energy so they are more eco-friendly). At every instant, each light can either be 
+\textit{on} or \textit{off},
 which are all the possible states in this context.
 \end{example}
 
@@ -126,22 +141,28 @@ geometrical structure.
 
 \begin{definition}[Cell]
 \label{def:cell}
-In a CA, a \textit{cell} is a member of the population. The set of all cells is indicated by $E$.
+In a CA, a \textit{cell} is a member of the population. The set of all cells is indicated by $E$. A cell
+is referred to as: $y_k \in E$, having $k = 1 \dots |E|$.
 \end{definition}
 
 So from now on, every time we refer to individuals in a population, we can use the term \textit{cell}.
 As we already mentioned, every cell has a state. We indicate the state of a cell
-$y_{i,j}$ by writing: $y_{i,j} = a$ where $a \in \mathcal{A}$.\\
+$y_k$ by writing: $y_k = a$ where $a \in \mathcal{A}$ and $k \in \mathbb{N}$ is used to index the
+cell in the automaton.\\
 
 All the cells in a CA form a shape, this shape will then affect how the cells can be connected together.
 We will not talk about the formal model of cell arrangement in CA because it requires many concepts from
 Algebra and Set Theory. For our analysis, we can simply consider one very common arrangement of cells:
 \textit{$\mathbb{Z}$/$n\mathbb{Z}$ Cellular Automata}\footnote{Also known as: 
-\textit{Cellular Automata over rings of integers modulo $n$}.}. It sounds complicated but it actually
-is not because they simply are CA where the cells form a grid. In this arrangement, every cell 
-(except for those on the border) is surrounded by other 8 cells.
-To simplify the notation, to indicate a cell, we can use the following writing: $y_{i,j}$ (with
+\textit{Cellular Automata over rings of integers modulo $n$}.}. It sounds complicated but, actually,
+is not, because they simply are automata where the cells form a (2D) grid. In this arrangement, every cell 
+(except for those on the border) is surrounded by other 8 cells. We will call them: \textit{grid automata}.
+
+\begin{important}{Notation for cells in grid automata}
+To simplify the notation, to indicate a cell in a grid automaton, 
+we will use the following writing: $y_{i,j}$ (with
 $i,j \in \mathbb{N}$) to refer to the $i$-th row and $j$-th column in the grid from the top left corner.
+\end{important}
 
 \begin{example}[States in grid of LEDs]
 \label{ex:stateled2}
@@ -182,7 +203,7 @@ directly adjacent to $y_{i,j}$.
 % If not, use
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 %
-\caption{An example of CA with cells arranged in a 6x6 structure. The diagram shows cell $y_{3,3}$'s
+\caption{An example of CA with cells arranged in a 6x6 grid. The diagram shows cell $y_{3,3}$'s
 Moore (top) and Von Neumann (bottom) neighborhoods.
 Every cell is indexed by a couple of numbers $(i,j)$ starting
 from the top left cell which holds position $(1,1)$.}
@@ -195,6 +216,7 @@ from the top left cell which holds position $(1,1)$.}
 Figure \ref{fig:exampleca} shows a simple square 6x6 CA
 where the alphabet is $\mathcal{A}=\{ 0, 1 \}$ and the
 cells are: $E = \left\{ y_{i,j} : i,j = 1 \dots 6 \right\}$. The neighborhood of cell $y_{3,3}$
+($B^\text{M}_1\left( y_{3,3} \right)$)
 is shown, as it is possible to see, it is a Moore neighborhood because all surrounding cells are
 included.
 \end{example}
@@ -202,14 +224,16 @@ included.
 \begin{example}[Von Neumann neighborhood]
 \label{ex:vnneigh}
 With reference to example \ref{ex:simpleca}, we can also see the Van Neumann neighborhood of
-cell $y_{4,4}$. In this case, not how only the North, East, South and West surrounding cells
+cell $y_{4,4}$
+($B^\text{VN}_1\left( y_{4,4} \right)$) in figure \ref{fig:exampleca}.
+In this case, notice how only the North, East, South and West surrounding cells
 are included.
 \end{example}
 
 \begin{important}{Default neighborhood type}
-We are going to use always the Moore neighborhood for our analysis, also we will only consider
-unit-radius neighborhoods ($r=1$). So, from now on we will always implicitely consider:
-$B\left( y_{i,j} \right) = B^\text{M}_1\left( y_{i,j} \right)$.
+We are going to always use the Moore neighborhood for our analysis. Also, we will only consider
+unit-radius neighborhoods ($r=1$). So, from now on, we will implicitely consider:
+$B\left( y_{i,j} \right) = B^\text{M}_1\left( y_{i,j} \right)$, unless stated otherwise.
 \end{important}
 
 The last information we need to add about CA, before we can start playing with them, is time.
@@ -247,18 +271,19 @@ Those are single events in time, it does not matter to have the precise date and
 just use a natural number to indicate which edition of the Games we are considering. In this example,
 we chose to describe time as a \textit{discrete} variable, which means that $t \in \mathbb{N}$.\\
 
-So, now that we have understood time, we can move forward and talk about \textit{evolution}.
-CA are very dynamic systems, but so far we have only seen a bunch of cells, each one with a state and
-that's it. Well the whole idea is that the CA will change (evolve) in time. This evolution is
+At this point, now that we have understood time, we can move forward and talk about \textit{evolution}.
+CA are very dynamic systems, but, so far, we have only seen a bunch of cells, each one with a state, and
+that's it. Well, the whole idea is that a CA will change (evolve) in time. This evolution is
 represented by a change in the state of every single cell. But how does it happen?
 
-In a CA, time is discrete. The type of events that will make time change depends on the specific model,
+In a CA, time advances in unit increments ($t=k, k+1, \dots$). 
+The type of events that will make time change depends on the specific model,
 hence, at the moment, we just consider time as a meaningless natural number $t \in \mathbb{N}$
 that indexes the $t$-th cycle of evolution; once we get to work on a specific model, each cycle will
 actually represent something.
 At every cycle $t$,
 the state of every cell might be different or the same from cycle $t-1$, and this mutation will make
-the CA change \textit{configuration} every time.
+the CA change \textit{configuration} at each time.
 
 \begin{definition}[CA configuration]
 The \textit{configuration} of a CA at time $t \in \mathbb{N}$, is the set of states of all cells
@@ -276,7 +301,8 @@ determined by the state of its neighbor cells.
 
 \begin{proposition}[Cell state change]
 \label{prop:statechange}
-In a CA, the state of a cell $y_{i,j} \in E$ in the next cycle $t+1$ depends on 3 factors:
+In a CA at time $t \in \mathbb~{N}$,
+the state of a cell $y_{i,j} \in E$ in the next cycle $t+1$ depends on 3 factors:
 \begin{enumerate}
 \item The current cell's state: $y^{(t)}_{i,j}$.
 \item The current state of all its neighbor cells: $y^{(t)}_{h,k} \in B\left( y_{i,j} \right)$.
@@ -311,7 +337,7 @@ $B\left( y_{1,3} \right) = \left\{ y_{1,1} \right\}$ (as you can see, the last c
 neighbor is the first cell).
 Recall that $f$ needs the current cell
 and all its neighbors to work, so its input will always be two cells.
-In this example, we decide to design $f$ as follows:
+In this specific case, we decide to design $f$ as follows:
 \begin{equation*}
 f \left( y, y^\prime \right) =
   \begin{cases}
@@ -323,24 +349,27 @@ f \left( y, y^\prime \right) =
 \end{equation*}
 Where, $y \in E$ is the current cell and $y^\prime \in E$ its neighbor.
 Function $f$ will set the next state in every cell at every cycle $t \in \mathbb{N}$. If we have a look
-at its definition, we see that it works in a simple way: the current cell will assume, in $t+1$, the state
-of its neighbor at cycle $t$. In fact, the above definition can be simplified as:
+at its definition, we see that it works in a simple way: the current cell ($y$) will assume, in $t+1$, the state
+of its neighbor ($y^\prime$) at cycle $t$. In fact, the above definition can be simplified in one line as:
 \begin{equation*}
 f \left( y, y^\prime \right) = y^\prime
 \end{equation*}
+You can verify the equivalence of the two definitions by giving $y$ and $y^\prime$ values $0$ and $1$,
+both expressions should return the same values.
 Let's now have a look at how the CA changes according to $f$ so defined.
 We need to set an initial configuration for the CA at $t=0$; this cycle is special as it is the
 \textit{initial cycle}. Let's indicate with 
 $x_t = \left[ y^{(t)}_{1,1}, y^{(t)}_{1,2}, y^{(t)}_{1,3} \right]$ the configuration of the CA
 at cycle $t$. If we start from this initial condition:
-$x_0 = (0,0,0)$, how will the CA evolve? The next state of the first cell, is the state of the second
-cell, which is $0$. So is the next state of the second cell and the third: $x_1 = (0,0,0)$. If we try
+$x_0 = (0,0,0)$, how will the CA evolve? The next state of the first cell, is the current state of the second
+cell, which is $0$. The same goes for the next state
+of the second and third cells: $x_1 = (0,0,0)$. If we try
 to compute the configuration for the next cycle, we will get the same result. This CA, when given
 such an initial condition, will not evolve at all, it will remain the same.
 
 Let's try another initial condition: $x_0 = (0,1,0)$. In this scenario, the middle LED is on.
 If we compute the next configuration, we get: $x_1 = (1,0,0)$. If we move on to the next cycle:
-$x_2 = (0,0,1)$. And, the next cycle: $x_3 = (0,1,0)$, the CA goes back to its initial condition
+$x_2 = (0,0,1)$. And, the next cycle: $x_3 = (0,1,0)$, the CA goes back to its initial condition $x_0$
 to start over again. In this specific scenario, we would see the LEDs creating a cycling linear pattern.
 \end{example}
 
@@ -356,7 +385,7 @@ f \left( y, y^\prime \right) =
   \end{cases}
 \end{equation*}
 Now the CA will work differently from the one in the previous example. Here, in fact, the rule is
-that a LED will be stay off only if it is currently off and so is its neighbor. With this
+that a LED will stay off only if it is currently off and so is its neighbor. With this
 new $f$, let's see what happens when we use the same initial conditions in example \ref{ex:stateled3}.
 
 It is quite trivial to see that the null initial state $x_0 = (0,0,0)$ will cause the CA to behave
@@ -400,7 +429,7 @@ We also say that the CA \textit{converges} to $x^\ast$ from $x_0$.
 \end{definition}
 
 In example \ref{ex:stateled4}, we could see that any initial configuration with at least one
-LED on will lead to all LEDs on. In the specific case, we saw that:
+LED on, will lead to a configuration where all LEDs are on. In the specific case, we saw that:
 $(0,1,0) \overset{f}{\rightarrow} (1,1,1)$.
 
 \begin{definition}[Static condition]
@@ -417,10 +446,10 @@ of happing at the very beginning.
 \label{def:recconf}
 When an initial condition $x_0$ causes a CA to change different configurations and, after
 $T \in \mathbb{N}$ cycles, take that same initial condition and repeat the cycle, we say
-that $x_0$ is a \textit{cyclic (or recurrent) configuration of period $T$}.
+that $x_0$ is a \textit{cyclic} (\textit{recurrent} or \textit{periodic}) configuration of period $T$.
 \end{definition}
 
-In example \ref{ex:stateled3}, we saw that $(0,1,0)$ is a cyclic configuration of period 3.
+In example \ref{ex:stateled3}, we saw that $(0,1,0)$ is a cyclic configuration of period $T=3$.
 
 \begin{problem}
 \label{prob2}
