@@ -326,6 +326,27 @@ are used to compute the next state of a cell. $f$ is different in every model.
 
 Enough with theory, let's make an example.
 
+% Figure
+%
+\begin{figure}[b]
+\sidecaption
+% tikz diagram
+\input{diag-threecell}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+\caption{The automaton in example \ref{ex:stateled3} and \ref{ex:stateled4}.
+The right-most column shows the CA and the neighborhoods of each cell.
+Diagram (a) shows the evolution from initial condition $x_0 = (0,1,0)$ in example
+\ref{ex:stateled3}; the configurations repeat after 3 cycles.
+Diagram (b) shows another evolution from the same initial condition $x_0 = (0,1,0)$ but in example
+\ref{ex:stateled4} this time;
+after 2 configurations, the CA gets stuck in $x_2 = (1,1,1)$.}
+\label{fig:threecell}
+\end{figure}
+%
+
 \begin{example}[Evolution of the LED grid CA]
 \label{ex:stateled3}
 Recalling example \ref{ex:stateled2}, let's see how we can define a transition function for our
