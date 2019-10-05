@@ -685,29 +685,6 @@ have just prepared it by defining the 3 main actions. As you can see, we have ba
 \item Incrementing (updating) time.
 \end{enumerate}
 
-We are going to replace the \texttt{// Todo} comments with actual code, but now we need to explain a few
-things about why we have decided to use this approach, why we have defined these 2 phases: 
-\textit{calculate} and \textit{apply}. Our strategy is to:
-
-\begin{enumerate}
-\item Scan all the cells in the CA (as we did before) and calculate the state for each cell.
-The new states will be memorized in a temporary location.
-\item In the second phase, we are going to scan again the cells, and we will apply the new states.
-\end{enumerate}
-
-Why do we want to scan the cells twice? Can't we just scan the cells one time and apply each new state
-right after calculating it? The answer is no, because otherwise we would calculate the CA's new configuration
-in an undesired way. Look at figure \ref{fig:updatecainc},
-the diagram shows what happens if we do not use the double
-scanning and the problem of polluting the grid. For this reason we need to scan the cells twice. This is because
-our CA is going to be an \textit{immediate CA}, it means that all the cells update at the same time
-as shown in figure \ref{fig:updatecaimm}.
-With the other
-approach, we would otherwise have an \textit{incremental CA}, where every new configuration of a cell depends on the
-newly updated value of the neighbors. Incremental CA are not wrong automata,
-they are just different. In this chapter,
-however, we want to use immediate CA!
-
 % Figure
 %
 \begin{figure}[b]
@@ -743,18 +720,58 @@ finally destroyed as no more needed.}
 \end{figure}
 %
 
+We are going to replace the \texttt{// Todo} comments with actual code, but now we need to explain a few
+things about why we have decided to use this approach, why we have defined these 2 phases: 
+\textit{calculate} and \textit{apply}. Our strategy is to:
+
+\begin{enumerate}
+\item Scan all the cells in the CA (as we did before) and calculate the state for each cell.
+The new states will be memorized in a temporary location.
+\item In the second phase, we are going to scan again the cells, and we will apply the new states.
+\end{enumerate}
+
+Why do we want to scan the cells twice? Can't we just scan the cells one time and apply each new state
+right after calculating it? The answer is no, because otherwise we would calculate the CA's new configuration
+in an undesired way. Look at figure \ref{fig:updatecainc},
+the diagram shows what happens if we do not use the double
+scanning and the problem of polluting the grid. For this reason we need to scan the cells twice. This is because
+our CA is going to be an \textit{immediate CA}, it means that all the cells update at the same time
+as shown in figure \ref{fig:updatecaimm}.
+With the other
+approach, we would otherwise have an \textit{incremental CA}, where every new configuration of a cell depends on the
+newly updated value of the neighbors. Incremental CA are not wrong automata,
+they are just different. In this chapter,
+however, we want to use immediate CA!
+
 In an immediate CA, the states of all cells can actually be updated in parallel. But we are not going to go
 that far here (the code for doing this is much more complicated).
 
 We need to talk about one last thing before resuming coding: the \textit{border effect}. We know how to
 calculate the next configuration of a CA: we need to compute all the new states of all the cells. And the state
 of a cell depends on the state of its neighbors. Normally a cell has 8 neighbors as we explained in definition
-\ref{def:neigh}, however the cells on the border have fewer neighbors:
+\ref{def:neigh}, however the cells on the border have fewer neighbors as shown in figure \ref{fig:bordercells}:
 
 \begin{itemize}
 \item If a cell is on the border, it will have 3 neighbors less, for a total of 5.
 \item A corner cell loses 5 neighbors, for a total of 3.
 \end{itemize}
+
+% Figure
+%
+\begin{figure}[b]
+\sidecaption
+% tikz diagram
+\input{diag-bordercells}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+\caption{A visualization of the neighborhoods of border and corner cells.
+It is clearly possible to see how, when compared to a normal cell, border cells have 5 neighbors and
+corner cells have 3 instead of 8.}
+\label{fig:bordercells}
+\end{figure}
+%
 
 What do we do with them? There are many approaches: we could have special rules for them when updating their
 state for instance.

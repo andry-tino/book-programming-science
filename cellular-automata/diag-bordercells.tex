@@ -1,0 +1,69 @@
+%
+% Tikz Diagram
+%
+
+\begin{tikzpicture}
+
+\tikzmath{
+  \S = 0.4cm;
+  \X1 = 0;
+  \X2 = -3;
+  \X3 = -6;
+  \Y1 = 0;
+  \Yf = \Y1 - 1.3;
+}
+
+\tikzset{square matrix/.style={
+    matrix of nodes,
+    column sep=-\pgflinewidth, row sep=-\pgflinewidth,
+    nodes={draw,
+      minimum height=#1,
+      anchor=center,
+      text width=#1,
+      align=center,
+      inner sep=0pt
+    },
+  },
+  square matrix/.default=\S
+}
+
+\matrix[square matrix] (m1) at (\X1,\Y1)
+{
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} &|[fill=lightgray]| \phantom{} &|[fill=lightgray]| \phantom{} &|[fill=lightgray]| \phantom{} & \phantom{} \\
+\phantom{} &|[fill=lightgray]| \phantom{} &|[fill=black]| \phantom{} &|[fill=lightgray]| \phantom{} & \phantom{} \\
+\phantom{} &|[fill=lightgray]| \phantom{} &|[fill=lightgray]| \phantom{} &|[fill=lightgray]| \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+};
+\draw[opacity=.5, ultra thick, red] (m1-2-2.north west)-|
+   (m1-4-4.south east)-|
+   (m1-4-2.south west)-|cycle;
+\node[] at (\X1,\Yf) {(normal)};
+
+\matrix[square matrix] (m2) at (\X2,\Y1)
+{
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+|[fill=lightgray]| \phantom{} &|[fill=lightgray]| \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+|[fill=black]| \phantom{} &|[fill=lightgray]| \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+|[fill=lightgray]| \phantom{} &|[fill=lightgray]| \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+};
+\draw[opacity=.5, ultra thick, red] (m2-2-1.north west)-|
+   (m2-4-2.south east)-|
+   (m2-4-1.south west)-|cycle;
+\node[] at (\X2,\Yf) {(border)};
+
+\matrix[square matrix] (m3) at (\X3,\Y1)
+{
+|[fill=black]| \phantom{} &|[fill=lightgray]| \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+|[fill=lightgray]| \phantom{} &|[fill=lightgray]| \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+};
+\draw[opacity=.5, ultra thick, red] (m3-1-1.north west)-|
+   (m3-2-2.south east)-|
+   (m3-2-1.south west)-|cycle;
+\node[] at (\X3,\Yf) {(corner)};
+
+\end{tikzpicture}
