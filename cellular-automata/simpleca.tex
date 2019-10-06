@@ -1210,10 +1210,11 @@ All the code we have written up to this point can be found under folder \texttt{
 \end{trailer}
 
 \subsection{Playing with CGL automaton}
-There is a reason if we have decided to build this specific automaton as our first CA! Other than being
-the very first one to be published very famous, it has some very interesting properties.
-The best way to experience these peculiarities is by playing with them, so try to
-solve the following problems all based on the CA we have just built. One recommendation,
+There is a reason if we have decided to build this specific automaton in our first experience!
+Other than being one of the very first automata to be published and very famous,
+it has some very interesting properties too.
+The best way to learn about these peculiarities is by playing with the CA itself, so try to
+solve the following problems, all based on the CA we have just built. One recommendation:
 set the initial configurations by always avoiding border cells, always try to place
 the shapes at the center of the grid (unless asked otherwise).
 
@@ -1230,7 +1231,7 @@ the shapes at the center of the grid (unless asked otherwise).
 \caption{Showing some of the most famous initial configurations in CGL.
 The right-most column, shows three static configurations: when the automaton starts from those,
 it will not have an evolution.
-The central column shows periodic (recurrent) configurations with period $T=12$: it means that every
+The central column shows periodic (recurrent) configurations with period $T=2$: it means that every
 2 cycles, the CA will get back to these configurations to start over again indefinitely.
 The left-most column shows divergent configurations which are very interesting: when the
 automaton starts from these, it will evolve indefinitely into an always different configuration; the
@@ -1242,7 +1243,7 @@ specific direction.}
 
 \begin{problem}
 \label{prob:cgl1}
-Create an initial configuration with 4 active cells that form a square (also called \textit{block}).
+Create an initial condition with 4 active cells that form a square (also called \textit{block}).
 How does the CA evolve?
 \end{problem}
 
@@ -1265,7 +1266,7 @@ How does the CA evolve?
 
 \begin{problem}
 \label{prob:cgl4}
-Create an initial configuration that forms a \textit{toad} as shown in figure \ref{fig:cglplay}.
+Create an initial condition that forms a \textit{toad} as shown in figure \ref{fig:cglplay}.
 How does the CA evolve?
 Later, try to create a \textit{beacon} as initial configuration. What happens in that
 case when you make the CA evolve?
@@ -1284,7 +1285,7 @@ matches the \textit{spaceship} shape. How does the CA evolve?
 \end{problem}
 
 If you have completed the problems proposed above, at this point you have probably had
-a lot of fun! CGL has the siplest state settings (black and white) and a set of
+a lot of fun! CGL has the simplest state settings (black and white) and a set of
 transition rules that help create very interesting evolutions. The first thing you have probably
 noticed is that problems \ref{prob:cgl1}, \ref{prob:cgl2}, \ref{prob:cgl3} and \ref{prob:cgl4}
 propose an initial configuration which is either static or periodic (recall definitions
@@ -1298,7 +1299,8 @@ complex, but all of them have period $T=2$!
 The last two problems (\ref{prob:cgl5} and \ref{prob:cgl6}) have shown something new though. The
 \textit{glider} and the \textit{spaceship} shapes are not periodic because they do not get back
 to the same exact configuration; the automaton gets back to the same shape at some point,
-but the shape has moved below and on the right!
+but the shape has moved below and on the right (so it is not exactly the same initial
+configuration because the active cells are different)!
 These two initial conditions are called: \textit{divergent}.
 
 \begin{definition}[Divergent condition]
@@ -1314,6 +1316,6 @@ A divergent configuration is one which is not \textit{static}, not \textit{recur
 \end{proposition}
 
 Gliders and spaceships are divergent conditions and you might be surprised to hear that
-CGL has more of such initial conditions.
+CGL has more of such initial configurations.
 
 %TODO: Explain that some conditions are divergent only if the automaton has infinite size.
