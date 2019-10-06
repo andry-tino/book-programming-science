@@ -90,7 +90,7 @@ Write this code minding casing and spacing.
 
 Save the file and now try to open it in your browser: we have just displayed a text!
 
-\begin{tips}{A first glance at HTML}
+\begin{tips}{Learning point - A first glance at HTML}
 The code we just wrote is read by the browser to create a graphical visualization. HTML is used to
 create web pages. It is not a \textit{programming language} (it does not tell a computer what to do),
 but a \textit{markup language} (it tells a computer what to display and paint on the screen).
@@ -163,7 +163,7 @@ These first lines of Javascript code create our \textit{module}.
 
 We have just created a \textit{module}, let's try to understand a bit more about them.
 
-\begin{tips}{Javascript modules}
+\begin{tips}{Learning point - Javascript modules}
 Javascript language does not have an intrinsic concept of module, this is something programmers create in
 different ways. A \textit{module} is a programming structure encapsulating some code that is isolated
 from other codes running in the page.
@@ -269,6 +269,21 @@ function create() {
 \end{codeh1}
 \end{programcode}
 
+% Figure
+%
+\begin{figure}[b]
+\sidecaption
+% tikz diagram
+\input{diag-gridlayout}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+\caption{The rendering strategy for the grid we need to paint on screen.}
+\label{fig:gridlayout}
+\end{figure}
+%
+
 The code above does a few things. In the first lines, we get a reference to the CA container
 (the \texttt{<div>} in the page), and set its width according to the size we specified in the
 constants. Later on, we create a row-by-column scanning by using one loop nested into the other.
@@ -283,7 +298,7 @@ The last command invokes \texttt{appendChild} on the container: this will make t
 inside the container.\\
 
 Try to refresh the page! What can you see? Not really what we were hoping right? Well, the fact that
-we cannot see mush does not mean that the page is empty. Let's have a look by inspecting the page
+we cannot see much does not mean that the page is empty. Let's have a look by inspecting the page
 using the F12 tool. If we do so, the tool will display, under the \textit{Elements} tab, the
 content of the page: our \texttt{<div>}s are there, it's just that the browser is not rendering
 them on the page the way we want. The problem is styling, we must properly style the elements we
@@ -293,7 +308,7 @@ have created by using some CSS.
 Insert this code in \texttt{style.css}.
 \begin{codecss}
 body {
-  margin: 10x;
+  margin: 10px;
   padding: 10px;
 }
 
@@ -318,13 +333,43 @@ body {
 We have filled the stylesheet with 3 sets of rules. The first set is for the \texttt{<body>} element
 and just defines a 10 pixel spacing between the borders and the content of the whole page.
 The second targets
-all elements with \texttt{id="ca"} (which is our container): we set the background to black and
-make sure all contained cells are wrapped by using \texttt{display: flex} and \texttt{flex-wrap: wrap}.
-These last two properties are used to make the cell container a wrapping container. The cells will be
-arranged inside the container top-down and left to right. They start from the top-left corner and every
-cell is added on the left. When the right border of the container is reached, the next cell will be placed
-down on the left to fill a second row, and so on. This behavior is possible thanks to the flex system
-we have just used.
+the container (as it has \texttt{id="ca"}): we set the background to black and
+make sure all contained cells wrap by using \texttt{display: flex} and \texttt{flex-wrap: wrap}.
+
+% Figure
+%
+\begin{figure}[b]
+\sidecaption
+% tikz diagram
+\input{diag-flexwrap}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+\caption{Flex wrapping explained. The right-most diagram shows a container without wrapping,
+while the left-most shows the same situation where the container is set to wrap its children.}
+\label{fig:flexwrap}
+\end{figure}
+%
+
+\begin{tips}{Learning point - CSS Flex wrap}
+CSS has many features and allows styling HTML elements in many different ways. One of the coolest tricks
+is \textit{flex-wrapping}. Wrapping (in general) means that
+when a bunch of elements are lined up in a row and they reach the
+end of their container, instead of shrinking or overflowing, they automatically go down below to start a
+new row as shown in figure \ref{fig:flexwrap}. This is the most common case: \textit{horizontal wrapping},
+however, there is also \textit{vertical wrapping} where elements form columns.
+
+To enable wrapping we need to work on two different sets of elements: one container element, and many
+contained elements (they must be direct children of the container). The container must be styled to
+be a \textit{flex-container}, and we achieve this by setting \texttt{display: flex}. Another property
+must be set on the container: \texttt{flex-wrap: wrap}, this will make the flex-container a
+\textit{wrapping container}, so that all its direct children would wrap when reaching the borders of it.
+Once that's accomplished, we must make sure children do not change in size when filling the container.
+In flex containers, CSS tries to fit everything where it can; so, if we leave things as they are, we might
+not get the desired result: we must tell the browser not to change the size of the contained elements, so that
+they wrap; we achieve this by setting \texttt{flex: 0 0 auto} on the contained children.
+\end{tips}
 
 If you try to refresh the page now, you will see the grid!
 
@@ -958,7 +1003,7 @@ extract the value associated with attribute \texttt{data-value}. It is possible 
 is not set on the element, in that case \texttt{getAttribute} would return \texttt{undefined} so we
 use operator \texttt{||}.
 
-\begin{tips}{Operator \texttt{||}}
+\begin{tips}{Learning point - Operator \texttt{||}}
 Expression \texttt{a || b} returns \texttt{a} if \texttt{b} is \texttt{undefined}
 or \texttt{b} if \texttt{a} is \texttt{undefined}; if both variables have values, then the one on the
 left is returned.
@@ -986,7 +1031,7 @@ The functions we have created, as you can see, look quite similar to functions
 \texttt{get} and \texttt{set}. To be specific, we say they have the same
 \textit{signature}.
 
-\begin{tips}{Signature of a function}
+\begin{tips}{Learning point - Signature of a function}
 The signature of a function is the list of its input parameters and the type of returned
 value (if any). Consider the following function:
 \begin{code}
@@ -1141,7 +1186,7 @@ window.addEventListener("load", function () {
 
 We have just translated in code the conditions we decided a moment ago.
 
-\begin{tips}{Throwing errors}
+\begin{tips}{Learning point - Throwing errors}
 How can a web application send an error? The proper way of doing it is by using this syntax:
 \begin{code}
 throw new Error("Your error message here");
@@ -1212,7 +1257,7 @@ How does the CA evolve?
 
 \begin{problem}
 \label{prob:cgl4}
-Create an initial configuration that forms a \textit{toad} as shown in figure aaa.
+Create an initial configuration that forms a \textit{toad} as shown in figure \ref{fig:cglplay}.
 How does the CA evolve?
 Later, try to create a \textit{beacon} as initial configuration. What happens in that
 case when you make the CA evolve?

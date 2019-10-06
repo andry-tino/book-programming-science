@@ -1,0 +1,95 @@
+%
+% Tikz Diagram
+%
+
+\begin{tikzpicture}
+
+\tikzmath{
+	\W = 3;
+	\H = 2;
+	\n = 5;
+	\s = \W / \n;
+	\i = 0.2; % Inter-margin
+	\d = 1; % Displacement between the two
+	\Bix1 = 0;
+	\Bfx1 = \Bix1 + \W;
+	\Biy1 = 0;
+	\Bfy1 = \Biy1 + \H;
+	\six1 = \Bix1 + \i;
+	\siy1 = \Bfy1 - \i;
+	\sfx1 = \six1 + \s;
+	\sfy1 = \siy1 - \s;
+	\six2 = \sfx1 + \i;
+	\siy2 = \H - \i;
+	\sfx2 = \six2 + \s;
+	\sfy2 = \siy1 - \s;
+	\six3 = \sfx2 + \i;
+	\siy3 = \H - \i;
+	\sfx3 = \six3 + \s;
+	\sfy3 = \siy1 - \s;
+	\six4 = \sfx3 + \i;
+	\siy4 = \H - \i;
+	\sfx4 = \six4 + \s;
+	\sfy4 = \siy1 - \s;
+	\six5 = \sfx4 + \i;
+	\siy5 = \H - \i;
+	\sfx5 = \six5 + \s;
+	\sfy5 = \siy1 - \s;
+	\Bix2 = \Bix1 - \W - \d;
+	\Bfx2 = \Bix2 + \W;
+	\Biy2 = 0;
+	\Bfy2 = \Biy2 + \H;
+	\six6 = \Bix2 + \i;
+	\siy6 = \Bfy2 - \i;
+	\sfx6 = \six6 + \s;
+	\sfy6 = \siy6 - \s;
+	\six7 = \sfx6 + \i;
+	\siy7 = \Bfy2 - \i;
+	\sfx7 = \six7 + \s;
+	\sfy7 = \siy6 - \s;
+	\six8 = \sfx7 + \i;
+	\siy8 = \Bfy2 - \i;
+	\sfx8 = \six8 + \s;
+	\sfy8 = \siy6 - \s;
+	\six9 = \six6;
+	\siy9 = \sfy6 - \i;
+	\sfx9 = \sfx6;
+	\sfy9 = \siy9 - \s;
+	\six0 = \six7;
+	\siy0 = \sfy6 - \i;
+	\sfx0 = \sfx7;
+	\sfy0 = \siy9 - \s;
+	\Ax = \sfx8;
+	\Ay = \siy8 + (\sfy8 - \siy8) * 0.5;
+	\Bx = \Ax + \i;
+	\By = \Ay - \i;
+	\Dx = \six9;
+	\Dy = \siy9 + (\sfy9 - \siy9) * 0.5;
+	\Cx = \Dx - \i;
+	\Cy = \Dy + \i;
+	\tx1 = (\Bfx1 - \Bix1) * 0.5;
+	\ty1 = \Biy1 - 0.2;
+	\tx2 = (\Bfx2 - \Bix2) * 0.5 + \Bix2;
+	\ty2 = \ty1;
+}
+
+\filldraw[fill=white, draw=black] (\Bix1,\Biy1) rectangle (\Bfx1,\Bfy1);
+\filldraw[fill=lightgray, draw=gray] (\six1,\siy1) rectangle (\sfx1,\sfy1) node[pos=.5] {\tiny \texttt{.cell}};
+\filldraw[fill=lightgray, draw=gray] (\six2,\siy2) rectangle (\sfx2,\sfy2) node[pos=.5] {\tiny \texttt{.cell}};
+\filldraw[fill=lightgray, draw=gray] (\six3,\siy3) rectangle (\sfx3,\sfy3) node[pos=.5] {\tiny \texttt{.cell}};
+\filldraw[fill=lightgray, draw=gray] (\six4,\siy4) rectangle (\sfx4,\sfy4) node[pos=.5] {\tiny \texttt{.cell}};
+\filldraw[fill=lightgray, draw=gray] (\six5,\siy5) rectangle (\sfx5,\sfy5) node[pos=.5] {\tiny \texttt{.cell}};
+
+\filldraw[fill=white, draw=black] (\Bix2,\Biy2) rectangle (\Bfx2,\Bfy2);
+\filldraw[fill=lightgray, draw=gray] (\six6,\siy6) rectangle (\sfx6,\sfy6) node[pos=.5] {\tiny \texttt{.cell}};
+\filldraw[fill=lightgray, draw=gray] (\six7,\siy7) rectangle (\sfx7,\sfy7) node[pos=.5] {\tiny \texttt{.cell}};
+\filldraw[fill=lightgray, draw=gray] (\six8,\siy8) rectangle (\sfx8,\sfy8) node[pos=.5] {\tiny \texttt{.cell}};
+\filldraw[fill=lightgray, draw=gray] (\six9,\siy9) rectangle (\sfx9,\sfy9) node[pos=.5] {\tiny \texttt{.cell}};
+\filldraw[fill=lightgray, draw=gray] (\six0,\siy0) rectangle (\sfx0,\sfy0) node[pos=.5] {\tiny \texttt{.cell}};
+
+\draw[thick,->,red] plot [smooth] coordinates {(\Ax,\Ay) (\Bx,\By) (\Cx,\Cy) (\Dx,\Dy)};
+
+\node[] at (\tx1,\ty1) {\texttt{<div id="\#ca">}};
+\node[] at (\tx2,\ty2) {\texttt{<div id="\#ca">}};
+
+\end{tikzpicture}
