@@ -1,0 +1,49 @@
+body {
+    margin: 10px;
+    padding: 10px;
+}
+
+#ca {
+    background-color: #000;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 1px;
+    padding-top: 1px;
+}
+
+.cell {
+    border: none;
+    background-color: #fff;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    flex: 0 0 auto;
+    font-size: 45%;
+    color: #000;
+}
+
+.cell[data-value="1"],
+.cell[data-value^="0.5"],
+.cell[data-value^="0.6"],
+.cell[data-value^="0.7"],
+.cell[data-value^="0.8"],
+.cell[data-value^="0.9"] {
+    background-color: #000;
+    color: #fff;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+#buttonNext {
+    background-color: #ddd;
+    color: #000;
+    border: none;
+    padding: 5px;
+}
+#buttonNext:hover {
+    background-color: #ccc;
+}
+#buttonNext:active {
+    background-color: #bbb;
+}
