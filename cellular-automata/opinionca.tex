@@ -33,10 +33,35 @@ We basically want to answer the question: what is the problem we want to solve?
 basically need to translate
 our problem into mathematical terms. This step is called: \textit{modelization}.
 \item Create a computer simulation by translating into code the mathematical
-model we created, this stage is called: \textit{implementation}.
+model we created, this stage is called: \textit{simulation}. While simulating,
+it is possible to collect all sorts of data and measurements; those will be used
+to rate which model best achieves the objectives with highest performance and
+lowest cost.
+\item After all simulations have been run, the best model is selected and then
+effectively put in practice. Most of the times, it results in something being
+physically built, or a process being enforced. This stage is called:
+\textit{implementation}.
 \end{enumerate}
 
-This way of doing things is called: \textit{scientific approach} and is at the very core
+% Figure
+%
+\begin{figure}[b]
+\centering
+\sidecaption
+% tikz diagram
+\input{diag-sciappr}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+\caption{Illustration of the different phases in the scientific approach to solve a problem.
+Each one of them is executed with different tools and require different skills.}
+\label{fig:sciappr}
+\end{figure}
+%
+
+This way of doing things (visualized in figure \ref{fig:sciappr})
+is called: \textit{scientific approach} and is at the very core
 of what scientists, mathematicians and engineers do every day. So let's start
 with the first step: what problem do we want to solve?
 
