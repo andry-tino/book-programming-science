@@ -67,7 +67,69 @@ with the first step: what problem do we want to solve?
 
 \begin{proposition}[Problem definition]
 \label{prop:opinionproblem}
-We want to
+Consider the community of people inside a city. The city council has set a goal to reduce
+the amount of cars, plastic and pollution on the whole urban area with the intention of
+promoting sustainability, green resources, and renewable energies.
+
+The city administration, however, does not have much money to enforce the new green policies
+it wants, so it has to rely on the citizens to try to adopt a more green and sustainable life
+in complete autonomy. So they have hired us, a group of scientists, to find a solution to
+this problem.
 \end{proposition}
 
-fg
+Proposition \ref{prop:opinionproblem} seems quite tough right? We are now scientists and we
+have been given the job to try to convince the inhabitants of a whole town to change their
+daily lives and habits to be more green and sustainable (using less plastic, riding bikes instead of
+cars, trash fewer objects, etc.). How are we going to do that?
+For starters, no panic! We have an approach to follow, so let's use the method pictured in figure
+\ref{fig:sciappr} to solve our problem.\\
+
+Where are we in that diagram? We have passed the first stage as we now know what problem we must focus
+on. So now it is time to think about the solution and we do that by using Mathematics and Science. What we
+want to study is basically a population made of different individuals: men, women and children.
+The city council wants us to find a way to persuade the citizens to change their lifestyle. Changing
+a person's behavior or habits means to change their opinion on specific matters. No, we are not talking
+about \textit{Inception}\footnote{A sci-fi/thriller movie released in 2010 where a group
+of people attempt to plant an idea inside a man's mind by violating his dreams. 
+If you haven't see
+it, you should because it's pretty cool: \url{https://www.imdb.com/title/tt1375666/}.}, we want to
+use less drastic/invasive (and more legal) strategies. One common way of doing this is by
+running an \textit{advertising campaign} with tv spots and street cartboards to promote
+the concepts we want. However remember that we don't have mush money, so we cannot run these ads all
+over town as it would be too expensive: we have a limited budget, which means we can only run small
+local campaigns in blocks or areas of the city. Would this strategy suffice?\\
+
+From different social studies, it has emerged that people change their opinion also in relation to
+the community where they live. Try to think about one time where your opinion about something shifted,
+and try to recall what caused that change: most likely it was because you met and talked with another
+person about that subject and the conversation made you change your mind. All that being said,
+of course folks' opinion doesn't vary so quickly with just one interaction, it depends
+on which person we meet and what topic we are focusing on. Also, people are very different: some
+change opinion quite easily, while others are much more stubborn.
+
+However, here's the most important point, no matter how easily a person's opinion change, what matters
+is that it can actually change and the change is caused by the opinions of other individuals. Is like
+if opinions were contagious to a certain extent. So, since we cannot run a town-wide ad campaign, we can
+rather do the same but in a few areas of the city to change a few people's mind
+about sustainable lifestyle so that they will later influence their neighbors. But how many citizens
+do we need to convince to have enough of them so that their influence will spread across the whole town?
+Should we run a bigger campaign on a single city block? Or smaller campaigns in more different areas
+of town? Or some other strategy?
+To answer that question, we are going to use... you guessed it: a CA!\\
+
+To use a CA for our problem, we need to create one, so we must define its properties:
+
+\begin{enumerate}
+\item \textbf{What do the cells represent?} A cell represents a single individual (citizen) in the city.
+A cell's neighborhood represents the people that live close to that person
+(same building, same city block, etc.).
+\item \textbf{What is the state of a cell?} Every individual (cell) can be either: \textit{convinced}
+($1$, black), or \textit{unconvinced} ($0$, white) about sustainable lifestyle.
+\item \textbf{How do we define the state transition function?} The main idea is that a non convinced citizen
+would become convinced if there is a sufficient number of his neighbors that are convinced as well.
+Of course the opposite applies as well: if a great number of his neighbors is not convinced,
+a convinced individual will also turn unconvinced.
+\end{enumerate}
+
+We have the basics of our CA, but we need to work more on the transition function.
+
