@@ -124,12 +124,57 @@ To use a CA for our problem, we need to create one, so we must define its proper
 A cell's neighborhood represents the people that live close to that person
 (same building, same city block, etc.).
 \item \textbf{What is the state of a cell?} Every individual (cell) can be either: \textit{convinced}
-($1$, black), or \textit{unconvinced} ($0$, white) about sustainable lifestyle.
+($1$, active, black), or \textit{unconvinced} ($0$, inactive, white) about sustainable lifestyle.
 \item \textbf{How do we define the state transition function?} The main idea is that a non convinced citizen
 would become convinced if there is a sufficient number of his neighbors that are convinced as well.
 Of course the opposite applies as well: if a great number of his neighbors is not convinced,
 a convinced individual will also turn unconvinced.
 \end{enumerate}
 
-We have the basics of our CA, but we need to work more on the transition function.
+We have the basics of our CA, but we need to work more on the transition function. If we read again the
+last point in our list above, we can express with simple mathematical expressions what we wrote:
 
+\begin{proposition}[Opinion shift CA transition function]
+\label{prop:opicatrans}
+Given a cell $y \in E$ in our opinion analysis CA, its next state is defined by this transition function:
+\begin{equation}
+f(n) =
+  \begin{cases}
+    0       & \quad n < N^\ast\\
+    1       & \quad n \geq N^\ast\\
+  \end{cases}
+\end{equation}
+Where $n = 0 \dots 8$ is the number of active neighbors of $y$, and $N^\ast = 0 \dots 9$ is a threshold
+value.
+\end{proposition}
+
+As you can see from proposition \ref{prop:opicatrans}, transition function $f$ uses a value $N^\ast$ to
+set a point where a citizen changes his mind, this number is quite important:
+
+\begin{definition}[Turning Point]
+\label{def:tp}
+When the transition function $f$ is defined as in proposition \ref{prop:opicatrans}, then value
+$N^\ast$ is called: \textit{Turning Point} (TP).
+If at least $N^\ast$ neighbors are convinced about
+a topic, then a citizen would turn or remain convinced too, while if the number of interested neighbors
+is below that number, then a citizen would turn or remain unconvinced.
+\end{definition}
+
+\begin{proposition}[Meaning of the Turning Point]
+The TP, as per definition \ref{def:tp},
+depending on its value, can describe the following behaviors:
+\begin{itemize}
+\item If $N^\ast = 0$, it means that a person is \textbf{stubbornly convinced}. So, no matter what his
+neighbors think, this person will never ever turn unconvinced.
+\item If $1 \leq N^\ast \leq 2$, then the person is \textbf{easy to convince}. Such a person does not
+require many neighbors to change his feelings about the topic.
+\item If $3 \leq N^\ast \leq 5$, then we could say the person is \textbf{reasonable}. It takes a fair
+intermediate amount of neighbors to make him change his mind.
+\item If $6 \leq N^\ast \leq 8$, then the person is \textbf{hard to convince}. A fairly high amount of
+neighbors is required to convince people like this to shift their opinion.
+\item If $N^\ast = 9$, the person is \textbf{stubbornly unconvinced}. So, no matter what his
+neighborhood thinks about the topic, this citizen would never ever turn convinced about it.
+\end{itemize}
+\end{proposition}
+
+So, in
