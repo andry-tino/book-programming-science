@@ -1,7 +1,7 @@
 (function () {
-    const rowsnum = 9;
-    const colsnum = 9;
-    const cellsize = 20; // In px
+    const rowsnum = 40;
+    const colsnum = 40;
+    const cellsize = 14; // In px
     const initConfig = ["3:4", "3:5", "4:3", "4:4", "4:5", "4:6", "5:4", "5:5", "5:6", "6:4", "6:5", "6:6", "7:7", "8:8"];
 
     let t = 0; // Cycles (time)
