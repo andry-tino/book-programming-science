@@ -99,7 +99,8 @@ the concepts we want. However remember that we don't have mush money, so we cann
 over town as it would be too expensive: we have a limited budget, which means we can only run small
 local campaigns in blocks or areas of the city. Would this strategy suffice?\\
 
-From different social studies, it has emerged that people change their opinion also in relation to
+From different social studies, like mentioned by Flache et al. \cite{flache-opinion},
+it has emerged that people change their opinion also in relation to
 the community where they live. Try to think about one time where your opinion about something shifted,
 and try to recall what caused that change: most likely it was because you met and talked with another
 person about that subject and the conversation made you change your mind. All that being said,
@@ -136,7 +137,8 @@ last point in our list above, we can express with simple mathematical expression
 
 \begin{proposition}[Opinion shift CA transition function]
 \label{prop:opicatrans}
-Given a cell $y \in E$ in our opinion analysis CA, its next state is defined by this transition function:
+Given a cell $y_{i,j} \in E$ in our opinion analysis CA, its next state is defined by this
+transition function:
 \begin{equation}
 f(n) =
   \begin{cases}
@@ -153,12 +155,14 @@ set a point where a citizen changes his mind, this number is quite important:
 
 \begin{definition}[Turning Point]
 \label{def:tp}
-When the transition function $f$ is defined as in proposition \ref{prop:opicatrans}, then value
+When the transition function $f$ is defined as in proposition \ref{prop:opicatrans}, then quantity
 $N^\ast$ is called: \textit{Turning Point} (TP).
 If at least $N^\ast$ neighbors are convinced about
-a topic, then a citizen would turn or remain convinced too, while if the number of interested neighbors
+a topic, then a citizen would turn or remain convinced too, while if the number of convinced neighbors
 is below that number, then a citizen would turn or remain unconvinced.
 \end{definition}
+
+Let's talk a bit more about the TP.
 
 \begin{proposition}[Meaning of the Turning Point]
 The TP, as per definition \ref{def:tp},
@@ -186,5 +190,34 @@ that the highest possible number of citizens can become convinced about sustaina
 Now it's time to jump on stage 3 of figure \ref{fig:sciappr}. We can finally start coding to
 create this new CA. Of course we are not going to reinvent the wheel and start from scratch: we
 have already created an automaton: CGL, so let's start from that project and modify a few things.
-It turns out that not much code needs to be written to edit CGL and turn in into this new
+It turns out that not much code needs to be written to edit CGL and turn it in into this new
 automaton we want to build now.
+
+\begin{enumerate}
+\item Go to the folder containing our project directory \texttt{cellautom}.
+\item Duplicate directory \texttt{cellautom} and name the clone: \texttt{opinionca}.
+\item From now on, work inside \texttt{opinionca}.
+\end{enumerate}
+
+We have basically duplicated CGL and prepared a copy of it we will edit. In fact, now we must
+make a few adjustments in code to develop a different automaton.
+
+\begin{programcode}{ca.js (snippet)}
+Open \texttt{ca.js} and spot function \texttt{calculateState}. Remove the content of the
+function and place this code instead.
+\begin{codeh1}{1}{9}
+function calculateState(state, neighSum) {
+  const N = 3; // Turning Point
+
+  if (neighSum > N) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+\end{codeh1}
+\end{programcode}
+
+We have re-written function \texttt{calculateState}, which is, basically, the state
+transition function in code. Now we have a completely different set of rules and this is
+not CGL anymore just because of that. We have completed coding our opinion automaton.
