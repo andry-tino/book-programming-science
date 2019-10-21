@@ -2,9 +2,32 @@
     const rowsnum = 40;
     const colsnum = 40;
     const cellsize = 14; // In px
-    const initConfig = ["3:4", "3:5", "4:3", "4:4", "4:5", "4:6", "5:4", "5:5", "5:6", "6:4", "6:5", "6:6", "7:7", "8:8"];
+    const initConfig = [];
 
     let t = 0; // Cycles (time)
+
+    function setInitialCondition() {
+        for (let i = 1; i <= rowsnum; i++) {
+            for (let j = 1; j <= colsnum; j++) {
+                if ((i >= 9 && i <= 15) && (j >= 9 && j <= 15)) {
+                    initConfig.push(i + ":" + j);
+                    continue;
+                }
+                if ((i >= 20 && i <= 25) && (j >= 20 && j <= 25)) {
+                    initConfig.push(i + ":" + j);
+                    continue;
+                }
+                if ((i >= 15 && i <= 20) && (j >= 11 && j <= 12)) {
+                    initConfig.push(i + ":" + j);
+                    continue;
+                }
+                if ((i >= 20 && i <= 23) && (j >= 11 && j <= 23)) {
+                    initConfig.push(i + ":" + j);
+                    continue;
+                }
+            }
+        }
+    }
 
     function create() {
         let container = getContainer();
@@ -134,6 +157,7 @@
             throw new Error("Cells are too small. A cell must be at least 4px!");
         }
 
+        setInitialCondition();
         create();
         initializeGrid();
         initializeButton();
