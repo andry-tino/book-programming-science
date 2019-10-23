@@ -12,23 +12,100 @@
 
 \Extrachap{Solutions}
 
-\section*{Problems of Chapter~\ref{sec:intro}}
+\section*{Problems in Chapter~\ref{sec:intro}}
 
-\begin{sol}{prob1}
+\begin{sol}{prob:evolvetoward111}
+\textbf{Find the remaining evolutions}\\
 We have already checked, in example \ref{ex:stateled4}, that
 $(0,1,0) \overset{f}{\rightarrow} (1,1,1)$, so we need to check the other possible
-states different from $(0,0,0)$. It is important to notice that if we ever reach configuration
-$(1,1,1)$, all successive configurations will be the same (a concept introduced a bit later 
-in definition \ref{def:finalconf}). So we just need to prove that all remaining configurations,
-will reach $(1,1,1)$:
+states different from $(0,0,0)$.
 \begin{itemize}
-\item If we consider $x_0 = (1,0,0)$, the we have that 
+\item If we consider $x_0 = (1,0,0)$, then we have that: $(1,0,0) \rightarrow (1,0,1) \rightarrow (1,1,1)$.
+\item If we consider $x_0 = (0,0,1)$, then we have that: $(0,0,1) \rightarrow (0,1,1) \rightarrow (1,1,1)$.
 \end{itemize}
+The remaining initial configurations are: $(1,1,0)$, $(1,0,1)$, $(0,1,1)$ and $(1,1,1)$. But those are already
+known because they are covered by the evolution of the initial configurations we covered before. For example,
+$(1,1,0)$ is the second configuration the CA assumes after $(0,1,0)$.
 \end{sol}
 
 
-\begin{sol}{prob2}
-\textbf{Problem Heading}\\
-(a) The solution of first part is revealed here.\\
-(b) The solution of second part is revealed here.
+\begin{sol}{prob:testcyclic}
+\textbf{Period of a cyclic initial condition}\\
+In example \ref{ex:stateled3}, we need to start from $x_0 = (1,0,1)$ and calculate the evolution of the automaton.
+We have that $x_1 = (0,1,1)$, then $x_2 = (1,1,0)$ and $x_3 = x_ 0 = (1,0,1)$. We got back to the initial
+condition after $T=3$ cycles.
+\end{sol}
+
+\begin{sol}{prob:changecasize}
+\textbf{Change the size of the CA}\\
+In \texttt{ca.js}, inside our Javascript module, we have created two contants to use to set the size of the
+automaton. If we change their values, we will get a different size. For example, to have a 20x20 grid,
+we just do:
+\begin{code}
+const rowsnum = 20;
+const colsnum = 20;
+\end{code}
+Or:
+\begin{code}
+const rowsnum = 20;
+const colsnum = 30;
+\end{code}
+If we want a rectangular automaton.
+\end{sol}
+
+\begin{sol}{prob:changeinit}
+\textbf{Setting a different initial condition}\\
+We have created, inside our Javascript module in \texttt{ca.js}, a constant called: \texttt{initConfig}.
+By specifying different cell IDs, we can set a different initial configuration:
+\begin{code}
+const initConfig = ["3:1", "1:3", "4:4"];
+\end{code}
+\end{sol}
+
+\begin{sol}{prob:cacolor}
+\textbf{Active cells with a different color}\\
+We set to black the color of active cells. If you remember, we set this color in our stylesheet
+\texttt{style.css}. In there, we need to change the CSS rule for active cells and change the value
+of CSS property \texttt{background-color}:
+\begin{codeh1}{1}{3}
+.cell[data-value="1"] {
+  background-color: #f00;
+}
+\end{codeh1}
+In this example, we set it to red.
+\end{sol}
+
+\begin{sol}{prob:flowers}
+\textbf{Use an image for active cells}\\
+In examp
+\end{sol}
+
+\begin{sol}{prob:cgl1}
+\textbf{Squares in Conway's Game of Life}\\
+In examp
+\end{sol}
+
+\begin{sol}{prob:cgl2}
+\textbf{Bee-hives in Conway's Game of Life}\\
+In examp
+\end{sol}
+
+\begin{sol}{prob:cgl3}
+\textbf{Blinkers in Conway's Game of Life}\\
+In examp
+\end{sol}
+
+\begin{sol}{prob:cgl4}
+\textbf{Toads and beacons in Conway's Game of Life}\\
+In examp
+\end{sol}
+
+\begin{sol}{prob:cgl5}
+\textbf{Gliders in Conway's Game of Life}\\
+In examp
+\end{sol}
+
+\begin{sol}{prob:cgl6}
+\textbf{Spaceships in Conway's Game of Life}\\
+In examp
 \end{sol}

@@ -551,6 +551,20 @@ Change the initial condition of the grid. Set to \textit{on} only the following
 cells: $(3,1)$, $(1,3)$ and $(4,4)$.
 \end{problem}
 
+\begin{problem}
+\label{prob:cacolor}
+Try to change the appearance of the automaton by using a different color for active (state is $1$)
+cells.
+\end{problem}
+
+\begin{problem}
+\label{prob:flowers}
+Try to change the appearance of the automaton by using an image instead of a color different from white.
+When a cell is active, that image should show up, otherwise the cell will remain white.
+We give you a suggestion here: do not use JPG or JPEG images, use PNG or SVG images instead with a transparent
+background color so that they can be displayed on top of any background color of the cells.
+\end{problem}
+
 \subsubsection{Building the UI}
 At this point we have succeeded setting the initial condition. This means that we can configure the CA however
 we want by just changing array \texttt{initConfig} at the beginning of the module. Our final goal is to
