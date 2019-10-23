@@ -165,21 +165,40 @@ is below that number, then a citizen would turn or remain unconvinced.
 Let's talk a bit more about the TP.
 
 \begin{proposition}[Meaning of the Turning Point]
-The TP, as per definition \ref{def:tp},
-depending on its value, can describe the following behaviors:
-\begin{itemize}
-\item If $N^\ast = 0$, it means that a person is \textbf{stubbornly convinced}. So, no matter what his
-neighbors think, this person will never ever turn unconvinced.
-\item If $1 \leq N^\ast \leq 2$, then the person is \textbf{easy to convince}. Such a person does not
-require many neighbors to change his feelings about the topic.
-\item If $3 \leq N^\ast \leq 5$, then we could say the person is \textbf{reasonable}. It takes a fair
-intermediate amount of neighbors to make him change his mind.
-\item If $6 \leq N^\ast \leq 8$, then the person is \textbf{hard to convince}. A fairly high amount of
-neighbors is required to convince people like this to shift their opinion.
-\item If $N^\ast = 9$, the person is \textbf{stubbornly unconvinced}. So, no matter what his
-neighborhood thinks about the topic, this citizen would never ever turn convinced about it.
-\end{itemize}
+The TP, as per definition \ref{def:tp}, is a quantity and a parameter of our model which,
+depending on its value, can describe different important behaviors of individuals in the population,
+as shown in table \ref{tab:meaningn}.
 \end{proposition}
+
+%
+% Table
+%
+\begin{table}[!t]
+\centering
+\caption{Showing the meaning of TP $N^\ast$ in relation to the behavior of individuals
+in the population.}
+\label{tab:meaningn}
+%
+% Follow this input for your own table layout
+%
+\begin{tabular}{p{0.15\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+\hline\noalign{\smallskip}
+Range of $N^\ast$ & Meaning & Description \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+$N^\ast = 0$ & Stubbornly convinced & No matter what his
+neighbors think, this person will never ever turn unconvinced.\\
+$1 \leq N^\ast \leq 2$ & Easy to convince  & Such a person does not
+require many neighbors to change his feelings about the topic.\\
+$3 \leq N^\ast \leq 5$ & Reasonable/average & It takes a fair
+intermediate amount of neighbors to make him change his mind.\\
+$6 \leq N^\ast \leq 8$ & Hard to convince & A fairly high amount of
+neighbors is required to convince people like this to shift their opinion.\\
+$N^\ast = 9$ & Stubbornly unconvinced & No matter what his
+neighborhood thinks about the topic, this citizen would never ever turn convinced about it.\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\end{table}
+%
 
 So, we can choose to create a CA where all the citizens have a certain value of $N^\ast$, and
 we could create different scenarios where citizens are easy to convince or hard to do so.
