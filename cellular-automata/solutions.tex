@@ -94,7 +94,7 @@ evolution, we see that nothing changes. So a \textit{block}, is a static conditi
 
 \begin{sol}{prob:cgl2}
 \textbf{Bee-hives and tubs in Conway's Game of Life}\\
-Let's start creating a \textit{bee-hive} first as shown in figure \ref{diag-cglplay}. We can use
+Let's start creating a \textit{bee-hive} first as shown in figure \ref{fig:cglplay}. We can use
 the original 9x9 automaton size because this configuration's size is 3x4, so it fits.
 We place the first (left-most and top-most) black cell of the configuration in cell \texttt{3:3},
 so we write:
@@ -116,22 +116,76 @@ If we want to draw both a bee-hive and a tub, we need a bigger automaton. The be
 is 3x4 and the tub is 3x3, we also need to leave at least 3 cell separation
 (to avoid one figure to affect the other) between the two figures, which means that a
 15x15 automaton should be ok. We will draw a bee-hive on the top-left part of the automaton
-and a tub in the bottom-right portion.
+and a tub in the bottom-right portion:
+\begin{code}
+const initConfig = ["3:3", "3:4", "4:2", "4:5", "5:3", "5:4", "10:10", "11:9", "11:11", "12:10"];
+\end{code}
+As we refresh and make the automaton evolve, we see that the two figures remain there, so a
+configuration obtained by combining two static configurations is still static.
+
+Let's have some more fun and experiment a bit longer. What happens if the two static figures
+are placed too close to each other? If we try to move the tub very close to the bee-hive like this:
+\begin{code}
+const initConfig = ["3:3", "3:4", "4:2", "4:5", "5:3", "5:4", "5:6", "6:5", "6:7", "7:6"];
+\end{code}
+We can see, as we refresh the page and let the CA evolve, that the two figures start changing.
+That's because each cell reacts to a neighborhood of radius 1, since one figure's cells are
+in the other's cells' neighborhoods, a different evolution happens. In this case the initial configuration
+we just created leads to a final configuration which is a bee-hive.
 \end{sol}
 
 \begin{sol}{prob:cgl3}
 \textbf{Blinkers in Conway's Game of Life}\\
-In examp
+In the original automaton (9x9), we can draw an horizontal \textit{blinker}:
+\begin{code}
+const initConfig = ["5:5", "5:6", "5:7"];
+\end{code}
+Or a vertical one:
+\begin{code}
+const initConfig = ["5:5", "6:5", "7:5"];
+\end{code}
+In both cases, as we make the automaton evolve, we see that the two initial configurations are
+cyclic because we get back to them after two cycles (period $T=2$).
 \end{sol}
 
 \begin{sol}{prob:cgl4}
 \textbf{Toads and beacons in Conway's Game of Life}\\
-In examp
+Let's first draw a \textit{toad} as shown in figure \ref{fig:cglplay};
+this figure takes a 2x4 rectangle, so our original automaton (9x9)
+is ok to contain it. We set the first black cell to be \texttt{5:5}:
+\begin{code}
+const initConfig = ["5:5", "5:6", "5:7", "6:4", "6:5", "6:6"];
+\end{code}
+As we make this CA evolve, we see a cyclic configuration with period $T=2$
+(as it repeats after two cycles).
+
+As for the \textit{beacon}, figure \ref{fig:cglplay} provides us its size: 4x4, which fits
+our original CA, so we don't need to change its size. If we set \texttt{3:3} to be the first black
+cell of this configuration, we have:
+\begin{code}
+const initConfig = ["3:3", "3:4", "4:3", "4:4", "5:5", "5:6", "6:5", "6:6"];
+\end{code}
+Again, trying the evolution, we can see that this is also a recurrent configiration with period $T=2$.
 \end{sol}
 
 \begin{sol}{prob:cgl5}
 \textbf{Gliders in Conway's Game of Life}\\
-In examp
+Figure \ref{fig:cglplay} shows how a \textit{glider} should look like.  We take
+the first black cell of this confgiguration to be placed in cell \texttt{3:3}:
+\begin{codeh2}{0}{3}{5}{7}
+const rowsnum = 30;
+const colsnum = 30;
+const cellsize = 20; // In px
+const initConfig = ["3:3", "4:4", "4:5", "5:3", "5:4"];
+\end{codeh2}
+As you can see, we also changed the size to 30x30 as requested by the problem.
+When we try to make the automaton evolve, we see that the figure sorts of moves towards the bottom-right
+part of the grid. Although the shape we see repeats itself, its position changes every time,
+so we cannot say this initial configuration is cyclic. This is a configuration where the automaton does
+not evolve into a specific final configuration, but keeps changing indefinitely (if it were infinite in size).
+In our case, however, because of the border effect, the automaton will eventually turn into a block at cycle
+$t=100$ and stay there. So, in our case, the glider condition will lead into a final configuration which is
+a block.
 \end{sol}
 
 \begin{sol}{prob:cgl6}
