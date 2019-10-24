@@ -164,15 +164,14 @@ These first lines of Javascript code create our \textit{module}.
 We have just created a \textit{module}, let's try to understand a bit more about them.
 
 \begin{tips}{Learning point - Javascript modules}
-Javascript language does not have an intrinsic concept of module, this is something programmers create in
-different ways. A \textit{module} is a programming structure encapsulating some code that is isolated
-from other codes running in the page.
-
-It is a very generic definition because there is really not much more about it. For now, everytime
-we write some code that needs to run in the page, we will wrap it inside a module like shown before,
-this is a standard procedure to make sure other Javascript codes on the page, in future, do not
-affect our code. Modules also guarantee that our code does not have any side
-effects on other scripts running on the same page.
+The Javascript language does not have a concept of \textit{module} embedded in itself,
+this is something programmers create in
+different ways. A module is a programming structure designed to encapsulate some code that is isolated
+from other codes possibly running in the page.
+Since modules are an advanced topic, for now, everytime
+we write some code, we will wrap it inside a module like shown before without thinking too much about it.
+This is a standard procedure to make sure other Javascript codes on the page, in future, do not
+affect our code.
 \end{tips}
 
 We have imported \texttt{ca.js} inside \texttt{index.html}, so when we refresh the page the module
@@ -193,7 +192,32 @@ Define the constants we will use at the beginning on the module.
 
 The constants we defined will be used to create an automaton of the size we specify in 
 \texttt{rowsnum} and \texttt{colsnum}. Constant \texttt{cellsize} will be used to defined the
-width and height of each (square) cell. Moving on, we now want to create the code that renders the grid.
+width and height of each (square) cell.
+
+\begin{tips}{Learning point - Again on Javascript modules}
+We have a chance here to explain a bit more why modules are important. The code we have written
+now defines three constants. Since they are defined inside a module, nobody can access them outside
+of it! Let's prove it. In \texttt{ca.js}, remove (or comment out) the
+module definition (first line and last line) and
+leave only the content (the three contants):
+\begin{codeh2}{0}{2}{4}{6}
+//(function(){
+  const rowsnum = 9;
+  const colsnum = 9;
+  const cellsize = 20; // In px
+//})();
+\end{codeh2}
+Now the contants are not defined in the module anymore,
+but in the \textit{global scope}, so they are accessible from outside.
+Save the file and refresh the page and open the F12 tools. In the Javascript console try to
+write \texttt{rowsnum} (or any other constant we defined), you will see that the console will spit
+out its value.
+Now go back to \texttt{ca.js} and bring back the module as it was before. Refresh the page, open the
+console in the F12 tools and try to access the constant as you did before. You will get 
+\texttt{undefined}. Modules are used to protect our code from outside!
+\end{tips}
+
+Moving on, we now want to create the code that renders the grid.
 
 \begin{programcode}{ca.js}
 Inside the module, after the constants, add a function and the code to invoke it.

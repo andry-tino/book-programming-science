@@ -77,17 +77,46 @@ In this example, we set it to red.
 
 \begin{sol}{prob:flowers}
 \textbf{Use an image for active cells}\\
-In examp
+Todo
 \end{sol}
 
 \begin{sol}{prob:cgl1}
-\textbf{Squares in Conway's Game of Life}\\
-In examp
+\textbf{Blocks in Conway's Game of Life}\\
+We can use the original size (9x9) and start from cell \texttt{3:3}. We must create
+an initial condition with two consecutive active cells, and two active cells below them:
+\begin{code}
+const initConfig = ["3:3", "3:4", "4:3", "4:4"];
+\end{code}
+When we save and refresh the page, a block appears. If we click \textit{Next} and follow the
+evolution, we see that nothing changes. So a \textit{block}, is a static condition
+(see definition \ref{def:staticconf}) in CGL.
 \end{sol}
 
 \begin{sol}{prob:cgl2}
-\textbf{Bee-hives in Conway's Game of Life}\\
-In examp
+\textbf{Bee-hives and tubs in Conway's Game of Life}\\
+Let's start creating a \textit{bee-hive} first as shown in figure \ref{diag-cglplay}. We can use
+the original 9x9 automaton size because this configuration's size is 3x4, so it fits.
+We place the first (left-most and top-most) black cell of the configuration in cell \texttt{3:3},
+so we write:
+\begin{code}
+const initConfig = ["3:3", "3:4", "4:2", "4:5", "5:3", "5:4"];
+\end{code}
+When we refresh the page we see the configuration and as we advance the CA, we can see that
+nothing changes. So a bee-hive is a static configuration.
+
+Let's now draw a \textit{tub} as static configuration.
+This initial configuration's size is 3x3 so it fits the original 9x9 CA.
+Its first black cell will be placed in position \texttt{3:3}, so we can write:
+\begin{code}
+const initConfig = ["3:3", "4:2", "4:4", "5:3"];
+\end{code}
+Let's refresh and make the automaton evolve: again another static configuration.
+
+If we want to draw both a bee-hive and a tub, we need a bigger automaton. The bee-hive
+is 3x4 and the tub is 3x3, we also need to leave at least 3 cell separation
+(to avoid one figure to affect the other) between the two figures, which means that a
+15x15 automaton should be ok. We will draw a bee-hive on the top-left part of the automaton
+and a tub in the bottom-right portion.
 \end{sol}
 
 \begin{sol}{prob:cgl3}
