@@ -239,10 +239,81 @@ function calculateState(state, neighSum) {
 
 We have re-written function \texttt{calculateState}, which is, basically, the state
 transition function in code. Now we have a completely different set of rules and this is
-not CGL anymore just because of that. We have completed coding our opinion automaton.
+not CGL anymore. We have completed coding the first prototype of an
+\textit{threshold-based opinion automaton}\footnote{The complex name indicates the way
+our automaton describes the opinion of individuals in a population: by using a threshold that we
+have called \textit{Turning Point}. In this automaton, a cell changes state when the number
+of active neighbors exceeds a certain threshold, that is: $N^\ast$.}.
 
 \subsection{Running simulations}
-We have verified that our automaton is working fine, now we need to use it for our intentions.
+In our plan (visualized by figure \ref{fig:sciappr}), we are still in stage 3. We have just built
+a simulation program (our web application) which runs a CA to describe opinion change in a
+city. Now what we need to do is to use this simulator and run it to produce some data. The data
+we collect is going to give us the information we want to learn new things that we can use to reach
+our goal (as per proposition \ref{prop:opinionproblem}). How do we use the CA? As we have learnt
+so far, we need to set different initial conditions and see how the CA evolves.
+
+\begin{proposition}[Simulation strategy]
+\label{prop:simstrat}
+Given our objective in proposition \ref{prop:opinionproblem}, we want to try to run an ad
+campaign on a targeted small set of communities in town, to meet the low budget. We want to try
+different configurations of \textit{short-range local campaigns} in the city,
+and see how the opinion changes with time. We will select the configuration which ensures
+maximum coverage as the automaton evolves.
+\end{proposition}
+
+What do we mean by running \textit{short-range local campaigns}?
+
+\begin{itemize}
+\item \textbf{Short-range:} An ad campaign will involve few people in a precise area of the city.
+\item \textbf{Local:} The community which is targeted by an ad campaign will be covered 100\%, it
+means that there will be no individual in the community who won't be exposed to the campaign.
+\end{itemize}
+
+The two points explain that, basically, in our CA,
+a targeted community will be a \textbf{small} surface (short-range) of black cells
+\textbf{without white holes} inside it (local). If we follow this simulation strategy as per proposition
+\ref{prop:simstrat}, we basically need to experiment with some initial conditions consisting of small
+black areas located on the city territory. We need to find the best arrangement of black areas that
+ensures the CA will evolve to a configuration with the highest amount of black cells in the end.
+So this is what we are going to do:
+
+\begin{enumerate}
+\item Set an initial configuration for the CA, with some small black area located in
+different parts of the grid.
+\item Make the CA evolve until a final or recurrent configuration is reached.
+\item Take note of the percentage of black cells in the automaton after its evolution. We will call this
+measure: \textit{coverage ratio} or \textit{coverage percentage}.
+\item Start again trying a different configuration.
+\end{enumerate}
+
+At the end, we will compare all the coverage percentages, and we will pick the initial condition
+associated to the highest coverage percentage. That initial configuration will be the best
+advertising strategy to reach our objective and solve the problem.
+
+\subsubsection{Experimenting a little}
+The only requirement is to use small black areas when setting the initial configuration, so
+we can have many different possibilities. To avoid making many attempts, we can try to perform
+a few simple experiments to see how the CA we built behaves, so that later we can try some more
+specific initial conditions and save a lot of time.
+
+The first thing we wanna do, is changing the size of our automaton.
+
+\begin{programcode}{ca.js (snippet)}
+In \texttt{ca.js}, at the beginning of the module, change the size of the CA to 40x40.
+\begin{code}
+const rowsnum = 40;
+const colsnum = 40;
+\end{code}
+\end{programcode}
+
+We need a big automaton to describe a city, we cannot use a 9x9. Feel free to use a larger grid if
+you want, however we recommend to have a minimum size of 40x40.
+
+dfg
+
+\subsubsection{Trying out different initial configurations}
+dfg
 
 \subsection{Drawing conclusions}
 To
