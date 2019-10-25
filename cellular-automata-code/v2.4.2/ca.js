@@ -1,10 +1,33 @@
 (function () {
-    const rowsnum = 9;
-    const colsnum = 9;
-    const cellsize = 20; // In px
-    const initConfig = ["3:4", "3:5", "4:3", "4:4", "5:4"];
+    const rowsnum = 40;
+    const colsnum = 40;
+    const cellsize = 14; // In px
+    const initConfig = [];
 
     let t = 0; // Cycles (time)
+
+    function setInitialCondition() {
+        for (let i = 1; i <= rowsnum; i++) {
+            for (let j = 1; j <= colsnum; j++) {
+                if ((i >= 9 && i <= 15) && (j >= 9 && j <= 15)) {
+                    initConfig.push(i + ":" + j);
+                    continue;
+                }
+                if ((i >= 20 && i <= 25) && (j >= 20 && j <= 25)) {
+                    initConfig.push(i + ":" + j);
+                    continue;
+                }
+                if ((i >= 15 && i <= 20) && (j >= 11 && j <= 12)) {
+                    initConfig.push(i + ":" + j);
+                    continue;
+                }
+                if ((i >= 20 && i <= 23) && (j >= 11 && j <= 23)) {
+                    initConfig.push(i + ":" + j);
+                    continue;
+                }
+            }
+        }
+    }
 
     function create() {
         let container = getContainer();
@@ -112,19 +135,13 @@
     }
 
     function calculateState(state, neighSum) {
-        if (state === 1 && neighSum < 2) {
-            return 0; // Any active cell with fewer than 2 active neighbors becomes inactive
+        const N = 3; // Turning Point
+
+        if (neighSum > N) {
+            return 1;
+        } else {
+            return 0;
         }
-        if (state === 1 && neighSum >= 2 && neighSum <= 3) {
-            return 1; // Any active cell with 2 or 3 active neighbors remains active
-        }
-        if (state === 1 && neighSum > 3) {
-            return 0; // Any active cell with more than 3 active neighbors becomes inactive
-        }
-        if (state === 0 && neighSum === 3) {
-            return 1; // Any inactive cell with exactly 3 active neighbors becomes active
-        }
-        return state; // Otherwise the cell's state remains the same
     }
 
     function updateCycleText() {
@@ -140,6 +157,7 @@
             throw new Error("Cells are too small. A cell must be at least 4px!");
         }
 
+        setInitialCondition();
         create();
         initializeGrid();
         initializeButton();

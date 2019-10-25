@@ -5,4 +5,4 @@ This holds the code for the section on cellular automata
 
 ## Changes from 2.4
 
-- Changed style to use images for cells.
+- Changed state transition function logic to use an opinion threshold shifter.

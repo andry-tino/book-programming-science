@@ -77,7 +77,33 @@ In this example, we set it to red.
 
 \begin{sol}{prob:flowers}
 \textbf{Use an image for active cells}\\
-Todo
+To use an image instead of a color to signal that a cell is active, we need to find an image and
+make it available in our project:
+\begin{enumerate}
+  \item In your project folder, create another folder and call it: \texttt{images}.
+  \item Search in the Internet for an image you like. Try to find a PNG because they will probably have
+    a transparent background. If you don't want to spend time doing it, we have an image for you:
+    \texttt{flower.png} which you can find under folder \texttt{v2.4.1/images}.
+  \item Move the image inside the folder you created in the first step.
+\end{enumerate}
+Now we need to change the style
+of active cells, which means we must edit \texttt{style.css}:
+\begin{codeh1}{1}{5}
+.cell[data-value="1"] {
+  background-image: url("images/flower.png");
+  background-position: center;
+  background-size: cover;
+}
+\end{codeh1}
+With property \texttt{background-image} we reference the image we want to use (the path is relative to the
+CSS file location). Since we want to make sure that the image is placed at the center of the cell, we must use
+\texttt{background-position: center}. Finally, we want to ensure that the image exactly takes the size of the
+cell and adapts to it, therefore we use \texttt{background-size: cover} which accomplishes exactly that.
+
+If you go ahead and try it (save the stylesheet and refresh the page),
+you will see your image popping up where active cells are! Also, if you change the size of a cell,
+by changing the value of constant \texttt{cellsize} inside our Javascript module in \texttt{ca.js},
+you will see the image will adapt every time.
 \end{sol}
 
 \begin{sol}{prob:cgl1}
@@ -190,5 +216,17 @@ a block.
 
 \begin{sol}{prob:cgl6}
 \textbf{Spaceships in Conway's Game of Life}\\
-In examp
+In figure \ref{fig:cglplay}, we can see the \textit{spaceship} configuration is the biggest listed.
+We set the first black cell of this initial condition to be in cell \texttt{7:7}:
+\begin{codeh2}{0}{3}{5}{7}
+const rowsnum = 50;
+const colsnum = 50;
+const cellsize = 20; // In px
+const initConfig = ["7:7", "7:8", "8:5", "8:6", "8:8", "8:9", "9:5", "9:6", "9:7", "9:8", "10:6", "10:7"];
+\end{codeh2}
+We have also changed the automaton's size to 50x50.
+As we make the CA evolve, we see that the behavior is the same as in solution \ref{prob:cgl5}: the shape
+moves down until reaching the border. If the CA had an infinite size, the shape would move continuously
+downward, and the CA would never reach a final configuration, thus making this initial condition, a
+\textit{divergent} one as explained in definition \ref{def:divconf}.
 \end{sol}

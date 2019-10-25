@@ -20,9 +20,7 @@ body {
 }
 
 .cell[data-value="1"] {
-    background-image: url("images/flower.png");
-    background-position: center;
-    background-size: cover;
+    background-color: #000;
 }
 
 .controls {
