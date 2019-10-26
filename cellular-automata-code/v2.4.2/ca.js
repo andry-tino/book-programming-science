@@ -7,25 +7,27 @@
     let t = 0; // Cycles (time)
 
     function setInitialCondition() {
-        for (let i = 1; i <= rowsnum; i++) {
-            for (let j = 1; j <= colsnum; j++) {
-                if ((i >= 9 && i <= 15) && (j >= 9 && j <= 15)) {
-                    initConfig.push(i + ":" + j);
-                    continue;
-                }
-                if ((i >= 20 && i <= 25) && (j >= 20 && j <= 25)) {
-                    initConfig.push(i + ":" + j);
-                    continue;
-                }
-                if ((i >= 15 && i <= 20) && (j >= 11 && j <= 12)) {
-                    initConfig.push(i + ":" + j);
-                    continue;
-                }
-                if ((i >= 20 && i <= 23) && (j >= 11 && j <= 23)) {
-                    initConfig.push(i + ":" + j);
-                    continue;
-                }
+        rect(3, 3, 7, 7);
+        rect(12, 20, 16, 26);
+        rect(30, 30, 35, 38);
+        line(6, 6, 12, 20);
+        line(15, 25, 30, 30);
+    }
+
+    function rect(i1, j1, i2, j2) {
+        for (let i = i1; i <= i2; i++) {
+            for (let j = j1; j <= j2; j++) {
+                initConfig.push(i + ":" + j);
             }
+        }
+    }
+
+    function line(i1, j1, i2, j2) {
+        for (let k = 0; k <= 1; k += 0.05) {
+            let p1 = Math.ceil((1-k)*i1 + k*i2);
+            let p2 = Math.ceil((1-k)*j1 + k*j2);
+            initConfig.push(p1 + ":" + p2);
+            initConfig.push((p1+1) + ":" + (p2+1)); // Thick line
         }
     }
 
