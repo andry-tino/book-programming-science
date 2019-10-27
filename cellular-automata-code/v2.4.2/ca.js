@@ -7,12 +7,9 @@
     let t = 0; // Cycles (time)
 
     function setInitialCondition() {
-        rect(3, 3, 5, 5); // 3x3
-        rect(3, 15, 6, 18); // 4x4
-        rect(3, 30, 7, 34); // 5x5
-        rect(20, 3, 25, 8); // 6x6
+        rect(2, 2, 5, 5); // 3x3
         rect(20, 15, 26, 21); // 7x7
-        rect(20, 30, 27, 37); // 8x8
+        line(4, 4, 20, 15);
     }
 
     function rect(i1, j1, i2, j2) {
@@ -25,10 +22,12 @@
     }
 
     function line(i1, j1, i2, j2) {
-        // Must: 0 < i1 < i2 < rowsnum AND 0 < j1 < j2 < colsnum
-        for (let k = 0; k <= 1; k += 0.05) {
-            let p1 = Math.ceil((1-k)*i1 + k*i2);
-            let p2 = Math.ceil((1-k)*j1 + k*j2);
+        // Must: 0 < i1, i2 < rowsnum AND 0 < j1, j2 < colsnum
+        for (let k = 0; k <= 1; k += 0.01) {
+            let p1 = (1-k) * i1 + k * i2;
+            let p2 = (1-k) * j1 + k * j2;
+            p1 = Math.ceil(p1);
+            p2 = Math.ceil(p2);
             initConfig.push(p1 + ":" + p2);
             initConfig.push((p1+1) + ":" + (p2+1)); // Thick line
         }

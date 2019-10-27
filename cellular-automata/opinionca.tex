@@ -473,9 +473,105 @@ We need to find a different strategy. Our understanding is that, since isolated 
 strong enough to expand, they probably need reinforcement. So instead of considering isolated
 blocks, let's use \textit{connected blocks}. We will now make an experiment and draw two blocks
 connected by some cells and see what happens. Again, we do not want to write down one cell at a time
-inside array \texttt{initConfig}, as we did for blocks, we want to create a function that
+inside array \texttt{initConfig}, as we did for blocks;
+we want to create a function that
 draws a line of connecting cells from one cell to another to save time and be more efficient
-in our experiments (so we have a quick way to draw lines).
+in our experiments (so we have a quick way to draw lines). To achieve this we need a little bit
+of Geometry.\\
+
+We eventually want to draw a line of cells from one cell to another. Let's forget about
+automata for a moment and let's consider a 2D plane, and let's say we want a way to find
+all the points $P = (p_x, p_y)$ that lay on
+the segment between two points $A = (a_x, a_y)$ and $B = (b_x, b_y)$.
+That equation is the following:
+
+\begin{equation}
+\label{eq:kinemseg}
+\begin{cases}
+p_x = (1-k) \cdot a_x + k \cdot b_x\\
+p_y = (1-k) \cdot a_y + k \cdot b_y
+\end{cases}
+k \in [0,1]
+\end{equation}
+
+Equations \ref{eq:kinemseg} are called: \textit{segment equations}, and they work 
+this way: parameter $k$ is used as a tuner to move the resulting
+point $P$ from $A$ to $B$.
+
+\begin{example}[Using the segment equations]
+\label{ex:kinemseg}
+Let's take two points on the plane: $A = (4,6)$ and $B = (8,2)$. Draw a coordinate system
+on a paper (a squared one is handy in this context),
+pick up a unit for both axis, and draw the points at their coordinates. Now draw an arrow
+connecting $A$ to $B$ making sure the head points to $B$. Equations \ref{eq:kinemseg}
+become:
+\begin{equation*}
+\begin{cases}
+p_x = (1-k) \cdot 4 + k \cdot 8\\
+p_y = (1-k) \cdot 6 + k \cdot 2
+\end{cases}
+k \in [0,1]
+\end{equation*}
+Let's see how this works. We must use parameter $k$ to get all the points on the segment
+connecting $A$ and $B$ (remember that $k$ must be in range: $0 \leq k \leq 1$). If we
+start with $k=0$, we get: $P = (4,6) = A$. So at the beginning we start from $A$. If we
+set $k=1$, we get: $P = (8,2) = B$. So at the end we get $B$. If everything works the way
+it should, if we set $k=0.5$, we expect to get the point which lays in the middle of the
+connecting segment. In fact, we have that, for $k=\frac{1}{2}$, $P = (6,4)$; if you draw
+this point, you will see it actually sits in the middle of the segment.
+If we set $k=\frac{1}{4}$, we get $P = (5,5)$.
+If we set $k=\frac{3}{4}$, we get $P = (7,3)$.
+As you can see, as $k$ approaches $1$ from $0$, we go from $A$ to $B$ on a line.
+\end{example}
+
+In example \ref{ex:kinemseg} we had some fun with equations \ref{eq:kinemseg}
+and experienced how they work. So now we need to adapt those equations to our automaton.
+The problem is that, in our automaton, we have only integer coordinates, not rational
+numbers. What we need to do is called: \textit{approximation}. We need to approximate
+the results of equartions \ref{eq:kinemseg} to the closest integer number.
+To do that, we just need to apply a ceiling function to $p_x$ and $p_y$ so that we get
+these equations instead:
+
+\begin{equation}
+\label{eq:kinemsegapprox}
+\begin{cases}
+p_x = \lceil (1-k) \cdot a_x + k \cdot b_x \rceil\\
+p_y = \lceil (1-k) \cdot a_y + k \cdot b_y \rceil
+\end{cases}
+k \in [0,1]
+\end{equation}
+
+When we take a number $x \in \mathbb{R}$ and do this: $\lceil x \rceil$, we are calculating
+the \textit{ceiling} of that number: we basically approximate $x$ up to the closest integer.
+
+\begin{example}[Understanding numeric ceiling]
+If we take $x = 3$, this number is already an integer, so $\lceil x \rceil = \lceil 3 \rceil = 3$.
+If we take a rational number like: $x = 3.3$ then we need to pick up the first integer that
+comes after that number; that number is $\lceil x \rceil = \lceil 3.3 \rceil = 4$.
+Here are a few more examples: $\lceil 0.2 \rceil = 1$, $\lceil 0.001 \rceil = 1$,
+$\lceil 0.999 \rceil = 1$, $\lceil 100.1 \rceil = 101$ and $\lceil 5.5 \rceil = 6$.
+\end{example}
+
+Now that we have everything we need to draw lines on a squared grid, we can implement
+equations \ref{eq:kinemsegapprox} in code.
+
+\begin{programcode}{ca.js (snippet)}
+Add this function right after function \texttt{rect}.
+\begin{code}
+function line(i1, j1, i2, j2) {
+  // Must: 0 < i1, i2 < rowsnum AND 0 < j1, j2 < colsnum
+  for (let k = 0; k <= 1; k += 0.01) {
+    let p1 = (1-k) * i1 + k * i2;
+    let p2 = (1-k) * j1 + k * j2;
+    p1 = Math.ceil(p1);
+    p2 = Math.ceil(p2);
+    initConfig.push(p1 + ":" + p2);
+  }
+}
+\end{code}
+\end{programcode}
+
+dfg
 
 \subsubsection{Trying out different initial configurations}
 dfg
