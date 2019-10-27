@@ -7,14 +7,16 @@
     let t = 0; // Cycles (time)
 
     function setInitialCondition() {
-        rect(3, 3, 7, 7);
-        rect(12, 20, 16, 26);
-        rect(30, 30, 35, 38);
-        line(6, 6, 12, 20);
-        line(15, 25, 30, 30);
+        rect(3, 3, 5, 5); // 3x3
+        rect(3, 15, 6, 18); // 4x4
+        rect(3, 30, 7, 34); // 5x5
+        rect(20, 3, 25, 8); // 6x6
+        rect(20, 15, 26, 21); // 7x7
+        rect(20, 30, 27, 37); // 8x8
     }
 
     function rect(i1, j1, i2, j2) {
+        // Must: 0 < i1 < i2 < rowsnum AND 0 < j1 < j2 < colsnum
         for (let i = i1; i <= i2; i++) {
             for (let j = j1; j <= j2; j++) {
                 initConfig.push(i + ":" + j);
@@ -23,6 +25,7 @@
     }
 
     function line(i1, j1, i2, j2) {
+        // Must: 0 < i1 < i2 < rowsnum AND 0 < j1 < j2 < colsnum
         for (let k = 0; k <= 1; k += 0.05) {
             let p1 = Math.ceil((1-k)*i1 + k*i2);
             let p2 = Math.ceil((1-k)*j1 + k*j2);
