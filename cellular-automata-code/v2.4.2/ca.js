@@ -7,9 +7,9 @@
     let t = 0; // Cycles (time)
 
     function setInitialCondition() {
-        rect(2, 2, 5, 5); // 3x3
+        rect(2, 2, 6, 6); // 3x3
         rect(20, 15, 26, 21); // 7x7
-        line(4, 4, 20, 15);
+        line(5, 5, 20, 15);
     }
 
     function rect(i1, j1, i2, j2) {
@@ -29,7 +29,7 @@
             p1 = Math.ceil(p1);
             p2 = Math.ceil(p2);
             initConfig.push(p1 + ":" + p2);
-            initConfig.push((p1+1) + ":" + (p2+1)); // Thick line
+            initConfig.push(p1 + ":" + (p2+1)); // Thick line
         }
     }
 

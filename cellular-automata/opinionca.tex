@@ -571,7 +571,40 @@ function line(i1, j1, i2, j2) {
 \end{code}
 \end{programcode}
 
-dfg
+Function \texttt{line} takes 4 arguments: the coordinates of the two cells we want to connect
+with a line, that is \texttt{i1:j1} and \texttt{i2:j2}. Note the comment which clearly
+describes the acceptable values of the coordinates: this time we just require the coordinates
+to be inside the grid size, the cells can be located anywhere in the automaton. Let's try our
+new function.
+
+\begin{programcode}{ca.js (snippet)}
+Remove the content of function \texttt{setInitialCondition}, and invoke function \texttt{line}
+instead.
+\begin{codeh1}{1}{3}
+function setInitialCondition() {
+  line(3, 3, 10, 30);
+}
+\end{codeh1}
+\end{programcode}
+
+If we save and refresh, we will see our line.
+So, let's test our theory about connected blocks. Let's now draw two squares and a line connecting
+them to see if the number of black cells increases this time.
+
+\begin{programcode}{ca.js (snippet)}
+Remove function \texttt{setInitialCondition}'s content again, and add create two blocks and one
+line connecting them.
+\begin{codeh1}{1}{5}
+function setInitialCondition() {
+  rect(2, 2, 6, 6); // 3x3
+  rect(20, 15, 26, 21); // 7x7
+  line(5, 5, 20, 15);
+}
+\end{codeh1}
+\end{programcode}
+
+As you can see, we have created the line to start from the lower-right corner of the top square to
+the top-left corner of the bottom one.
 
 \subsubsection{Trying out different initial configurations}
 dfg
