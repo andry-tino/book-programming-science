@@ -604,10 +604,47 @@ function setInitialCondition() {
 \end{programcode}
 
 As you can see, we have created the line to start from the lower-right corner of the top square to
-the top-left corner of the bottom one.
+the top-left corner of the bottom one. Let's refresh and see our initial state, now two blocks
+are connected via a thin line of cells. If we try to advance by one cycle in the evolution, we
+unfortunately see that the line almost immediately disappears and, as we move on with cycles,
+the two blocks (which get isolated) will change shape recurrently but will not expand. The line
+is not strong enough, we need a thicker line.
+
+\begin{programcode}{ca.js (snippet)}
+Add this line of code inside function \texttt{line}.
+\begin{codeh1}{8}{10}
+function line(i1, j1, i2, j2) {
+  // Must: 0 < i1, i2 < rowsnum AND 0 < j1, j2 < colsnum
+  for (let k = 0; k <= 1; k += 0.01) {
+    let p1 = (1-k) * i1 + k * i2;
+    let p2 = (1-k) * j1 + k * j2;
+    p1 = Math.ceil(p1);
+    p2 = Math.ceil(p2);
+    initConfig.push(p1 + ":" + p2);
+    initConfig.push(p1 + ":" + (p2+1)); // Thick line
+  }
+}
+\end{codeh1}
+\end{programcode}
+
+The line we added will make sure that, every cell \texttt{p1:p2}
+we add in the initial configuration, we also add
+the cell on its right: \texttt{p1:(p2+1)}. Let's try again in the browser to make the CA evolve
+now that the connecting line is evidently thicker than before.
+Eureka\footnote{Typical expression mathematicians use when they get at the bottom of
+a problem and find a solution. This expression was in fact used by Archimedes
+to celebrate a discovery or invention.}! We can finally see that the black surface expands
+gradually and, after 18 cycle, the automaton stabilizes onto a final configuration where we have
+more black cells than when we started.
+
+\begin{proposition}[Expanding initial configurations]
+\label{prop:expinitconfig}
+Basing on our experiments, the initial configurations that generate a black surface expanding
+evolution are those where small active blocks are connected together via segments.
+\end{proposition}
 
 \subsubsection{Trying out different initial configurations}
-dfg
+Basing on the findings from our investigations, as per proposition \ref{prop:expinitconfig}, we
 
 \subsection{Drawing conclusions}
 To
