@@ -639,12 +639,27 @@ more black cells than when we started.
 
 \begin{proposition}[Expanding initial configurations]
 \label{prop:expinitconfig}
-Basing on our experiments, the initial configurations that generate a black surface expanding
-evolution are those where small active blocks are connected together via segments.
+Basing on our experiments, we could assess that the initial configurations that seem to generate
+a black surface expanding evolution are those where there are small active connected blocks.
 \end{proposition}
 
 \subsubsection{Trying out different initial configurations}
 Basing on the findings from our investigations, as per proposition \ref{prop:expinitconfig}, we
+now have a strategy. We have discovered that small connected black blocks will expand into wider
+black surfaces, which is exactly the effect we want here. So, now the question is about understanding
+what specific initial configurations (respecting the characteristics we described in
+proposition \ref{prop:expinitconfig}) we should use to get the best result in achieving a solution
+to the problem in proposition \ref{prop:opinionproblem}.
+
+\begin{proposition}[Simulation objective]
+\label{prop:simobj}
+We want to find the initial cnfiguration (or the set of initial configurations, if more can be found)
+that cause the opinion-shift automaton to evolve into a configuration with the
+highest possible amount of active cells, starting from the fewest possible number of active cells.
+\end{proposition}
+
+Let's start with a first attemp: let's create two small blocks at the opposite corners of the city
+and let's connect them with a line.
 
 \subsection{Drawing conclusions}
-To
+Todo
