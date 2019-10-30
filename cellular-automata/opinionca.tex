@@ -653,13 +653,73 @@ to the problem in proposition \ref{prop:opinionproblem}.
 
 \begin{proposition}[Simulation objective]
 \label{prop:simobj}
-We want to find the initial cnfiguration (or the set of initial configurations, if more can be found)
-that cause the opinion-shift automaton to evolve into a configuration with the
-highest possible amount of active cells, starting from the fewest possible number of active cells.
+We want to find the initial condition (or the set of initial conditions, if more can be found)
+that causes the opinion-shift automaton to evolve into a configuration with the
+highest possible number of active cells, starting from the fewest possible number of active ones.
 \end{proposition}
 
 Let's start with a first attemp: let's create two small blocks at the opposite corners of the city
 and let's connect them with a line.
+
+\begin{programcode}{ca.js (snippet)}
+Remove function \texttt{setInitialCondition}'s content again, and create two blocks and one
+line connecting them.
+\begin{codeh1}{1}{5}
+function setInitialCondition() {
+  rect(3, 3, 7, 7); // 5x5
+  rect(33, 33, 37, 37); // 5x5
+  line(6, 6, 33, 33);
+}
+\end{codeh1}
+\end{programcode}
+
+If you try to make the automaton evolve, you will see that we achieve a quite interesting
+expansion after 25 cycles, and then the automaton does not change anymore. However the
+final extension of the black surface is not so high. The wideer the two blocks, the wider the
+final surface, but we cannot make the two blocks too big otherwise we exceed the
+budget (remember that we are trying to solve a the problem as specified in proposition
+\ref{prop:opinionproblem}).\\
+
+Let's try another configuration: we can still work with two blocks, but try to make them a
+bit bigger (not too much though to avoid exceeding the budget).
+
+\begin{programcode}{ca.js (snippet)}
+Remove function \texttt{setInitialCondition}'s content, and create two blocks of different size and one
+line connecting them.
+\begin{codeh1}{1}{7}
+function setInitialCondition() {
+  rect(3, 3, 17, 7); // 15x5
+  rect(27, 33, 37, 37); // 11x5
+  line(6, 6, 35, 35);
+}
+\end{codeh1}
+\end{programcode}
+
+When the CA evolves, this configuration will stabilize into a final condition with a pretty well
+extended final black surface. It also seems like, if the blocks get wider in one direction
+(higher width, or higher height), the final result is also better. However the problem is the same,
+we cannot create blocks that are too wide.\\
+
+Let's attempt one configuration more. Maybe if we used more blocks connected together we could achieve
+our goal. Let's now create an initial condition with four blocks at the corners connected with
+an \texttt{X} pattern.
+
+\begin{programcode}{ca.js (snippet)}
+Remove function \texttt{setInitialCondition}'s content, and create four blocks and two
+lines connecting them.
+\begin{codeh1}{1}{7}
+function setInitialCondition() {
+  rect(3, 3, 7, 7); // 5x5
+  rect(3, 33, 7, 37); // 5x5
+  rect(33, 33, 37, 37); // 5x5
+  rect(33, 3, 37, 7); // 5x5
+  line(6, 6, 33, 33);
+  line(7, 34, 33, 7);
+}
+\end{codeh1}
+\end{programcode}
+
+This looks better.
 
 \subsection{Drawing conclusions}
 Todo
