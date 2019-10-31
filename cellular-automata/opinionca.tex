@@ -675,18 +675,18 @@ function setInitialCondition() {
 
 If you try to make the automaton evolve, you will see that we achieve a quite interesting
 expansion after 25 cycles, and then the automaton does not change anymore. However the
-final extension of the black surface is not so high. The wideer the two blocks, the wider the
+final extension of the black surface is not so high. The wider the two blocks, the wider the
 final surface, but we cannot make the two blocks too big otherwise we exceed the
 budget (remember that we are trying to solve a the problem as specified in proposition
 \ref{prop:opinionproblem}).\\
 
-Let's try another configuration: we can still work with two blocks, but try to make them a
+Let's try another configuration: we can still work with two blocks, but we will try to make them a
 bit bigger (not too much though to avoid exceeding the budget).
 
 \begin{programcode}{ca.js (snippet)}
 Remove function \texttt{setInitialCondition}'s content, and create two blocks of different size and one
 line connecting them.
-\begin{codeh1}{1}{7}
+\begin{codeh1}{1}{5}
 function setInitialCondition() {
   rect(3, 3, 17, 7); // 15x5
   rect(27, 33, 37, 37); // 11x5
@@ -695,9 +695,9 @@ function setInitialCondition() {
 \end{codeh1}
 \end{programcode}
 
-When the CA evolves, this configuration will stabilize into a final condition with a pretty well
-extended final black surface. It also seems like, if the blocks get wider in one direction
-(higher width, or higher height), the final result is also better. However the problem is the same,
+When the CA evolves, this condition will stabilize into a final configuration with a pretty well
+extended black surface. It also seems like, if the blocks get wider in one direction
+(higher width, or higher height), the final result is also better. However, the problem is always the same:
 we cannot create blocks that are too wide.\\
 
 Let's attempt one configuration more. Maybe if we used more blocks connected together we could achieve
@@ -719,7 +719,42 @@ function setInitialCondition() {
 \end{codeh1}
 \end{programcode}
 
-This looks better.
+As the automaton evolves now, we can see that, after some cycles, the final black surface practically covers the whole
+grid. All cells, inside the area defined by the four initial squares, eventually black.
+
+\begin{proposition}[A solution to the problem]
+\label{prop:sol}
+In order to solve the problem described in proposition \ref{prop:opinionproblem}, we have assessed that an
+initial configuration of peripheral, small, black blocks connected in a way that the lines cross the whole grid
+passing through the center, actually allows the automaton to evolve into a final configuration where all the cells
+inside the region delimited by the initial blocks turn black. If the initial blocks are placed as close to the border
+of the grid as possible, then the final black area will span all the automaton's cells (border excluded).
+
+In terms of our problem, it means that we need to run small intensive ad campaigns in local peripheral neighborhoods
+of the city, making sure that we also run micro-campaigns in city blocks connecting these neighborhoods passing through
+the city center.
+\end{proposition}
+
+\begin{problem}
+\label{prob:opinionproof1}
+In the CA we have built, try an initial configuration with 4 small peripheral blocks connected by 4 lines that
+run across the border and do not pass through the center. How does the automaton evolve?
+\end{problem}
 
 \subsection{Drawing conclusions}
-Todo
+Proposition \ref{prop:sol} provides a possible solution to the problem we formulated in proposition \ref{prop:opinionproblem}.
+But it is probably not the only one. Maybe more solutions exist. If they do, it could be nice to understand which of
+the solutions we found is the best; one way to assess this is by:
+
+\begin{enumerate}
+\item Evaluating the total number of cells that turn black in the end. The initial condition that makes the CA
+evolve into a final configuration with the most number of black cells wins.
+\item If more different initial conditions are able to generate a final black surface with the same number of black cells,
+than their \textit{speed} can be evaluated. We need to measure the number of cycle that were necessary for the CA to
+reach the final configurations starting from each of those initial conditions. 
+The fastest (the one that causes the CA to reach
+the final configuration with the least number of cycles) wins.
+\end{enumerate}
+
+We encourage you to experiment more and investigate the existence of other solutions. Also try to play with the
+Turning Point $N^\ast$ and experiment with stubborn populations ($N^\ast > 6$).
