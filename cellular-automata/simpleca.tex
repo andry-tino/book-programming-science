@@ -1247,6 +1247,28 @@ If our CA is not configured properly, we emit an error and block the code from r
 All the code we have written up to this point can be found under folder \texttt{v2.4}.
 \end{trailer}
 
+Before moving on, you can challenge yourself with some tasks to improve the automaton.
+
+\begin{problem}
+\label{prob:nextasauto}
+Change the behavior of the "Next" button:
+\begin{enumerate}
+  \item Change the text displayed on the button to be: "Start".
+  \item Change the button's logic so that, when pressed, it will compute the configuration for the next cycle;
+    then, after some short time, the configuration of the next cycle, and then the same thing again
+    without stopping.
+  \item Add another button, next to "Start" and before the label, and show the text: "Stop" on it. When clicked,
+    make sure the button stops the current ongoing infinite calculation that was
+    triggered when the user pressed button "Start".
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+\label{prob:blackcounter}
+Add a new label, next to the existing one displaying the current cycle. At every automaton update, make it display
+the current number of black cells in the grid.
+\end{problem}
+
 \subsection{Playing with CGL automaton}
 There is a reason if we have decided to build this specific automaton in our first experience!
 Other than being one of the very first automata to be published and very famous,

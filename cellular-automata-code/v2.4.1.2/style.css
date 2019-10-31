@@ -1,0 +1,41 @@
+body {
+    margin: 10px;
+    padding: 10px;
+}
+
+#ca {
+    background-color: #000;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 1px;
+    padding-top: 1px;
+}
+
+.cell {
+    border: none;
+    background-color: #fff;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    flex: 0 0 auto;
+}
+
+.cell[data-value="1"] {
+    background-color: #000;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+#buttonStart, #buttonStop {
+    background-color: #ddd;
+    color: #000;
+    border: none;
+    padding: 5px;
+}
+#buttonStart:hover, #buttonStop:hover {
+    background-color: #ccc;
+}
+#buttonStart:active, #buttonStop:active {
+    background-color: #bbb;
+}
