@@ -14,13 +14,13 @@
 In section \ref{sec:simpleca}, we have built our first automaton: Conway's Game of Life.
 That CA is a great start because it has many interesting configurations and evolutions;
 however, now, we want to move forward and develop another, different, automaton.
-A CA is a mathematical model; other than being a very fun thing to play with, it is a
+A CA is a mathematical model; other than being a very funny thing to play with, it is a
 tool that can be used to study our reality from a theoretical perspective. Like any other
 model, it is capable of simplifying our universe so that we can study specific things
 about a natural phenomenon. CGL was just an automaton we built without a specific goal
-in mind, we just wanted to play with automata.
+in mind, we just wanted to play with automata!
 For the next stage, we want to build a CA that can help us reach a distinct objective:
-illustrating opinion change among the members of a society.
+analyzing opinion change among the members of a society.
 
 \subsection{Working out the model}
 We want to use a scientific approach to solve a problem. So, 
@@ -35,8 +35,8 @@ our problem into mathematical terms. This step is called: \textit{modelization}.
 \item Create a computer simulation by translating into code the mathematical
 model we created, this stage is called: \textit{simulation}. While simulating,
 it is possible to collect all sorts of data and measurements; those will be used
-to rate which model best achieves the objectives with highest performance and
-lowest cost.
+to rate which model best achieves the objectives with \textbf{highest performance} and
+\textbf{lowest cost}.
 \item After all simulations have been run, the best model is selected and then
 effectively put in practice. Most of the times, it results in something being
 physically built, or a process being enforced. This stage is called:
@@ -77,27 +77,27 @@ in complete autonomy. So they have hired us, a group of scientists, to find a so
 this problem.
 \end{proposition}
 
-Proposition \ref{prop:opinionproblem} seems quite tough right? We are now scientists and we
+Proposition \ref{prop:opinionproblem} seems quite tough right? We now are scientists and we
 have been given the job to try to convince the inhabitants of a whole town to change their
 daily lives and habits to be more green and sustainable (using less plastic, riding bikes instead of
-cars, trash fewer objects, etc.). How are we going to do that?
+cars, trashing fewer objects, etc.). How are we going to do that?
 For starters, no panic! We have an approach to follow, so let's use the method pictured in figure
 \ref{fig:sciappr} to solve our problem.\\
 
-Where are we in that diagram? We have passed the first stage as we now know what problem we must focus
-on. So now it is time to think about the solution and we do that by using Mathematics and Science. What we
+Where are we in that diagram? We have passed the first stage, as we now know what problem we must focus
+on. So, now it is time to think about the solution and we do that by using Mathematics and Science. What we
 want to study is basically a population made of different individuals: men, women and children.
 The city council wants us to find a way to persuade the citizens to change their lifestyle. Changing
 a person's behavior or habits means to change their opinion on specific matters. No, we are not talking
 about \textit{Inception}\footnote{A sci-fi/thriller movie released in 2010 where a group
-of people attempt to plant an idea inside a man's mind by violating his dreams. 
-If you haven't see
+of people attempts to plant an idea inside a man's mind by violating his dreams. 
+If you haven't seen
 it, you should because it's pretty cool: \url{https://www.imdb.com/title/tt1375666/}.}, we want to
 use less drastic/invasive (and more legal) strategies. One common way of doing this is by
-running an \textit{advertising campaign} with tv spots and street cartboards to promote
-the concepts we want. However remember that we don't have mush money, so we cannot run these ads all
-over town as it would be too expensive: we have a limited budget, which means we can only run small
-local campaigns in blocks or areas of the city. Would this strategy suffice?\\
+running an \textit{advertising campaign} with TV spots and street cartboards to promote
+the concepts we want. However, remember that we don't have much money, so we cannot run these ads all
+over town as it would be too expensive: we have a \textbf{limited budget}, which means we can only run
+\textbf{small local campaigns} in blocks or areas of the city. Would this strategy suffice?\\
 
 From different social studies, like mentioned by Flache et al. \cite{flache-opinion},
 it has emerged that people change their opinion also in relation to
@@ -105,15 +105,16 @@ the community where they live. Try to think about one time where your opinion ab
 and try to recall what caused that change: most likely it was because you met and talked with another
 person about that subject and the conversation made you change your mind. All that being said,
 of course folks' opinion doesn't vary so quickly with just one interaction, it depends
-on which person we meet and what topic we are focusing on. Also, people are very different: some
+on which person we meet, and what topic we are focusing on. Also, people are very different: some
 change opinion quite easily, while others are much more stubborn.
 
 However, here's the most important point, no matter how easily a person's opinion change, what matters
-is that it can actually change and the change is caused by the opinions of other individuals. Is like
+is that it can actually change and the change is caused by the opinions of other individuals. It's like
 if opinions were contagious to a certain extent. So, since we cannot run a town-wide ad campaign, we can
 rather do the same but in a few areas of the city to change a few people's mind
 about sustainable lifestyle so that they will later influence their neighbors. But how many citizens
-do we need to convince to have enough of them so that their influence will spread across the whole town?
+do we need to convince, so we have enough of them to guarantee their opinion will successfully spread
+across the whole town?
 Should we run a bigger campaign on a single city block? Or smaller campaigns in more different areas
 of town? Or some other strategy?
 To answer that question, we are going to use... you guessed it: a CA!\\
@@ -126,8 +127,8 @@ A cell's neighborhood represents the people that live close to that person
 (same building, same city block, etc.).
 \item \textbf{What is the state of a cell?} Every individual (cell) can be either: \textit{convinced}
 ($1$, active, black), or \textit{unconvinced} ($0$, inactive, white) about sustainable lifestyle.
-\item \textbf{How do we define the state transition function?} The main idea is that a non convinced citizen
-would become convinced if there is a sufficient number of his neighbors that are convinced as well.
+\item \textbf{How do we define the state transition function?} The main idea is that a non-convinced citizen
+would become convinced if there is a sufficient number of his neighbors that are already convinced.
 Of course the opposite applies as well: if a great number of his neighbors is not convinced,
 a convinced individual will also turn unconvinced.
 \end{enumerate}
@@ -155,11 +156,11 @@ set a point where a citizen changes his mind, this number is quite important:
 
 \begin{definition}[Turning Point]
 \label{def:tp}
-When the transition function $f$ is defined as in proposition \ref{prop:opicatrans}, then quantity
+When the transition function $f$ is defined as per proposition \ref{prop:opicatrans}, then quantity
 $N^\ast$ is called: \textit{Turning Point} (TP).
 If at least $N^\ast$ neighbors are convinced about
 a topic, then a citizen would turn or remain convinced too, while if the number of convinced neighbors
-is below that number, then a citizen would turn or remain unconvinced.
+is below that value, then a citizen would turn or remain unconvinced.
 \end{definition}
 
 Let's talk a bit more about the TP.
@@ -209,7 +210,7 @@ that the highest possible number of citizens can become convinced about sustaina
 Now it's time to jump on stage 3 of figure \ref{fig:sciappr}. We can finally start coding to
 create this new CA. Of course we are not going to reinvent the wheel and start from scratch: we
 have already created an automaton: CGL, so let's start from that project and modify a few things.
-It turns out that not much code needs to be written to edit CGL and turn it in into this new
+It turns out that not much code needs to be written to edit CGL and turn it into this new
 automaton we want to build now.
 
 \begin{enumerate}
@@ -218,7 +219,7 @@ automaton we want to build now.
 \item From now on, work inside \texttt{opinionca}.
 \end{enumerate}
 
-We have basically duplicated CGL and prepared a copy of it we will edit. In fact, now we must
+We have basically duplicated CGL and prepared a copy of it that we will edit. In fact, now we must
 make a few adjustments in code to develop a different automaton.
 
 \begin{programcode}{ca.js (snippet)}
@@ -239,7 +240,7 @@ function calculateState(state, neighSum) {
 
 We have re-written function \texttt{calculateState}, which is, basically, the state
 transition function in code. Now we have a completely different set of rules and this is
-not CGL anymore. We have completed coding the first prototype of an
+not CGL anymore. We have completed coding the first prototype of a
 \textit{threshold-based opinion automaton}\footnote{The complex name indicates the way
 our automaton describes the opinion of individuals in a population: by using a threshold that we
 have called \textit{Turning Point}. In this automaton, a cell changes state when the number
@@ -279,7 +280,7 @@ ensures the CA will evolve to a configuration with the highest amount of black c
 So this is what we are going to do:
 
 \begin{enumerate}
-\item Set an initial configuration for the CA, with some small black area located in
+\item Set an initial configuration for the CA, with some small black areas located in
 different parts of the grid.
 \item Make the CA evolve until a final or recurrent configuration is reached.
 \item Take note of the percentage of black cells in the automaton after its evolution. We will call this
@@ -294,7 +295,7 @@ advertising strategy to reach our objective and solve the problem.
 \subsubsection{Experimenting a little}
 The only requirement is to use small black areas when setting the initial configuration, so
 we can have many different possibilities. To avoid making many attempts, we can try to perform
-a few simple experiments to see how the CA we built behaves, so that later we can try some more
+a few simple experiments to see how the CA we built behaves, so that, later, we can try some more
 specific initial conditions and save a lot of time.
 
 The first thing we wanna do, is changing the size of our automaton.
@@ -307,7 +308,11 @@ const colsnum = 40;
 \end{code}
 \end{programcode}
 
-We need a big automaton to describe a city, we cannot use a 9x9. Feel free to use a larger grid if
+We need a big automaton to describe a city, we cannot use a 9x9. Feel free to use a 
+larger\footnote{Be careful. As you will probably see if you set a very big size, the CA gets slower when computing the next configuration when pressing the "Next" button. That is because our code for calculating the next configuration
+(function \texttt{next}) performs a number of operations which grows with the number of cells.
+The more the CA grows, the slower it gets. This characteristic is also called:
+\textit{algorithmic complexity} and we will talk about it in the next chapters.} grid if
 you want, however we recommend to have a minimum size of 40x40.\\
 
 We will need to create small surfaces of active cells, we think that drawing small rectangles
@@ -351,7 +356,7 @@ window.addEventListener("load", function () {
 \end{codeh1}
 \end{programcode}
 
-What we have done is adding another step in our CA initialization sequence. As you can see from
+What we have done is adding another step in our CA \textit{initialization sequence}. As you can see from
 the last snippet of code, we invoke function \texttt{setInitialCondition} right before everything
 else. This function, which we will implement in a moment, will populate array \texttt{initConfig}
 in a smarter way.
@@ -377,15 +382,15 @@ Function \texttt{rect} will push inside \texttt{initConfig} all the cells that f
 boundaries defined by point \texttt{i1:j1} and \texttt{i2:j2}. The code is quite simple, we have
 the usual double scanning of the cells of the automaton; however this time we scan the rows between
 \texttt{i1} and \texttt{i2} and the columns between \texttt{j1} and \texttt{j2}, instead of
-spanning the whole grid. Also notice the comment: it clarifies that the two cell coordinates
-passed as input must respect some conditions: basically the two set of coordinates must define
-two cells inside the grid and that cell \texttt{i2:j2} must be place below and on the right
+spanning the whole grid. Also notice the comment: it clarifies that the four cell coordinates
+passed as input must respect some conditions: basically the two pairs of coordinates must define
+two cells inside the grid; also, cell \texttt{i2:j2} must be placed below and on the right
 of \texttt{i1:j1}.
 Let's see this new tool in action and let's draw a square block in the automaton.
 
 \begin{programcode}{ca.js (snippet)}
 Remove the comment inside function \texttt{setInitialCondition} and
-call function \texttt{rect}.
+invoke function \texttt{rect}.
 \begin{codeh1}{1}{3}
 function setInitialCondition() {
   rect(3, 3, 5, 5); // 3x3
@@ -398,11 +403,11 @@ and that this block starts from cell \texttt{3:3} until cell \texttt{6:6} (3x3).
 The size of the drawn rectangle is: \texttt{(i2-i1+1):(j2-j1+1)}.
 
 We want to experiment a little and see what happens to square blocks of different sizes when
-the CA evolves. So let's draw a few more blocks of different dimension and let's draw some
+the CA evolves. So let's paint a few more blocks of different dimension and let's draw some
 conclusions.
 
 \begin{programcode}{ca.js (snippet)}
-Add more calls to function \texttt{rect} inside function \texttt{setInitialCondition}.
+Add more invocations to function \texttt{rect} inside function \texttt{setInitialCondition}.
 \begin{codeh1}{1}{8}
 function setInitialCondition() {
   rect(3, 3, 5, 5); // 3x3
@@ -416,7 +421,7 @@ function setInitialCondition() {
 \end{programcode}
 
 If you refresh the page, you will see our six squares on the grid. Now we go ahead and make the
-CA evolve by using the button we developed and see the result after a few cycles (no more than 5
+CA evolve by using the button we developed, and see the result after a few cycles (no more than 5
 are really needed). What do we see? The 3x3 square has disappeared completely and the other
 squares have just slightly changed shapes but they then remained unchanged.
 We can draw the first important learning point here:
@@ -441,7 +446,8 @@ We have our key learning, so what do we make out of it? Is proposition \ref{prop
 finding or a bad one? Think a little about it. We want to create a configuration with small blocks
 that will hopefully cause the CA to evolve in a way such that these blocks grow in cycles. But
 proposition \ref{prop:minsizedie} has just shown that blocks either shrink and stay or shrink and
-disappear. Not good unfortunately. So let's pause and reflect: we know the behavior of
+disappear. This is not a good finding unfortunately!
+So, let's pause and reflect: we know the behavior of
 \textit{isolated blocks} now, but why does that behavior occur?
 
 Remember our transition function:
@@ -449,7 +455,7 @@ an individual turns convinced only if he has at least 3 convinced neighbors.
 Inside a block there are two distinct forces that take place:
 
 \begin{itemize}
-\item An \textbf{expanding force} exercised by the surface of contiguous black cells which
+\item An \textbf{expanding force} exercised by the area of contiguous black cells which
 try to expand their surface.
 \item A \textbf{shrinking force} caused by the border of white cells enclosing the block, they
 attempt to reduce the size of the block.
@@ -470,13 +476,13 @@ What does it mean? What conclusions do you draw out if this evidence?
 \end{problem}
 
 We need to find a different strategy. Our understanding is that, since isolated blocks are not
-strong enough to expand, they probably need reinforcement. So instead of considering isolated
-blocks, let's use \textit{connected blocks}. We will now make an experiment and draw two blocks
+strong enough to expand, they probably need reinforcement. Therefore, instead of considering isolated
+blocks, let's use \textit{connected blocks}. We will now make an experiment and paint two blocks
 connected by some cells and see what happens. Again, we do not want to write down one cell at a time
 inside array \texttt{initConfig}, as we did for blocks;
 we want to create a function that
 draws a line of connecting cells from one cell to another to save time and be more efficient
-in our experiments (so we have a quick way to draw lines). To achieve this we need a little bit
+in our experiments (so we have a quick way to draw lines). To achieve this, we need a little bit
 of Geometry.\\
 
 We eventually want to draw a line of cells from one cell to another. Let's forget about
@@ -521,15 +527,16 @@ connecting segment. In fact, we have that, for $k=\frac{1}{2}$, $P = (6,4)$; if 
 this point, you will see it actually sits in the middle of the segment.
 If we set $k=\frac{1}{4}$, we get $P = (5,5)$.
 If we set $k=\frac{3}{4}$, we get $P = (7,3)$.
-As you can see, as $k$ approaches $1$ from $0$, we go from $A$ to $B$ on a line.
+As you can see, as $k$ approaches $1$ from $0$, we go from $A$ to $B$ on
+the $\overrightarrow{AB}$ vector (directed line).
 \end{example}
 
 In example \ref{ex:kinemseg} we had some fun with equations \ref{eq:kinemseg}
-and experienced how they work. So now we need to adapt those equations to our automaton.
-The problem is that, in our automaton, we have only integer coordinates, not rational
+and experienced how they work. At this point, we need to adapt those equations to our automaton.
+The problem is that, in our automaton, the coordinates are integer numbers, not rational
 numbers. What we need to do is called: \textit{approximation}. We need to approximate
 the results of equartions \ref{eq:kinemseg} to the closest integer number.
-To do that, we just need to apply a ceiling function to $p_x$ and $p_y$ so that we get
+To do that, we just need to apply a \textit{ceiling} function to $p_x$ and $p_y$, so that we get
 these equations instead:
 
 \begin{equation}
@@ -592,7 +599,7 @@ So, let's test our theory about connected blocks. Let's now draw two squares and
 them to see if the number of black cells increases this time.
 
 \begin{programcode}{ca.js (snippet)}
-Remove function \texttt{setInitialCondition}'s content again, and add create two blocks and one
+Remove function \texttt{setInitialCondition}'s content again, and create two blocks and one
 line connecting them.
 \begin{codeh1}{1}{5}
 function setInitialCondition() {
@@ -604,11 +611,11 @@ function setInitialCondition() {
 \end{programcode}
 
 As you can see, we have created the line to start from the lower-right corner of the top square to
-the top-left corner of the bottom one. Let's refresh and see our initial state, now two blocks
+the top-left corner of the bottom one. Let's refresh and see our initial state: now two blocks
 are connected via a thin line of cells. If we try to advance by one cycle in the evolution, we
 unfortunately see that the line almost immediately disappears and, as we move on with cycles,
 the two blocks (which get isolated) will change shape recurrently but will not expand. The line
-is not strong enough, we need a thicker line.
+is not strong enough, we need a thicker one.
 
 \begin{programcode}{ca.js (snippet)}
 Add this line of code inside function \texttt{line}.
@@ -627,12 +634,12 @@ function line(i1, j1, i2, j2) {
 \end{codeh1}
 \end{programcode}
 
-The line we added will make sure that, every cell \texttt{p1:p2}
+The line we added will make sure that, for every cell \texttt{p1:p2}
 we add in the initial configuration, we also add
 the cell on its right: \texttt{p1:(p2+1)}. Let's try again in the browser to make the CA evolve
 now that the connecting line is evidently thicker than before.
 Eureka\footnote{Typical expression mathematicians use when they get at the bottom of
-a problem and find a solution. This expression was in fact used by Archimedes
+a problem and find a solution. This expression was in fact used the first time by Archimedes
 to celebrate a discovery or invention.}! We can finally see that the black surface expands
 gradually and, after 18 cycle, the automaton stabilizes onto a final configuration where we have
 more black cells than when we started.
@@ -675,9 +682,9 @@ function setInitialCondition() {
 
 If you try to make the automaton evolve, you will see that we achieve a quite interesting
 expansion after 25 cycles, and then the automaton does not change anymore. However the
-final extension of the black surface is not so high. The wider the two blocks, the wider the
+final extension of the black surface is not that high. The wider the two blocks, the wider the
 final surface, but we cannot make the two blocks too big otherwise we exceed the
-budget (remember that we are trying to solve a the problem as specified in proposition
+budget (remember that we are trying to solve the problem as specified in proposition
 \ref{prop:opinionproblem}).\\
 
 Let's try another configuration: we can still work with two blocks, but we will try to make them a
@@ -720,7 +727,7 @@ function setInitialCondition() {
 \end{programcode}
 
 As the automaton evolves now, we can see that, after some cycles, the final black surface practically covers the whole
-grid. All cells, inside the area defined by the four initial squares, eventually black.
+grid. All cells, inside the area defined by the four initial squares, eventually turn black.
 
 \begin{proposition}[A solution to the problem]
 \label{prop:sol}
@@ -748,9 +755,9 @@ the solutions we found is the best; one way to assess this is by:
 
 \begin{enumerate}
 \item Evaluating the total number of cells that turn black in the end. The initial condition that makes the CA
-evolve into a final configuration with the most number of black cells wins.
+evolve into a final configuration with the highest number of black cells wins.
 \item If more different initial conditions are able to generate a final black surface with the same number of black cells,
-than their \textit{speed} can be evaluated. We need to measure the number of cycle that were necessary for the CA to
+then their \textit{speed} can be evaluated. We need to measure the number of cycles that were necessary for the CA to
 reach the final configurations starting from each of those initial conditions. 
 The fastest (the one that causes the CA to reach
 the final configuration with the least number of cycles) wins.
