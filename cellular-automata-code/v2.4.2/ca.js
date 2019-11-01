@@ -7,9 +7,18 @@
     let t = 0; // Cycles (time)
 
     function setInitialCondition() {
-        rect(3, 3, 17, 7); // 15x5
-        rect(27, 33, 37, 37); // 11x5
-        line(6, 6, 35, 35);
+        rect(3, 3, 6, 6); // 4x4
+        rect(3, 35, 6, 38); // 4x4
+        rect(35, 3, 38, 6); // 4x4
+        rect(35, 35, 38, 38); // 4x4
+        line(4, 5, 4, 36);
+        line(5, 5, 5, 36);
+        line(4, 37, 37, 37);
+        line(5, 37, 38, 37);
+        line(36, 5, 36, 36);
+        line(37, 5, 37, 36);
+        line(5, 4, 37, 4);
+        line(5, 5, 37, 5);
     }
 
     function rect(i1, j1, i2, j2) {

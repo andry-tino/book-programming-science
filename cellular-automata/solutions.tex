@@ -350,8 +350,8 @@ Again, trying the evolution, we can see that this is also a recurrent configirat
 \begin{sol}{prob:cgl5}
 \textbf{Gliders in Conway's Game of Life}\\
 Figure \ref{fig:cglplay} shows how a \textit{glider} should look like.  We take
-the first black cell of this confgiguration to be placed in cell \texttt{3:3}:
-\begin{codeh2}{0}{3}{5}{7}
+the first black cell of this configuration to be placed in cell \texttt{3:3}:
+\begin{codeh2}{0}{3}{3}{5}
 const rowsnum = 30;
 const colsnum = 30;
 const cellsize = 20; // In px
@@ -371,7 +371,7 @@ a block.
 \textbf{Spaceships in Conway's Game of Life}\\
 In figure \ref{fig:cglplay}, we can see the \textit{spaceship} configuration is the biggest listed.
 We set the first black cell of this initial condition to be in cell \texttt{7:7}:
-\begin{codeh2}{0}{3}{5}{7}
+\begin{codeh2}{0}{3}{3}{5}
 const rowsnum = 50;
 const colsnum = 50;
 const cellsize = 20; // In px
@@ -386,15 +386,75 @@ downward, and the CA would never reach a final configuration, thus making this i
 
 \begin{sol}{prob:blocksizedie}
 \textbf{Vanishing rectangular blocks}\\
-In fi
+Let's draw two rectangles on the automaton as initial conditions by using the utility function we coded:
+\begin{codeh1}{1}{5}
+function setInitialCondition() {
+  rect(3, 3, 5, 20); // 3x18
+  rect(27, 33, 37, 35); // 3x11
+  rect(25, 10, 35, 15); // 6x11
+}
+\end{codeh1}
+We assume, of course, the size of the automaton be be unchanged (40x40). As we refresh the page and make the 
+automaton evolve, we can see that the first two rectangles vanish, while thethird stays.
 \end{sol}
 
 \begin{sol}{prob:highernblockslive}
 \textbf{Growing isolated blocks}\\
-In fi
+Let's change the TP first, in function \texttt{calculateState}:
+\begin{codeh1}{1}{3}
+function calculateState(state, neighSum) {
+  const N = 2; // Turning Point
+\end{codeh1}
+Now we can move to function \texttt{setInitialCondition} to draw some isolated blocks:
+\begin{codeh1}{1}{5}
+function setInitialCondition() {
+  rect(3, 3, 5, 5); // 3x3
+  rect(10, 10, 16, 16); // 7x7
+  rect(25, 25, 33, 33); // 9x9
+}
+\end{codeh1}
+As we make the automaton evolve, we see the blocks expanding. This means that, when $N^\ast < 3$, the
+expanding force is always higher than the shrinking one; that is because we have set the population to
+be easier to convince.
+\end{sol}
+
+\begin{sol}{prob:highernblockslive2}
+\textbf{Shrinking isolated blocks}\\
+Following the same procedure in the solution to problem \ref{prob:highernblockslive}, we change the TP
+in function \texttt{calculateState}:
+\begin{codeh1}{1}{3}
+function calculateState(state, neighSum) {
+  const N = 4; // Turning Point
+\end{codeh1}
+Then we can move to function \texttt{setInitialCondition} and draw rthe same set of blocks (see 
+solution \ref{prob:highernblockslive}).
+As we make the automaton evolve, we see the blocks shrinking. This means that, when $N^\ast \geq 3$, the
+expanding force is always lower than the shrinking one. The population is, in fact, more stubborn now, and
+it takes more effort to convince each individual.
 \end{sol}
 
 \begin{sol}{prob:opinionproof1}
 \textbf{Alternative block connections}\\
-In fi
+In function \texttt{setInitialCondition}, let's create four rectangles and four lines connecting them along
+the border of the automaton:
+\begin{codeh1}{1}{14}
+function setInitialCondition() {
+  rect(3, 3, 6, 6); // 4x4
+  rect(3, 35, 6, 38); // 4x4
+  rect(35, 3, 38, 6); // 4x4
+  rect(35, 35, 38, 38); // 4x4
+  line(4, 5, 4, 36);
+  line(5, 5, 5, 36);
+  line(4, 37, 37, 37);
+  line(5, 37, 38, 37);
+  line(36, 5, 36, 36);
+  line(37, 5, 37, 36);
+  line(5, 4, 37, 4);
+  line(5, 5, 37, 5);
+}
+\end{codeh1}
+We assume the size of the automaton is unchanged (40x40). As you can see, we needed to create eight lines
+because we wanted thick ones (otherwise they would have vanished after one cycle). As we make the
+automaton evolve, we see that a derirable final condition is reached: all cells enclosed by the four
+blocks turned black. Notice that it takes some time (number of cycles) to reach this configuration though.
 \end{sol}
