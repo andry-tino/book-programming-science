@@ -220,7 +220,17 @@ automaton we want to build now.
 \end{enumerate}
 
 We have basically duplicated CGL and prepared a copy of it that we will edit. In fact, now we must
-make a few adjustments in code to develop a different automaton.
+make a few adjustments in code to develop a different automaton. The first thing, being the title
+of the page:
+
+\begin{programcode}{index.html (snippet)}
+Open \texttt{index.html} and change the title as shown below.
+\begin{codehtml}
+<title>Opinion Shift Study Cellular Automaton</title>
+\end{codehtml}
+\end{programcode}
+
+This was an important step! Now let's move on to some more serious coding.
 
 \begin{programcode}{ca.js (snippet)}
 Open \texttt{ca.js} and spot function \texttt{calculateState}. Remove the content of the

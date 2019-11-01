@@ -7,3 +7,4 @@ This holds the code for the section on cellular automata
 
 - Added logic for average transition function.
 - Added logic to display text in cells.
+- Changed title.
