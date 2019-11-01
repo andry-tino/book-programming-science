@@ -24,7 +24,7 @@ states different from $(0,0,0)$.
 \item If we consider $x_0 = (0,0,1)$, then we have that: $(0,0,1) \rightarrow (0,1,1) \rightarrow (1,1,1)$.
 \end{itemize}
 The remaining initial configurations are: $(1,1,0)$, $(1,0,1)$, $(0,1,1)$ and $(1,1,1)$. But those are already
-known because they are covered by the evolution of the initial configurations we covered before. For example,
+known because they are covered by the evolution of the initial configurations we addressed before. For example,
 $(1,1,0)$ is the second configuration the CA assumes after $(0,1,0)$.
 \end{sol}
 
@@ -38,7 +38,7 @@ condition after $T=3$ cycles.
 
 \begin{sol}{prob:changecasize}
 \textbf{Change the size of the CA}\\
-In \texttt{ca.js}, inside our Javascript module, we have created two contants to use to set the size of the
+In \texttt{ca.js}, inside our Javascript module, we have created two contants we can use to set the size of the
 automaton. If we change their values, we will get a different size. For example, to have a 20x20 grid,
 we just do:
 \begin{code}
@@ -81,7 +81,7 @@ To use an image instead of a color to signal that a cell is active, we need to f
 make it available in our project:
 \begin{enumerate}
   \item In your project folder, create another folder and call it: \texttt{images}.
-  \item Search in the Internet for an image you like. Try to find a PNG because they will probably have
+  \item Search the Internet for an image you like. Try to find a PNG because they will probably have
     a transparent background. If you don't want to spend time doing it, we have an image for you:
     \texttt{flower.png} which you can find under folder \texttt{v2.4.1/images}.
   \item Move the image inside the folder you created in the first step.
@@ -141,7 +141,7 @@ The next step is now adding the logic to the buttons, therefore we need to make 
 function \texttt{initializeButton} every 1 second; to do that, we need to set an
 \texttt{interval}\footnote{In Javascript, an \texttt{interval} is a function that is registered to be
 executed every $n \in \mathbb{Q}$ seconds.}. So, let's create a variable at the beginning of the module to
-host the interval ID (we will need it to cancel the interval when clicking on button "Stop"):
+host the interval ID (we will need it to cancel the interval when clicking button "Stop"):
 \begin{codeh1}{1}{3}
 let t = 0; // Cycles (time)
 let int = 0; // CA auto update interval
@@ -283,8 +283,8 @@ const initConfig = ["3:3", "3:4", "4:2", "4:5", "5:3", "5:4"];
 When we refresh the page we see the configuration and as we advance the CA, we can see that
 nothing changes. So a bee-hive is a static configuration.
 
-Let's now draw a \textit{tub} as static configuration.
-This initial configuration's size is 3x3 so it fits the original 9x9 CA.
+Let's now draw a \textit{tub} as initial configuration.
+This shape's size is 3x3 so it fits the original 9x9 CA.
 Its first black cell will be placed in position \texttt{3:3}, so we can write:
 \begin{code}
 const initConfig = ["3:3", "4:2", "4:4", "5:3"];
@@ -380,7 +380,7 @@ const initConfig = ["7:7", "7:8", "8:5", "8:6", "8:8", "8:9", "9:5", "9:6", "9:7
 We have also changed the automaton's size to 50x50.
 As we make the CA evolve, we see that the behavior is the same as in solution \ref{prob:cgl5}: the shape
 moves down until reaching the border. If the CA had an infinite size, the shape would move continuously
-downward, and the CA would never reach a final configuration, thus making this initial condition, a
+downward, and the automaton would never reach a final configuration, thus making this initial condition, a
 \textit{divergent} one as explained in definition \ref{def:divconf}.
 \end{sol}
 
@@ -394,8 +394,8 @@ function setInitialCondition() {
   rect(25, 10, 35, 15); // 6x11
 }
 \end{codeh1}
-We assume, of course, the size of the automaton be be unchanged (40x40). As we refresh the page and make the 
-automaton evolve, we can see that the first two rectangles vanish, while thethird stays.
+We assume, of course, the size of the automaton to be unchanged (40x40). As we refresh the page and make the 
+automaton evolve, we can see that the first two rectangles vanish, while the third stays.
 \end{sol}
 
 \begin{sol}{prob:highernblockslive}
@@ -426,7 +426,7 @@ in function \texttt{calculateState}:
 function calculateState(state, neighSum) {
   const N = 4; // Turning Point
 \end{codeh1}
-Then we can move to function \texttt{setInitialCondition} and draw rthe same set of blocks (see 
+Then we can move to function \texttt{setInitialCondition} and draw the same set of blocks (see 
 solution \ref{prob:highernblockslive}).
 As we make the automaton evolve, we see the blocks shrinking. This means that, when $N^\ast \geq 3$, the
 expanding force is always lower than the shrinking one. The population is, in fact, more stubborn now, and
@@ -455,6 +455,7 @@ function setInitialCondition() {
 \end{codeh1}
 We assume the size of the automaton is unchanged (40x40). As you can see, we needed to create eight lines
 because we wanted thick ones (otherwise they would have vanished after one cycle). As we make the
-automaton evolve, we see that a derirable final condition is reached: all cells enclosed by the four
-blocks turned black. Notice that it takes some time (number of cycles) to reach this configuration though.
+automaton evolve, we see that a desired final condition is reached: all cells enclosed by the four
+initial black blocks turned black.
+Notice that it takes some time (number of cycles) to reach this configuration though.
 \end{sol}
