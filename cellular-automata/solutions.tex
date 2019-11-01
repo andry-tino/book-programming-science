@@ -108,7 +108,7 @@ you will see the image will adapt every time.
 
 \begin{sol}{prob:nextasauto}
 \textbf{Automatic evolution of the automaton}\\
-Let's start by creating the interface controls: we need to relabel button "Next", and create button "Stop".
+Let's start by creating the interface controls: we need to re-label button "Next", and create button "Stop".
 In \texttt{index.html}, let's make these modifications:
 \begin{codehtmlh1}{1}{4}
 <div class="controls">
@@ -136,10 +136,10 @@ applied to both buttons:
 \end{codecss}
 We have just changed the selectors of the last 3 CSS rules in the file.
 
-The next step is now ading the logic to the buttons, therefore we need to make some changes inside
+The next step is now adding the logic to the buttons, therefore we need to make some changes inside
 \texttt{ca.js}. Our strategy is to basically execute the code inside the event handler for button "Next" in
 function \texttt{initializeButton} every 1 second; to do that, we need to set an
-\texttt{interval}\footnote{In Javascript, as \texttt{interval} is a function that is registered to be
+\texttt{interval}\footnote{In Javascript, an \texttt{interval} is a function that is registered to be
 executed every $n \in \mathbb{Q}$ seconds.}. So, let's create a variable at the beginning of the module to
 host the interval ID (we will need it to cancel the interval when clicking on button "Stop"):
 \begin{codeh1}{1}{3}
@@ -148,7 +148,7 @@ let int = 0; // CA auto update interval
 \end{codeh1}
 We then move to function \texttt{initializeButton} and rename it into: \texttt{initializeButtons} as it will now
 set the click event listeners to both buttons, not just one. We also modify its logic, so make sure
-to redefine the function like this:
+to re-define the function like this:
 \begin{code}
 function initializeButtons() {
   // Button "Start"
@@ -165,11 +165,11 @@ function initializeButtons() {
   buttonStop.disabled = true;
 }
 \end{code}
-As you can see, we now do sometghing different when the buttons are clicked: we invoke two functions: 
+As you can see, we now do something different when the buttons are clicked: we invoke functions: 
 \texttt{startAutoUpdate} and \texttt{stopAutoUpdate} that we still need to write. Also note how we
 disable the "Stop" button at the beginning, because, when the page loads, we will only allow the user
 to start the evolution.
-Since we changed the name of the function, we need to update the place where we invoke it, so down in the module,
+Since we changed the name of the function, we need to update the place where we invoke it, so, down in the module,
 make sure to make this modification:
 \begin{codeh1}{1}{3}
 initializeGrid();
@@ -204,10 +204,10 @@ function stopAutoUpdate() {
 }
 \end{code}
 The first function is executed when button "Start" is pressed, it creates the interval which, after every 1 second,
-calls \texttt{next} and \texttt{updateCycleText} (they were called before, once, when clicking on button "Next").
+calls \texttt{next} and \texttt{updateCycleText} (they were called before, once, when clicking button "Next").
 The second function stops the interval. Also note how we handle the enabled/disabled states of the buttons to make
 sure that, once the auto-update is started, the user cannot start a new one, as well as ensuring that the user
-cannot click stop when the evolution has already been interrupted before and never resumed.
+cannot click stop when the evolution has already been interrupted before and never resumed later.
 \end{sol}
 
 \begin{sol}{prob:blackcounter}
@@ -220,8 +220,8 @@ Let's start from \texttt{index.html} in order to create the new label:
   <span id="blackCountText"></span>
 </div>
 \end{codehtmlh1}
-We have added a new label with ID \texttt{blackCountText}. Let's now move to \texttt{ca.js} to create the logic to
-update the text inside the label every time the CA changes. We will count the number of black cells by using a
+We have added a new label with ID \texttt{blackCountText}. Let's now move to \texttt{ca.js} to create the logic for
+updating the text inside the label every time the CA changes. We will count the number of black cells by using a
 very simple (and slow) approach: every time the automaton advances in a new configuration, we scan all the cells and
 count the number of black ones. So, in the module, add this function after function \texttt{updateCycleText}:
 \begin{code}
@@ -256,7 +256,7 @@ updateCycleText();
 updateBlackCountText();
 \end{codeh1}
 As mentioned, this approach makes the application slower because we have to re-scan again all the cells.
-You can try to find a better approach!
+We encourage you to find a better approach!
 \end{sol}
 
 \begin{sol}{prob:cgl1}
