@@ -1,0 +1,176 @@
+%
+% Preamble
+%
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+%\usepackage[danish]{babel} % Multi-language support
+
+%%%
+
+\usepackage[a4paper]{geometry} % Type of page
+\usepackage{anysize} % Size of margins
+\marginsize{4cm}{3.2cm}{3cm}{2.5cm} % Setting margins
+
+\usepackage{type1cm}
+
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                                       % when including figure files
+\usepackage{forest}
+\usepackage{multicol}         % used for the two-column index
+\usepackage[bottom]{footmisc} % places footnotes at page bottom
+
+\usepackage{newtxtext}
+\usepackage{newtxmath}       % selects Times Roman as basic font
+
+%%%
+%%%
+%%%
+
+\usepackage{tikz}
+
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{math}
+\usetikzlibrary{matrix}
+\usetikzlibrary{arrows,tikzmark,shadows,positioning}
+
+%%%
+%%%
+%%%
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage{xstring}
+
+%%%
+%%%
+%%%
+
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.90}
+
+\usepackage{listings}
+\usepackage{lstlinebgrd}
+
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+
+%
+% ECMAScript 2015 (ES6) definition
+%
+
+\lstdefinelanguage[ECMAScript2015]{JavaScript}[]{JavaScript}{
+  morekeywords=[1]{await, async, case, catch, class, const, default, do,
+    enum, export, extends, finally, from, implements, import, instanceof,
+    let, static, super, switch, throw, try},
+  morestring=[b]` % Interpolation strings.
+}
+
+%
+% JavaScript version 1.1
+%
+
+\lstdefinelanguage{JavaScript}{
+  morekeywords=[1]{break, continue, delete, else, for, function, if, in,
+    new, return, this, typeof, var, void, while, with},
+  % Literals, primitive types, and reference types.
+  morekeywords=[2]{false, null, true, boolean, number, undefined,
+    Array, Boolean, Date, Math, Number, String, Object, window, document},
+  % Built-ins.
+  morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape},
+  sensitive,
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morecomment=[s]{/**}{*/}, % JavaDoc style comments
+  morestring=[b]',
+  morestring=[b]"
+}[keywords, comments, strings]
+
+\lstalias[]{ES6}[ECMAScript2015]{JavaScript}
+
+\lstdefinestyle{JavaScript}{
+  language=JavaScript
+}
+\lstdefinestyle{JavaScript2}{
+  language=JavaScript,
+  basicstyle=\ttfamily\footnotesize\color{gray}
+}
+\lstdefinestyle{ES6}{
+  language=ES6
+}
+
+%%%
+
+\lstnewenvironment{codecss}{}{}
+
+\lstnewenvironment{code}
+{
+\lstset{style=JavaScript}
+}
+{
+}
+
+\lstnewenvironment{codehtml}
+{
+\lstset{language=HTML}
+}
+{
+}
+
+\lstnewenvironment{codehtmlh1}[2]
+{
+\lstset{
+        language=HTML,
+        linebackgroundcolor={\ifnum\value{lstnumber}<#2\ifnum\value{lstnumber}>#1\color{light-gray}\fi\fi}}
+}
+{
+}
+
+\lstnewenvironment{codeh1}[2]
+{
+\lstset{
+        style=JavaScript,
+        linebackgroundcolor={\ifnum\value{lstnumber}<#2\ifnum\value{lstnumber}>#1\color{light-gray}\fi\fi}}
+}
+{
+}
+
+\lstnewenvironment{codeh2}[4]
+{
+\lstset{
+        style=JavaScript,
+        linebackgroundcolor={
+        \ifnum \value{lstnumber}<#2
+          \ifnum\value{lstnumber}>#1
+            \color{light-gray}
+          \fi
+        \else
+          \ifnum \value{lstnumber}<#4
+            \ifnum \value{lstnumber}>#3
+              \color{light-gray}
+            \fi
+          \fi
+        \fi}}
+}
+{
+}
+
+%%
+%%
+%%
+
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
+\def\FolderSize{4pt}
+\tikzset{
+  folder/.pic={
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.05*\FolderSize,0.2\FolderSize+5pt) rectangle ++(.75*\FolderSize,-0.2\FolderSize-5pt);  
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.15*\FolderSize,-\FolderSize) rectangle (1.15*\FolderSize,\FolderSize);
+  }
+}

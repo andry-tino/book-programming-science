@@ -67,6 +67,8 @@
 \let\svlanginfo\relax
 \def\ds@deutsch{\def\switcht@@therlang{\switcht@deutsch}%
 \gdef\svlanginfo{\typeout{Man spricht deutsch.}\global\let\svlanginfo\relax}}
+\def\ds@dansk{\def\switcht@@therlang{\switcht@dansk}%
+\gdef\svlanginfo{\typeout{Man taler dansk.}\global\let\svlanginfo\relax}}
 \def\ds@francais{\def\switcht@@therlang{\switcht@francais}%
 \gdef\svlanginfo{\typeout{On parle francais.}\global\let\svlanginfo\relax}}
 %
@@ -81,6 +83,8 @@
 \@ifundefined{extrasUKenglish}{}{\addto\extrasUKenglish{\switcht@albion}}%
 \@ifundefined{extrasUSenglish}{}{\addto\extrasUSenglish{\switcht@albion}}%
 \@ifundefined{captionsfrench}{}{\addto\captionsfrench{\switcht@francais}}%
+\@ifundefined{captionsdanish}{}{\addto\captionsdanish{\switcht@dansk}}%
+\@ifundefined{extrasdanish}{}{\addto\extrasdanish{\switcht@dansk}}%
 \@ifundefined{extrasgerman}{}{\addto\extrasgerman{\switcht@deutsch}}%
 \@ifundefined{extrasngerman}{}{\addto\extrasngerman{\switcht@deutsch}}%
 }{\switcht@@therlang}%
@@ -1200,6 +1204,51 @@ passing it to article class \MessageBreak
  \def\subclassname{{\it Subject Classifications\/}:}%
  \def\tablename{Tabelle}%
 %\def\theoremname{Theorem}%
+}
+%
+% Danish section
+\def\switcht@dansk{\svlanginfo
+ \def\abbrsymbname{Abk\"urzungs- und Symbolverzeichnis}%
+ \def\abstractname{Resum\'e}%
+ \def\ackname{Danksagung}%
+ \def\andname{og}%
+ \def\lastandname{ og}%
+ \def\appendixname{Bilag}%
+ \def\bibname{Litteratur}%
+ \def\chaptername{Kapitel}%
+ \def\claimname{Claim}%
+ \def\conjecturename{Hypothese}%
+ \def\contentsname{Indhold}%
+ \def\corollaryname{Korollar}%
+ \def\definitionname{Definizion}%
+ \def\emailname{E-mail}%
+ \def\examplename{Beispiel}%
+ \def\exercisename{\"Ubung}%
+ \def\figurename{Figur}%
+ \def\forewordname{Forord}%
+ \def\keywordname{{\bf Key words:}}%
+ \def\indexname{Indeks}%
+ \def\lemmaname{Lemma}%
+ \def\contriblistname{Mitarbeiter}%
+ \def\listfigurename{Figurer}%
+ \def\listtablename{Tabeller}%
+ \def\mailname{{\it Correspondence to\/}:}%
+ \def\noteaddname{Nachtrag}%
+ \def\notename{Anmerkung}%
+ \def\partname{Del}%
+ \def\prefacename{Forord}%
+ \def\problemname{Oplevelse}%
+ \def\proofname{Bevis}%
+ \def\propertyname{Eigenschaft}%
+ \def\propositionname{Propositionen}%
+ \def\questionname{Frage}%
+ \def\refname{Litteratur}%
+ \def\remarkname{Anmerkung}%
+ \def\seename{Se}%
+ \def\solutionname{L\"osung}%
+ \def\subclassname{{\it Subject Classifications\/}:}%
+ \def\tablename{Tabel}%
+ \def\theoremname{Theoremen}%
 }
 
 \def\getsto{\mathrel{\mathchoice {\vcenter{\offinterlineskip

@@ -13,9 +13,13 @@
 
 
 
-\documentclass[graybox]{svmult}
+\documentclass[dansk,graybox]{../svmult}
 
-\input{preamble}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[danish]{babel} % Multi-language support
+
+\input{../preamble}
 
 \makeindex             % used for the subject index
                                % please use the style svind.ist with
@@ -31,8 +35,8 @@
 
 \begin{document}
 
-\title*{Studying populations using Cellular Automata}
-\titlerunning{Studying populations using Cellular Automata}
+\title*{Befolkningsunders\o egelse med Celleautomater}
+\titlerunning{Befolkningsundersoegelse med Celleautomater}
 \author{Andrea Tino}
 % Use \authorrunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
@@ -61,7 +65,7 @@
 
 \input{final}
 
-\input{references}
+\input{../references}
 
 \input{solutions}
 
