@@ -33,7 +33,7 @@ If we gain more information about the population of cars entering and exiting an
 intersection, we can later create an algorithm to rework the time durations of green vs.
 red signals at each joining road to maximize the 
 throughput\footnote{The amount of something over unit of time: $\eta = \frac{N}{T}$. 
-Throughput is most often a measure of speed.}.
+Throughput can be perfectly regarded as a measure of speed.}.
 
 City planning is not the only case scenario where population study comes handy. Other
 examples include Biology and Virology: how does an infection propagate over a closed
@@ -52,9 +52,9 @@ under study is not, strictly speaking, made of living things. Hung \& al. \cite{
 based on Lotka-Volterra equations, to describe the competition in retail and supply-chain markets. 
 Such a model imagines competing companies to be predators and preys in a population which represents the market
 where they operate. The model can be used, for instance, to predict revenue and costs; this helps retail companies be
-more efficient and maximixe profit.\\
+more efficient and maximixe profit.
 
-Now that you are, hopefully, convinced of the importance of studying populations, let's answer the
+\newthought{Now that you are}, hopefully, convinced of the importance of studying populations, let's answer the
 second question: how do we analyze them?
 
 There are many approaches that have been put in practice and published so far. A generic approach cannot
@@ -77,7 +77,7 @@ It is important to highlight how every model has a different descriptive power t
 be in control of different aspects of the environment we want to study. In this chapter,
 we focus on one category of them called: \textit{Cellular Automata} (CA).
 
-\subsection{What are Cellular Automata?}
+\section{What are Cellular Automata?}
 A CA is a mathematical model built on the following base concepts:
 
 \begin{itemize}
@@ -148,9 +148,9 @@ is referred to as: $y_k \in E$, having $k = 1 \dots |E|$.
 So from now on, every time we refer to individuals in a population, we can use the term \textit{cell}.
 As we already mentioned, every cell has a state. We indicate the state of a cell
 $y_k$ by writing: $y_k = a$ where $a \in \mathcal{A}$ and $k \in \mathbb{N}$ is used to index the
-cell in the automaton.\\
+cell in the automaton.
 
-All the cells in a CA form a shape, this shape will then affect how the cells can be connected together.
+\newthought{All the cells}, In a CA form a shape, this shape will then affect how the cells can be connected together.
 We will not talk about the formal model of cell arrangement in CA because it requires many concepts from
 Algebra and Set Theory. For our analysis, we can simply consider one very common arrangement of cells:
 \textit{$\mathbb{Z}$/$n\mathbb{Z}$ Cellular Automata}\footnote{Also known as: 
@@ -269,9 +269,9 @@ However we don't always need that much precision, sometimes we just want to coun
 we want to count the number of participants at the opening ceremony of every Olympic Game so far.
 Those are single events in time, it does not matter to have the precise date and time, we could
 just use a natural number to indicate which edition of the Games we are considering. In this example,
-we chose to describe time as a \textit{discrete} variable, which means that $t \in \mathbb{N}$.\\
+we chose to describe time as a \textit{discrete} variable, which means that $t \in \mathbb{N}$.
 
-At this point, now that we have understood time, we can move forward and talk about \textit{evolution}.
+\newthought{At this point}, Now that we have understood time, we can move forward and talk about \textit{evolution}.
 CA are very dynamic systems, but, so far, we have only seen a bunch of cells, each one with a state, and
 that's it. Well, the whole idea is that a CA will change (evolve) in time. This evolution is
 represented by a change in the state of every single cell. But how does it happen?
