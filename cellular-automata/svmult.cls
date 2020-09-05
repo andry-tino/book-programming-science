@@ -2403,7 +2403,7 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
 \newenvironment{trailer}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{trailer}{#1}}{\par\noindent\textcolor{trailer}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
-\renewenvironment{question}[1]{\ignorespaces\def\stmtopen##1{##1}%
+\newenvironment{question}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{question}{\ \circledmark[white]{\textcolor{black}{\sf\bfseries?}}{\kern6pt}#1}}{\par\noindent\textcolor{question}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
 \newenvironment{important}[1]{\ignorespaces\def\stmtopen##1{##1}%
@@ -2458,7 +2458,7 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
 \let\subsection\guisubsection}
 {}
 
-                        %%%SOPHIE TEMPLATE END%%%
+%%%SOPHIE TEMPLATE END%%%
 
 \usepackage[thmmarks,thref]{ntheorem} 
 \theoremstyle{nonumberplain}
