@@ -8,7 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
 
-\section{Building our first CA: Conway's Game of Life}
+\chapter[Conway's Game of Life]{Building our first CA: Conway's Game of Life}
 \label{sec:simpleca}
 
 We want to create our first CA in code, so that we can display the cells and see them changing
@@ -16,7 +16,7 @@ state. In this section, we will build the basic architecture of a CA that can be
 CA in future. For this, we are going to use the latest web technologies to create web sites and
 web applications in the browser: Javascript, HTML and CSS.
 
-\subsection{Creating the basic project structure}
+\section{Creating the basic project structure}
 In our PC, let's create a directory (anywhere you want, on your Desktop maybe?) and give it
 a cool name like: \texttt{cellautom}. Inside this new directory, do the following:
 
@@ -29,46 +29,38 @@ a cool name like: \texttt{cellautom}. Inside this new directory, do the followin
 These three files represent the basic organization of our visual CA we are going to develop.
 Table \ref{tab:files} offers a good overview of what they are needed for.
 
+% Table (full)
 %
-% Table
-%
-\begin{table}[!t]
-\centering
-\caption{List of files in our project folder.}
-\label{tab:files}
-%
-% Follow this input for your own table layout
-%
-\begin{tabular}{p{0.2\textwidth}p{0.2\textwidth}p{0.5\textwidth}}
-\hline\noalign{\smallskip}
-File & Type & Description \\
-\noalign{\smallskip}\svhline\noalign{\smallskip}
-\texttt{index.html} & Web page & This is the web page that will display the CA and its evolution.\\
-\texttt{ca.js} & Javascript code file  & This file will contain the Javascript
-code that will make the CA appear and evolve.\\
-\texttt{style.css} & CSS Stylesheet & The stylesheet we will use to apply colors, fonts 
-    and make our CA beautiful.\\
-\noalign{\smallskip}\hline\noalign{\smallskip}
-\end{tabular}
+\begin{table}[h]\index{typefaces!sizes}
+  \footnotesize%
+  \begin{center}
+    \begin{tabular}{ccl}
+      \toprule
+      File & Type & Description \\
+      \midrule
+      \texttt{index.html} & Web page & This is the web page that will display the CA and its evolution.\\
+      \texttt{ca.js} & Javascript code file  & This file will contain the Javascript
+        code that will make the CA appear and evolve.\\
+      \texttt{style.css} & CSS Stylesheet & The stylesheet we will use to apply colors, fonts 
+        and make our CA beautiful.\\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \caption{List of files in our project folder.}
+  \label{tab:files}
 \end{table}
 %
 
 % Figure
 %
-\begin{figure}[b]
-\sidecaption
-% tikz diagram
-\input{diag-dirstruct1}
-%
-% If not, use
-%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-%
-\caption{Your project folder should look like this.}
-\label{fig:dirstruct1}
-\end{figure}
+\begin{marginfigure}%
+  \input{diag-dirstruct1}
+  \caption{Your project folder should look like this.}
+  \label{fig:dirstruct1}
+\end{marginfigure}
 %
 
-\subsection{Defining the barebones}
+\section{Defining the barebones}
 Time to write the initial code to see something appear on the page once we run it in the browser.
 Open file \texttt{index.html} with your favorite editor.
 
@@ -148,7 +140,7 @@ to memorize.})
 and tells the browser to load the styles defined inside \texttt{style.css}. As of now, if you refresh the
 page in the browser, you will just see a blank page (not for long!).
 
-\subsection{Creating the grid}
+\section{Creating the grid}
 For now, we are done with \texttt{index.html}; the next step is to write the code to render the automaton
 in our page. To do this, let's open \texttt{ca.js} and insert the first lines of code.
 
@@ -415,7 +407,7 @@ Change the size of the CA/grid by setting it to different dimensions. Also try t
 automata, not just square grids.
 \end{problem}
 
-\subsection{Coding the evolution logic}
+\section{Coding the evolution logic}
 We have succeeded rendering the grid, but at the moment our CA doesn't do much, it does nothing!
 The key feature of CA is, as we learned at the beginning of this chapter, their ability to
 \textit{evolve}. We need to write down that
@@ -440,7 +432,7 @@ turns white.
 
 This CA was the first ever published in the history of Mathematics, and it has very interesting properties.
 
-\subsubsection{Setting the initial state}
+\subsection{Setting the initial state}
 In CA, it is crucial that we are able to set the initial condition (remember what we talked about in
 theorem \ref{theo:evinitcond}). To do so, let's add this code.
 
@@ -589,7 +581,7 @@ We give you a suggestion here: do not use JPG or JPEG images, use PNG or SVG ima
 background color so that they can be displayed on top of any background color of the cells.
 \end{problem}
 
-\subsubsection{Building the UI}
+\subsection{Building the UI}
 At this point we have succeeded setting the initial condition. This means that we can configure the CA however
 we want by just changing array \texttt{initConfig} at the beginning of the module. Our final goal is to
 make the CA evolve and see it as it changes. We need to build a \textit{User Interface} (or simply: \textit{UI})
@@ -723,7 +715,7 @@ window.addEventListener("load", function () {
 If you refresh the page, make sure the F12 tools are open and visible on your screen, and click the button:
 you will see the message appearing in the console.
 
-\subsubsection{Coding the evolution}
+\subsection{Coding the evolution}
 Everything is prepared now. We have the CA initialized and we also have the UI to interact with the CA.
 Next step is creating the logic to make the automaton evolve.
 This piece of code will be executed when we press the button.
@@ -1131,7 +1123,7 @@ Function \texttt{removeTmpValue} is very simple: it first retrieves the \texttt{
 (whose coordinates are passed as parameters), and then invokes function \texttt{removeAttribute} which
 deletes the \texttt{data-tmpvalue} attribute (effectively clearing the temporary value).
 
-\subsubsection{Final touches}
+\subsection{Final touches}
 At this time, you can actually refresh the page and see the CA being rendered and also interact with it.
 However we want to spend a short while now making a very few style adjustments to make the page look better.
 
@@ -1269,7 +1261,7 @@ Add a new label, next to the existing one displaying the current cycle. At every
 the current number of black cells in the grid.
 \end{problem}
 
-\subsection{Playing with CGL automaton}
+\section{Playing with CGL automaton}
 There is a reason if we have decided to build this specific automaton in our first experience!
 Other than being one of the very first automata to be published and very famous,
 it has some very interesting properties too.
