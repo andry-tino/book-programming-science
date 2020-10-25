@@ -75,16 +75,22 @@
   \input{tufte-book-local}%
 }{}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% END OF TUFTE TEMPLATE %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% BEGIN OF OTHERS %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%SOPHIE TEMPLATE BEGIN%%%
 
 %\RequirePackage[x11names]{xcolor} % Already loaded in tufte-common.def
 
-\definecolor{trailer}{gray}{0.9}
-\definecolor{question}{gray}{0.8}
+\definecolor{trailer}{gray}{0.75}
+\definecolor{question}{gray}{0.75}
 \definecolor{important}{gray}{0.75}
-\definecolor{warning}{gray}{0.7}
-\definecolor{programcode}{gray}{0.65}
-\definecolor{tips}{gray}{0.6}
+\definecolor{warning}{gray}{0.75}
+\definecolor{programcode}{gray}{0.75}
+\definecolor{tips}{gray}{0.75}
 \definecolor{overview}{gray}{0.55}
 \definecolor{backgroundinformation}{gray}{0.5}
 \definecolor{legaltext}{gray}{0.45}
@@ -114,10 +120,10 @@
 \formtmp{warning}{\ \circledmark[white]{\textcolor{black}{!}}{\kern6pt}#1}}{\par\noindent\textcolor{warning}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
 \newenvironment{programcode}[1]{\ignorespaces\def\stmtopen##1{##1}%
-\formtmp{programcode}{#1}}{\noindent\textcolor{programcode}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
+\formtmp{programcode}{File: #1}}{\noindent\textcolor{programcode}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
 \newenvironment{tips}[1]{\ignorespaces\def\stmtopen##1{##1}%
-\formtmp{tips}{#1}}{\par\noindent\textcolor{tips}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
+\formtmp{tips}{Tips: #1}}{\par\noindent\textcolor{tips}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
 \newenvironment{overview}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{overview}{#1}}{\par\noindent\textcolor{overview}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
