@@ -31,7 +31,7 @@ Table \ref{tab:files} offers a good overview of what they are needed for.
 
 % Table (full)
 %
-\begin{table}[h]\index{typefaces!sizes}
+\begin{table}[h]
   \footnotesize%
   \begin{center}
     \begin{tabular}{ccp{60mm}}
@@ -46,16 +46,16 @@ Table \ref{tab:files} offers a good overview of what they are needed for.
       \bottomrule
     \end{tabular}
   \end{center}
-  \caption{List of files in our project folder.}
+  \caption[Files in project folder]{List of files in our project folder.}
   \label{tab:files}
 \end{table}
 %
 
 % Figure
 %
-\begin{marginfigure}%
+\begin{marginfigure}
   \input{diag-dirstruct1}
-  \caption{Your project folder should look like this.}
+  \caption[Project folder structure]{Your project folder should look like this.}
   \label{fig:dirstruct1}
 \end{marginfigure}
 %
@@ -294,7 +294,7 @@ function create() {
 % If not, use
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 %
-\caption{The drawing strategy for the grid
+\caption[Grid drawing strategy]{The drawing strategy for the grid
 is simple: we decide to add a padding between the container
 and its content of \texttt{1px} (from the top and from the left);
 the same amount is used to set a right and bottom margin in each cell. Using this spacing
@@ -368,7 +368,7 @@ style we just wrote.
 % If not, use
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 %
-\caption{Flex wrapping explained. The right-most diagram shows a container without wrapping,
+\caption[Flex wrapping]{Flex wrapping explained. The right-most diagram shows a container without wrapping,
 while the left-most shows the same situation where the container is set to wrap its children.}
 \label{fig:flexwrap}
 \end{figure}
@@ -775,7 +775,7 @@ have just prepared it by defining the 3 main actions. As you can see, we have ba
 % If not, use
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 %
-\caption{An example of incremental CA. As you can see in iteration $t=k$, one cell is updated
+\caption[Example of incremental CA]{An example of incremental CA. As you can see in iteration $t=k$, one cell is updated
 with its new state. In the next iteration ($t=k+1$), the next cell is updated, however its state
 will be calculated on the new value of the previous.}
 \label{fig:updatecainc}
@@ -791,7 +791,7 @@ will be calculated on the new value of the previous.}
 % If not, use
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 %
-\caption{An example of immediate CA. By using a temporary CA (a ghost CA) we can update
+\caption[Example of immediate CA]{An example of immediate CA. By using a temporary CA (a ghost CA) we can update
 the state of the cells of the CA without polluting our calculations. After all cells have been scanned, the
 ghost CA is used to replace the saved states in the original CA. At the end of the process, the ghost CA is
 finally destroyed as no more needed.}
@@ -844,7 +844,8 @@ of a cell depends on the state of its neighbors. Normally a cell has 8 neighbors
 % If not, use
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 %
-\caption{A visualization of the neighborhoods of border and corner cells.
+\caption[Neighborhoods of border and corner cells]{A visualization
+of the neighborhoods of border and corner cells.
 It is clearly possible to see how, when compared to a normal cell, border cells have 5 neighbors and
 corner cells have 3 instead of 8.}
 \label{fig:bordercells}
@@ -976,7 +977,7 @@ for (let i = 2; i <= rowsnum - 1; i++) {
 % If not, use
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 %
-\caption{A visualization of the neighborhood of a cell in the grid.
+\caption[Neighborhood of a cell]{A visualization of the neighborhood of a cell in the grid.
 A generic cell $(i,j)$ is highlighted in the CA (black)
 and its neighborhood is visualized (in grey).
 Note how the coordinates of each neighbor cell is expressed relatively
@@ -1273,7 +1274,8 @@ the shapes at the center of the grid (unless asked otherwise).
 % If not, use
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 %
-\caption{Showing some of the most famous initial configurations in CGL.
+\caption[Some of Conway's Game of Life's initial configurations]{Showing
+some of the most famous initial configurations in CGL.
 The right-most column, shows three static configurations: when the automaton starts from those,
 it will not have an evolution.
 The central column shows periodic (recurrent) configurations with period $T=2$: it means that every

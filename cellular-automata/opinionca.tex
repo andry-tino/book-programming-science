@@ -8,7 +8,8 @@
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
 
-\section{Developing a CA to describe people's opinion change}
+\chapter[A Cellular Automaton to describe opinion change]{Developing a
+Cellular Automaton to describe people's opinion change}
 \label{sec:opinionca}
 
 In section \ref{sec:simpleca}, we have built our first automaton: Conway's Game of Life.
@@ -22,7 +23,7 @@ in mind, we just wanted to play with automata!
 For the next stage, we want to build a CA that can help us reach a distinct objective:
 analyzing opinion change among the members of a society.
 
-\subsection{Working out the model}
+\section{Working out the model}
 We want to use a scientific approach to solve a problem. So, 
 before going straight to coding, we need to:
 
@@ -53,7 +54,7 @@ physically built, or a process being enforced. This stage is called:
 % If not, use
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 %
-\caption{Illustration of the different phases in the scientific approach to solve a problem.
+\caption[Phases of problem solving]{Illustration of the different phases in the scientific approach to solve a problem.
 Each one of them is executed with different tools and require different skills.}
 \label{fig:sciappr}
 \end{figure}
@@ -175,7 +176,7 @@ as shown in table \ref{tab:meaningn}.
 %
 \begin{table}[!t]
 \centering
-\caption{Showing the meaning of TP $N^\ast$ in relation to the behavior of individuals
+\caption[Meaning of Turning Point]{Showing the meaning of TP $N^\ast$ in relation to the behavior of individuals
 in the population.}
 \label{tab:meaningn}
 %
@@ -205,7 +206,7 @@ we could create different scenarios where citizens are easy to convince or hard 
 By inspecting the evolution of the CA, we would know how to create small ad campaigns to ensure
 that the highest possible number of citizens can become convinced about sustainable lifestyle.
 
-\subsection{Building the automaton}
+\section{Building the automaton}
 Now it's time to jump on stage 3 of figure \ref{fig:sciappr}. We can finally start coding to
 create this new CA. Of course we are not going to reinvent the wheel and start from scratch: we
 have already created an automaton: CGL, so let's start from that project and modify a few things.
@@ -259,7 +260,7 @@ of active neighbors exceeds a certain threshold, that is: $N^\ast$.}.
 The code we have written so far can be found under folder \texttt{v2.4.2}.
 \end{trailer}
 
-\subsection{Running simulations}
+\section{Running simulations}
 In our plan (visualized by figure \ref{fig:sciappr}), we are still in stage 3. We have just built
 a simulation program (our web application) which runs a CA to describe opinion change in a
 city. Now what we need to do is to use this simulator and run it to produce some data. The data
@@ -305,7 +306,7 @@ At the end, we will compare all the coverage percentages, and we will pick the i
 associated to the highest coverage percentage. That initial configuration will be the best
 advertising strategy to reach our objective and solve the problem.
 
-\subsubsection{Experimenting a little}
+\subsection{Experimenting a little}
 The only requirement is to use small black areas when setting the initial configuration, so
 we can have many different possibilities. To avoid making many attempts, we can try to perform
 a few simple experiments to see how the CA we built behaves, so that, later, we can try some more
@@ -670,7 +671,7 @@ Basing on our experiments, we could assess that the initial configurations that 
 a black surface expanding evolution are those where there are small active connected blocks.
 \end{proposition}
 
-\subsubsection{Trying out different initial configurations}
+\subsection{Trying out different initial configurations}
 Basing on the findings from our investigations, as per proposition \ref{prop:expinitconfig}, we
 now have a strategy. We have discovered that small connected black blocks will expand into wider
 black surfaces, which is exactly the effect we want here. So, now the question is about understanding
