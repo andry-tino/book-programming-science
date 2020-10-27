@@ -51,7 +51,7 @@ Table \ref{tab:files} offers a good overview of what they are needed for.
 \end{table}
 %
 
-% Figure
+% Figure (margin)
 %
 \begin{marginfigure}
   \input{diag-dirstruct1}
@@ -285,24 +285,19 @@ function create() {
 \end{codeh1}
 \end{programcode}
 
-% Figure
+% Figure (margin)
 %
-\begin{figure}[b]
-% tikz diagram
-\input{diag-gridlayout}
-%
-% If not, use
-%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-%
-\caption[Grid drawing strategy]{The drawing strategy for the grid
-is simple: we decide to add a padding between the container
-and its content of \texttt{1px} (from the top and from the left);
-the same amount is used to set a right and bottom margin in each cell. Using this spacing
-technique, we separate the cells from the container and the cells from each other by the same
-amount. The background of the container is set to black, and the one of each cell to white, so
-that, in the end, the final effect is that of a grid with white cells and black borders.}
-\label{fig:gridlayout}
-\end{figure}
+\begin{marginfigure}
+  \input{diag-gridlayout}
+  \caption[Grid drawing strategy]{The drawing strategy for the grid
+  is simple: we decide to add a padding between the container
+  and its content of \texttt{1px} (from the top and from the left);
+  the same amount is used to set a right and bottom margin in each cell. Using this spacing
+  technique, we separate the cells from the container and the cells from each other by the same
+  amount. The background of the container is set to black, and the one of each cell to white, so
+  that, in the end, the final effect is that of a grid with white cells and black borders.}
+  \label{fig:gridlayout}
+\end{marginfigure}
 %
 
 The code above does a few things. In the first lines, we get a reference to the CA container
