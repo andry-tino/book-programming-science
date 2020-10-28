@@ -6,22 +6,25 @@
 
 \tikzmath{
 	\S = 0.4cm;
+  \s = 0.55;
   \X1 = 0;
-  \X2 = -3;
-  \X3 = -6.5;
+  \X2 = 3.5;
+  \X3 = 7;
+  \X4 = 10.5;
+  \X5 = 14;
   \Y1 = 0;
-  \Y4 = -1.5;
-  \Y2 = -2.6;
-  \Y5 = -4.6;
-  \Y3 = -5.5;
-  \ty1 = 0.5*(\Y2 - \Y1) + \Y1 + 0.2;
-  \ty2 = 0.5*(\Y3 - \Y2) + \Y2 + 0.19;
-  \ty3 = \Y3 - 1.27;
-  \ty4 = 0.5*(\Y2 - \Y1) + \Y1 + 0.4;
-  \ty5 = 0.5*(\Y3 - \Y2) + \Y2 + 0.35;
-  \ty6 = \Y3 - 1.45;
-  \ty7 = 0.5*(\Y5 - \Y4) + \Y4 + 0.3;
-  \ty8 = \Y5 - 1.47;
+  \Y2 = -3;
+  \Y3 = -6;
+  \tyblock = \Y1 - 4*0.5*\s;
+  \tybeehive = \Y1 - 5*0.5*\s;
+  \tytub = \Y1 - 5*0.5*\s;
+  \tyboat = \Y1 - 5*0.5*\s;
+  \tyloaf = \Y1 - 6*0.5*\s;
+  \tyblinker = \Y2 - 3*0.5*\s;
+  \tytoad = \Y2 - 4*0.5*\s;
+  \tybeacon = \Y2 - 6*0.5*\s;
+  \tyglider = \Y3 - 5*0.5*\s;
+  \tyspaceship = \Y3 - 6*0.5*\s;
 }
 
 \tikzset{square matrix/.style={
@@ -38,6 +41,7 @@
   square matrix/.default=\S
 }
 
+% Block
 \matrix[square matrix] (m1) at (\X1,\Y1)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
@@ -45,9 +49,10 @@
 \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 };
-\node at (\X1,\ty1) {(Block)};
+\node at (\X1,\tyblock) {(Block)};
 
-\matrix[square matrix] (m2) at (\X1,\Y2)
+% Beehive
+\matrix[square matrix] (m2) at (\X2,\Y1)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{}& \phantom{} & \phantom{}  \\
@@ -55,9 +60,10 @@
 \phantom{} & \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{}& \phantom{} & \phantom{}  \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{}& \phantom{} & \phantom{}  \\
 };
-\node at (\X1,\ty2) {(Bee-hive)};
+\node at (\X2,\tybeehive) {(Bee-hive)};
 
-\matrix[square matrix] (m3) at (\X1,\Y3)
+% Tub
+\matrix[square matrix] (m3) at (\X3,\Y1)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} \\
@@ -65,16 +71,41 @@
 \phantom{} & \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 };
-\node at (\X1,\ty3) {(Tub)};
+\node at (\X3,\tytub) {(Tub)};
 
-\matrix[square matrix] (m4) at (\X2,\Y1)
+% Boat
+\matrix[square matrix] (m31) at (\X4,\Y1)
+{
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} &|[fill=black]| \phantom{} & \phantom{} &|[fill=black]| \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+};
+\node at (\X4,\tyboat) {(Boat)};
+
+% Loaf
+\matrix[square matrix] (m32) at (\X5,\Y1)
+{
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} &|[fill=black]| \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} &|[fill=black]| \phantom{} & \phantom{} &|[fill=black]| \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} \\
+\phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
+};
+\node at (\X5,\tyloaf) {(Loaf)};
+
+% Blinker
+\matrix[square matrix] (m4) at (\X1,\Y2)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 };
-\node at (\X2,\ty4) {(Blinker)};
+\node at (\X1,\tyblinker) {(Blinker)};
 
+% Toad
 \matrix[square matrix] (m5) at (\X2,\Y2)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
@@ -82,9 +113,10 @@
 \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 };
-\node at (\X2,\ty5) {(Toad)};
+\node at (\X2,\tytoad) {(Toad)};
 
-\matrix[square matrix] (m6) at (\X2,\Y3)
+% Beacon
+\matrix[square matrix] (m6) at (\X3,\Y2)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
@@ -93,9 +125,10 @@
 \phantom{} & \phantom{} & \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 };
-\node at (\X2,\ty6) {(Beacon)};
+\node at (\X3,\tybeacon) {(Beacon)};
 
-\matrix[square matrix] (m7) at (\X3,\Y4)
+% Glider
+\matrix[square matrix] (m7) at (\X1,\Y3)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
@@ -103,9 +136,10 @@
 \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 };
-\node at (\X3,\ty7) {(Glider)};
+\node at (\X1,\tyglider) {(Glider)};
 
-\matrix[square matrix] (m8) at (\X3,\Y5)
+% Spaceship
+\matrix[square matrix] (m8) at (\X2,\Y3)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} \\
@@ -114,6 +148,6 @@
 \phantom{} & \phantom{} &|[fill=black]| \phantom{} &|[fill=black]| \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 };
-\node at (\X3,\ty8) {(Spaceship)};
+\node at (\X2,\tyspaceship) {(Spaceship)};
 
 \end{tikzpicture}

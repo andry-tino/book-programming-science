@@ -1233,27 +1233,22 @@ solve the following problems, all based on the CA we have just built. One recomm
 set the initial configurations by always avoiding border cells, always try to place
 the shapes at the center of the grid (unless asked otherwise).
 
-% Figure
+% Figure (full)
 %
-\begin{figure}[b]
-% tikz diagram
-\input{diag-cglplay}
-%
-% If not, use
-%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-%
-\caption[Some of Conway's Game of Life's initial configurations]{Showing
-some of the most famous initial configurations in CGL.
-The right-most column, shows three static configurations: when the automaton starts from those,
-it will not have an evolution.
-The central column shows periodic (recurrent) configurations with period $T=2$: it means that every
-2 cycles, the CA will get back to these configurations to start over again indefinitely.
-The left-most column shows divergent configurations which are very interesting: when the
-automaton starts from these, it will evolve indefinitely into an always different configuration; the
-peculiarity is that the shape repeats as if it was periodic, but its position shifts in a
-specific direction.}
-\label{fig:cglplay}
-\end{figure}
+\begin{figure*}[h]
+  \input{diag-cglplay}
+  \caption[Some of Conway's Game of Life's initial configurations]{Showing
+  some of the most famous initial configurations (or \textit{lifes} as Conway calls them) in CGL.
+  The top row, shows five static configurations: when the automaton starts from those,
+  it will not have an evolution.
+  The middle row shows periodic (recurrent) configurations with period $T=2$: it means that every
+  2 cycles, the CA will get back to these configurations to start over again indefinitely.
+  The bottom row shows divergent configurations which are very interesting: when the
+  automaton starts from these, it will evolve indefinitely into an always different configuration; the
+  peculiarity is that the shape repeats as if it was periodic, but its position shifts in a
+  specific direction.}
+  \label{fig:cglplay}%
+\end{figure*}
 %
 
 \begin{problem}
