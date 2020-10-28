@@ -88,6 +88,7 @@
 \definecolor{trailer}{gray}{0.75}
 \definecolor{question}{gray}{0.75}
 \definecolor{important}{gray}{0.75}
+\definecolor{learnp}{gray}{0.75}
 \definecolor{warning}{gray}{0.75}
 \definecolor{programcode}{gray}{0.75}
 \definecolor{tips}{gray}{0.75}
@@ -116,6 +117,9 @@
 \newenvironment{important}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{important}{\ \circledmark{\textcolor{black}{$\ >$}}{\kern6pt}#1}}{\par\noindent\textcolor{important}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
+\newenvironment{learnp}[1]{\ignorespaces\def\stmtopen##1{##1}%
+\formtmp{learnp}{\ \circledmark{\textcolor{black}{$\ !$}}{\kern6pt}#1}}{\par\noindent\textcolor{learnp}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
+
 \newenvironment{warning}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{warning}{\ \circledmark[white]{\textcolor{black}{!}}{\kern6pt}#1}}{\par\noindent\textcolor{warning}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
@@ -123,7 +127,7 @@
 \formtmp{programcode}{File: #1}}{\noindent\textcolor{programcode}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
 \newenvironment{tips}[1]{\ignorespaces\def\stmtopen##1{##1}%
-\formtmp{tips}{Tips: #1}}{\par\noindent\textcolor{tips}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
+\formtmp{tips}{Tip: #1}}{\par\noindent\textcolor{tips}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
 \newenvironment{overview}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{overview}{#1}}{\par\noindent\textcolor{overview}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%

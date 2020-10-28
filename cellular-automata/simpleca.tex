@@ -82,7 +82,7 @@ Write this code minding casing and spacing.
 
 Save the file and now try to open it in your browser: we have just displayed a text!
 
-\begin{tips}{Learning point - A first glance at HTML}
+\begin{learnp}{A first glance at HTML}
 The code we just wrote is read by the browser to create a graphical visualization. HTML is used to
 create web pages. It is not a \textit{programming language} (it does not tell a computer what to do),
 but a \textit{markup language} (it tells a computer what to display and paint on the screen).
@@ -105,7 +105,7 @@ inside the browser window. As you can see, we only have a piece of
 text\footnote{The \textit{Hello World} is, historically, the first thing one learns
 to do when studying and playing with a new language, we had to respect tradition here.}, which
 is in fact rendered on a blank, empty page.
-\end{tips}
+\end{learnp}
 
 Of course, we don't just want to display text, we want to render a full CA! So, in the same file, replace
 that text.
@@ -155,7 +155,7 @@ These first lines of Javascript code create our \textit{module}.
 
 We have just created a \textit{module}, let's try to understand a bit more about them.
 
-\begin{tips}{Learning point - Javascript modules}
+\begin{learnp}{Javascript modules}
 The Javascript language does not have a concept of \textit{module} embedded in itself,
 this is something programmers create in
 different ways. A module is a programming structure designed to encapsulate some code that is isolated
@@ -164,7 +164,7 @@ Since modules are an advanced topic, for now, everytime
 we write some code, we will wrap it inside a module like shown before without thinking too much about it.
 This is a standard procedure to make sure other Javascript codes on the page, in future, do not
 affect our code.
-\end{tips}
+\end{learnp}
 
 We have imported \texttt{ca.js} inside \texttt{index.html}, so when we refresh the page the module
 we wrote will run. However, since there is really no code inside the module (just a comment),
@@ -186,7 +186,7 @@ The constants we defined will be used to create an automaton of the size we spec
 \texttt{rowsnum} and \texttt{colsnum}. Constant \texttt{cellsize} will be used to defined the
 width and height of each (square) cell.
 
-\begin{tips}{Learning point - Again on Javascript modules}
+\begin{learnp}{Again on Javascript modules}
 We have a chance here to explain a bit more why modules are important. The code we have written
 now defines three constants. Since they are defined inside a module, nobody can access them outside
 of it! Let's prove it. In \texttt{ca.js}, remove (or comment out) the
@@ -207,7 +207,7 @@ out its value.
 Now go back to \texttt{ca.js} and bring back the module as it was before. Refresh the page, open the
 console in the F12 tools and try to access the constant as you did before. You will get 
 \texttt{undefined}. Modules are used to protect our code from outside!
-\end{tips}
+\end{learnp}
 
 Moving on, we now want to create the code that renders the grid.
 
@@ -364,7 +364,7 @@ style we just wrote.
 \end{marginfigure}
 %
 
-\begin{tips}{Learning point - CSS Flex wrap}
+\begin{learnp}{CSS Flex wrap}
 CSS has many features and allows styling HTML elements in many different ways. One of the coolest tricks
 is \textit{flex-wrapping}. Wrapping (in general) means that
 when a bunch of elements are lined up in a row and they reach the
@@ -381,7 +381,7 @@ Once that's accomplished, we must make sure children do not change in size when 
 In flex containers, CSS tries to fit everything where it can; so, if we leave things as they are, we might
 not get the desired result: we must tell the browser not to change the size of the contained elements, so that
 they wrap; we achieve this by setting \texttt{flex: 0 0 auto} on the contained children.
-\end{tips}
+\end{learnp}
 
 If you try to refresh the page now, you will see the grid!
 
@@ -1004,11 +1004,11 @@ extract the value associated with attribute \texttt{data-value}. It is possible 
 is not set on the element, in that case \texttt{getAttribute} would return \texttt{undefined} so we
 use operator \texttt{||}.
 
-\begin{tips}{Learning point - Operator \texttt{||}}
+\begin{learnp}{Operator \texttt{||}}
 Expression \texttt{a || b} returns \texttt{a} if \texttt{b} is \texttt{undefined}
 or \texttt{b} if \texttt{a} is \texttt{undefined}; if both variables have values, then the one on the
 left is returned.
-\end{tips}
+\end{learnp}
 
 In this case, if there is no state defined for a cell, we assume it is \texttt{0}
 (inactive, off).
@@ -1032,7 +1032,7 @@ The functions we have created, as you can see, look quite similar to functions
 \texttt{get} and \texttt{set}. To be specific, we say they have the same
 \textit{signature}.
 
-\begin{tips}{Learning point - Signature of a function}
+\begin{learnp}{Signature of a function}
 The signature of a function is the list of its input parameters and the type of returned
 value (if any). Consider the following function:
 \begin{code}
@@ -1042,7 +1042,7 @@ function greetMe(name, surname) {
 \end{code}
 Its signature can be represented as: \texttt{(string, string) => string} as it accepts
 two strings and returns another string.
-\end{tips}
+\end{learnp}
 
 In fact they do the same thing but on different attributes. Maybe you are getting the
 idea now. What we want to do is saving the calculated new state of a cell into a
@@ -1187,14 +1187,14 @@ window.addEventListener("load", function () {
 
 We have just translated in code the conditions we decided a moment ago.
 
-\begin{tips}{Learning point - Throwing errors}
+\begin{learnp}{Throwing errors}
 How can a web application send an error? The proper way of doing it is by using this syntax:
 \begin{code}
 throw new Error("Your error message here");
 \end{code}
 When this code is executed, the F12 Javascript console will show an error message with the text
 specified inside \texttt{Error} and no more code will be executed.
-\end{tips}
+\end{learnp}
 
 If our CA is not configured properly, we emit an error and block the code from running.
 
