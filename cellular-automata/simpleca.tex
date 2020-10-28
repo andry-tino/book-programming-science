@@ -814,23 +814,6 @@ of a cell depends on the state of its neighbors. Normally a cell has 8 neighbors
 \item A corner cell loses 5 neighbors, for a total of 3.
 \end{itemize}
 
-% Figure
-%
-\begin{figure}[b]
-% tikz diagram
-\input{diag-bordercells}
-%
-% If not, use
-%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-%
-\caption[Neighborhoods of border and corner cells]{A visualization
-of the neighborhoods of border and corner cells.
-It is clearly possible to see how, when compared to a normal cell, border cells have 5 neighbors and
-corner cells have 3 instead of 8.}
-\label{fig:bordercells}
-\end{figure}
-%
-
 What do we do with them? There are many approaches: we could have special rules for them when updating their
 state for instance.
 
@@ -842,6 +825,18 @@ a cell becomes active only if at least half of its neighbors are active. For a
 normal cell that number is 4, but for a border cell or corner cell? We could use a special rule for border
 cells and set that number to 2 or 3, and for corner cells we could set that number to 1 or 2.
 \end{example}
+
+% Figure (margin)
+%
+\begin{marginfigure}
+  \input{diag-bordercells}
+  \caption[Neighborhoods of border and corner cells]{A visualization
+  of the neighborhoods of border and corner cells.
+  It is clearly possible to see how, when compared to a normal cell, border cells have 5 neighbors and
+  corner cells have 3 instead of 8.}
+  \label{fig:bordercells}
+\end{marginfigure}
+%
 
 Using different rules for cells (as suggested in example \ref{ex:diffruleset})
 makes the automaton more complex though, and we don't want that.
