@@ -942,24 +942,6 @@ for (let i = 2; i <= rowsnum - 1; i++) {
 \end{codeh1}
 \end{programcode}
 
-% Figure
-%
-\begin{figure}[b]
-% tikz diagram
-\input{diag-cellneigh}
-%
-% If not, use
-%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-%
-\caption[Neighborhood of a cell]{A visualization of the neighborhood of a cell in the grid.
-A generic cell $(i,j)$ is highlighted in the CA (black)
-and its neighborhood is visualized (in grey).
-Note how the coordinates of each neighbor cell is expressed relatively
-to cell $(i,j)$.}
-\label{fig:cellneigh}
-\end{figure}
-%
-
 The code we have added is needed to collect all the info we need to calculate the next state for every cell.
 Recall that in a CA, the new state of a cell is calculated by using:
 
@@ -973,6 +955,18 @@ will return a cell's current state by passing its row and column number. Apart f
 just wrote is not dificult to understand: we first get the state of the cell we are scanning, then we get the states
 of its neighbors. Figure \ref{fig:cellneigh} provides a good visualization to better understand the code we just
 wrote.
+% Figure (margin)
+%
+\begin{marginfigure}
+  \input{diag-cellneigh}
+  \caption[Neighborhood of a cell]{A visualization of the neighborhood of a cell in the grid.
+  A generic cell $(i,j)$ is highlighted in the CA (black)
+  and its neighborhood is visualized (in grey).
+  Note how the coordinates of each neighbor cell is expressed relatively
+  to cell $(i,j)$.}
+  \label{fig:cellneigh}
+\end{marginfigure}
+%
 We compute 9 variables in total and then we create variable \texttt{sum} which will
 contain the number of active neighbors (remember that an active cell has state $1$, $0$ otherwise). In this
 code, there is one more thing left to do: calculating the new state and saving it.
