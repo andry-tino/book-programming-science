@@ -756,39 +756,6 @@ have just prepared it by defining the 3 main actions. As you can see, we have ba
 \item Incrementing (updating) time.
 \end{enumerate}
 
-% Figure
-%
-\begin{figure}[b]
-% tikz diagram
-\input{diag-caupdateinc}
-%
-% If not, use
-%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-%
-\caption[Example of incremental CA]{An example of incremental CA. As you can see in iteration $t=k$, one cell is updated
-with its new state. In the next iteration ($t=k+1$), the next cell is updated, however its state
-will be calculated on the new value of the previous.}
-\label{fig:updatecainc}
-\end{figure}
-%
-
-% Figure
-%
-\begin{figure}[b]
-% tikz diagram
-\input{diag-caupdateimm}
-%
-% If not, use
-%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-%
-\caption[Example of immediate CA]{An example of immediate CA. By using a temporary CA (a ghost CA) we can update
-the state of the cells of the CA without polluting our calculations. After all cells have been scanned, the
-ghost CA is used to replace the saved states in the original CA. At the end of the process, the ghost CA is
-finally destroyed as no more needed.}
-\label{fig:updatecaimm}
-\end{figure}
-%
-
 We are going to replace the \texttt{// Todo} comments with actual code, but now we need to explain a few
 things about why we have decided to use this approach, why we have defined these 2 phases: 
 \textit{calculate} and \textit{apply}. Our strategy is to:
@@ -798,6 +765,17 @@ things about why we have decided to use this approach, why we have defined these
 The new states will be memorized in a temporary location.
 \item In the second phase, we are going to scan again the cells, and we will apply the new states.
 \end{enumerate}
+
+% Figure (margin)
+%
+\begin{marginfigure}[-6.5cm]
+  \input{diag-caupdateinc}
+  \caption[Example of incremental CA]{An example of incremental CA. As you can see in iteration $t=k$, one cell is updated
+  with its new state. In the next iteration ($t=k+1$), the next cell is updated, however its state
+  will be calculated on the new value of the previous.}
+  \label{fig:updatecainc}
+\end{marginfigure}
+%
 
 Why do we want to scan the cells twice? Can't we just scan the cells one time and apply each new state
 right after calculating it? The answer is no, because otherwise we would calculate the CA's new configuration
@@ -809,11 +787,22 @@ as shown in figure \ref{fig:updatecaimm}.
 With the other
 approach, we would otherwise have an \textit{incremental CA}, where every new configuration of a cell depends on the
 newly updated value of the neighbors. Incremental CA are not wrong automata,
-they are just different. In this chapter,
-however, we want to use immediate CA!
+they are just different. In this chapter, however, we want to use immediate CA!
 
 In an immediate CA, the states of all cells can actually be updated in parallel. But we are not going to go
 that far here (the code for doing this is much more complicated).
+
+% Figure (margin)
+%
+\begin{marginfigure}[0.25cm]
+  \input{diag-caupdateimm}
+  \caption[Example of immediate CA]{An example of immediate CA. By using a temporary CA (a ghost CA) we can update
+  the state of the cells of the CA without polluting our calculations. After all cells have been scanned, the
+  ghost CA is used to replace the saved states in the original CA. At the end of the process, the ghost CA is
+  finally destroyed as no more needed.}
+  \label{fig:updatecaimm}
+\end{marginfigure}
+%
 
 We need to talk about one last thing before resuming coding: the \textit{border effect}. We know how to
 calculate the next configuration of a CA: we need to compute all the new states of all the cells. And the state
