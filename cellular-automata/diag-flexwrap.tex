@@ -35,10 +35,16 @@
 	\siy5 = \H - \i;
 	\sfx5 = \six5 + \s;
 	\sfy5 = \siy1 - \s;
-	\Bix2 = \Bix1 - \W - \d;
+	%
+	% \Bix2 = \Bix1 - \W - \d;
+	% \Bfx2 = \Bix2 + \W;
+	% \Biy2 = 0;
+	% \Bfy2 = \Biy2 + \H;
+	\Bix2 = \Bix1;
 	\Bfx2 = \Bix2 + \W;
-	\Biy2 = 0;
+	\Biy2 = \Biy1 + \H + \d;
 	\Bfy2 = \Biy2 + \H;
+	%
 	\six6 = \Bix2 + \i;
 	\siy6 = \Bfy2 - \i;
 	\sfx6 = \six6 + \s;
@@ -70,7 +76,7 @@
 	\tx1 = (\Bfx1 - \Bix1) * 0.5;
 	\ty1 = \Biy1 - 0.2;
 	\tx2 = (\Bfx2 - \Bix2) * 0.5 + \Bix2;
-	\ty2 = \ty1;
+	\ty2 = \Biy2 - 0.2;
 }
 
 \filldraw[fill=white, draw=black] (\Bix1,\Biy1) rectangle (\Bfx1,\Bfy1);

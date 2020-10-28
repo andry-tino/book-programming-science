@@ -6,6 +6,8 @@
 
 \tikzmath{
 	\S = 0.7cm;
+  \May1 = 0;
+  \Mby1 = -4;
 }
 
 \tikzset{square matrix/.style={
@@ -22,7 +24,7 @@
   square matrix/.default=\S
 }
 
-\matrix[square matrix] (m1) at (0,0)
+\matrix[square matrix] (m1) at (0,\May1)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} & \phantom{} & \phantom{} \\
@@ -40,7 +42,7 @@
 \draw [->, thick] (m1-2-2.center) -- (m1-3-2.center);
 \draw [->, thick] (m1-2-2.center) -- (m1-3-3.center);
 
-\matrix[square matrix] (m2) at (4.5,0)
+\matrix[square matrix] (m2) at (0,\Mby1)
 {
 \phantom{} & \phantom{} & \phantom{} & \phantom{} \\
 \phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} &|[preaction={fill, lightgray}, pattern=north west lines, pattern color=black]| \phantom{} & \phantom{} \\
@@ -58,9 +60,9 @@
 \draw [->, thick] (m2-2-3.center) -- (m2-3-3.center);
 \draw [->, thick] (m2-2-3.center) -- (m2-3-4.center);
 
-\node[text width=2cm] at (0.7,-1.5) {$t = k$};
-\node[text width=2cm] at (5.25,-1.5) {$t = k+1$};
+\node[text width=2cm] at (2.85,0) {$t = k$};
+\node[text width=2cm] at (2.85,-4) {$t = k+1$};
 
-\draw [->, double] (1.75,0) -- (2.75,0);
+\draw [->, double] (0,-1.5) -- (0,-2.5);
 
 \end{tikzpicture}
