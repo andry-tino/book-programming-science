@@ -117,8 +117,18 @@
 \newenvironment{important}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{important}{\ \circledmark{\textcolor{black}{$\ >$}}{\kern6pt}#1}}{\par\noindent\textcolor{important}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
-\newenvironment{learnp}[1]{\ignorespaces\def\stmtopen##1{##1}%
-\formtmp{learnp}{\ \circledmark{\textcolor{black}{$\ !$}}{\kern6pt}#1}}{\par\noindent\textcolor{learnp}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
+\newenvironment{learnp}[2][]{
+  \def\envargi{#1}
+  \ignorespaces\def\stmtopen##1{##1}%
+  \formtmp{black}{\ \circledmark{\textcolor{black}{$\ !$}}{\kern6pt}\textcolor{white}{#2}}
+}
+{
+  \ifx\envargi\empty
+  \else
+    \textsc{To learn more, go to pag. \pageref{\envargi}.}
+  \fi
+  \par\noindent\textcolor{black}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}
+}%
 
 \newenvironment{warning}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{warning}{\ \circledmark[white]{\textcolor{black}{!}}{\kern6pt}#1}}{\par\noindent\textcolor{warning}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
