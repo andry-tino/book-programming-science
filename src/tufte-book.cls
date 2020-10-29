@@ -133,8 +133,14 @@
 \newenvironment{warning}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{warning}{\ \circledmark[white]{\textcolor{black}{!}}{\kern6pt}#1}}{\par\noindent\textcolor{warning}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
 
-\newenvironment{programcode}[1]{\ignorespaces\def\stmtopen##1{##1}%
-\formtmp{programcode}{File: #1}}{\noindent\textcolor{programcode}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%
+\newenvironment{programcode}[2][]{
+  \def\envargi{#1}
+  \ignorespaces\def\stmtopen##1{##1}%
+  \formtmp{programcode}{\ifx\envargi\empty\else\envargi: \fi #2}
+}
+{
+  \noindent\textcolor{programcode}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}
+}%
 
 \newenvironment{tips}[1]{\ignorespaces\def\stmtopen##1{##1}%
 \formtmp{tips}{Tip: #1}}{\par\noindent\textcolor{tips}{\rule{\columnwidth}{1pt}}\vskip2pt\par\addvspace{\baselineskip}}%

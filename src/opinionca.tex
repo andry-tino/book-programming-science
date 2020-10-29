@@ -215,7 +215,7 @@ We have basically duplicated CGL and prepared a copy of it that we will edit. In
 make a few adjustments in code to develop a different automaton. The first thing, being the title
 of the page:
 
-\begin{programcode}{index.html (snippet)}
+\begin{programcode}[Snippet]{index.html}
 Open \texttt{index.html} and change the title as shown below.
 \begin{codehtml}
 <title>Opinion Shift Study Cellular Automaton</title>
@@ -224,7 +224,7 @@ Open \texttt{index.html} and change the title as shown below.
 
 This was an important step! Now let's move on to some more serious coding.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Open \texttt{ca.js} and spot function \texttt{calculateState}. Remove the content of the
 function and place this code instead.
 \begin{codeh1}{1}{9}
@@ -306,7 +306,7 @@ specific initial conditions and save a lot of time.
 
 The first thing we wanna do, is changing the size of our automaton.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 In \texttt{ca.js}, at the beginning of the module, change the size of the CA to 40x40.
 \begin{code}
 const rowsnum = 40;
@@ -329,7 +329,7 @@ And we are going to draw many blocks. Instead of manually creating a block by fi
 to which we provide the top-left corner cell and the bottom-right corner cell's coordinates, and it
 will push all the cells inside these boundaries into the array \texttt{initConfig}.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 In our Javascript module, add this function at the beginning, after the constants and variables.
 \begin{codeh2}{0}{2}{4}{8}
 const initConfig = [];
@@ -370,7 +370,7 @@ in a smarter way.
 The next thing we need is a quick way to draw a rectangle as we mentioned before. We will create
 a function to accomplish that.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Add this function in the Javascript module right after function \texttt{setInitialCondition}.
 \begin{code}
 function rect(i1, j1, i2, j2) {
@@ -394,7 +394,7 @@ two cells inside the grid; also, cell \texttt{i2:j2} must be placed below and on
 of \texttt{i1:j1}.
 Let's see this new tool in action and let's draw a square block in the automaton.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Remove the comment inside function \texttt{setInitialCondition} and
 invoke function \texttt{rect}.
 \begin{codeh1}{1}{3}
@@ -412,7 +412,7 @@ We want to experiment a little and see what happens to square blocks of differen
 the CA evolves. So let's paint a few more blocks of different dimension and let's draw some
 conclusions.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Add more invocations to function \texttt{rect} inside function \texttt{setInitialCondition}.
 \begin{codeh1}{1}{8}
 function setInitialCondition() {
@@ -575,7 +575,7 @@ $\lceil 0.999 \rceil = 1$, $\lceil 100.1 \rceil = 101$ and $\lceil 5.5 \rceil = 
 Now that we have everything we need to draw lines on a squared grid, we can implement
 equations \ref{eq:kinemsegapprox} in code.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Add this function right after function \texttt{rect}.
 \begin{code}
 function line(i1, j1, i2, j2) {
@@ -597,7 +597,7 @@ describes the acceptable values of the coordinates: this time we just require th
 to be inside the grid size, the cells can be located anywhere in the automaton. Let's try our
 new function.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Remove the content of function \texttt{setInitialCondition}, and invoke function \texttt{line}
 instead.
 \begin{codeh1}{1}{3}
@@ -611,7 +611,7 @@ If we save and refresh, we will see our line.
 So, let's test our theory about connected blocks. Let's now draw two squares and a line connecting
 them to see if the number of black cells increases this time.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Remove function \texttt{setInitialCondition}'s content again, and create two blocks and one
 line connecting them.
 \begin{codeh1}{1}{5}
@@ -630,7 +630,7 @@ unfortunately see that the line almost immediately disappears and, as we move on
 the two blocks (which get isolated) will change shape recurrently but will not expand. The line
 is not strong enough, we need a thicker one.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Add this line of code inside function \texttt{line}.
 \begin{codeh1}{8}{10}
 function line(i1, j1, i2, j2) {
@@ -681,7 +681,7 @@ highest possible number of active cells, starting from the fewest possible numbe
 Let's start with a first attemp: let's create two small blocks at the opposite corners of the city
 and let's connect them with a line.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Remove function \texttt{setInitialCondition}'s content again, and create two blocks and one
 line connecting them.
 \begin{codeh1}{1}{5}
@@ -703,7 +703,7 @@ budget (remember that we are trying to solve the problem as specified in proposi
 Let's try another configuration: we can still work with two blocks, but we will try to make them a
 bit bigger (not too much though to avoid exceeding the budget).
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Remove function \texttt{setInitialCondition}'s content, and create two blocks of different size and one
 line connecting them.
 \begin{codeh1}{1}{5}
@@ -724,7 +724,7 @@ Let's attempt one configuration more. Maybe if we used more blocks connected tog
 our goal. Let's now create an initial condition with four blocks at the corners connected with
 an \texttt{X} pattern.
 
-\begin{programcode}{ca.js (snippet)}
+\begin{programcode}[Snippet]{ca.js}
 Remove function \texttt{setInitialCondition}'s content, and create four blocks and two
 lines connecting them.
 \begin{codeh1}{1}{7}
